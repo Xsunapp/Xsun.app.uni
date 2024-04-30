@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xsun Token</title>
+    
+  
 
 
-
+    </head>
+    <body>
+      
+    </body>
+    </html>
 
     <!-- هنا يتم وضع الأنماط الخاصة بوسائط الاعلام -->
     <style>
@@ -208,13 +214,20 @@
     </div>
   </div>
   
+  <div onclick="copyContract()" style="cursor: pointer; color: black; position: absolute; top: 88.1%; z-index: 9999; right: 5%; font-size: 2.5vw; background-color: white; color: black; padding: 10px; border: 1px solid black; border-radius: 5px; display: flex; align-items: center;">
+  <span style="margin-right: 10px;">Contract adresse bsc20:</span>
+  <textarea id="contractAddress" readonly style="flex: 1; border: none; background-color: transparent; font-size: 1vw;">0xEf06e2D9C18680316E63944be3d881093Aa8d542</textarea>
+</div>
+
+
+
+
+
   
   
   
   
-  
-  
-<p id="totalMiningCount" style="color: black; position: absolute; top: 84%; z-index: 9999; right: 4%; font-size: 2vw; background-color: white; color: black;">~ 𝚃𝚘𝚝𝚊𝚕 𝚇𝚜𝚞𝚗 𝙼𝚒𝚗𝚎𝚍 ~
+<p id="totalMiningCount" style="color: black; position: absolute; top: 14%; z-index: 9999; right: 3%; font-size: 2vw; background-color: white; color: black;">~ 𝚃𝚘𝚝𝚊𝚕 𝚇𝚜𝚞𝚗 𝙼𝚒𝚗𝚎𝚍 ~
 :<span id="minedCoinsTotal"></span></p>
 
 
@@ -223,7 +236,7 @@
 
 
   
-<p style="color: black; position: absolute; top: 25.9%; z-index: 9999; left: 2%; font-size: 2vw; background-color: red; color: whitesmoke;">✨️~ 𝚇𝚂𝚄𝙽 𝚃𝙾𝙺𝙴𝙽 𝙲𝚁𝚈𝙿𝚃𝙾 𝙳𝙸𝙶𝙸𝚃𝙰𝙻~✨️
+<p style="color: black; position: absolute; top: 20.7%; z-index: 9999; left: 2%; font-size: 2vw; background-color: red; color: whitesmoke;">✨️~ 𝚇𝚂𝚄𝙽 𝚃𝙾𝙺𝙴𝙽 𝙲𝚁𝚈𝙿𝚃𝙾 𝙳𝙸𝙶𝙸𝚃𝙰𝙻~✨️
 
 
 
@@ -237,7 +250,7 @@
 
 
 
-<p style="color: black; position: absolute; top: 20.7%; z-index: 9999; left: 2%; font-size: 1.8vw; background-color: seagreen;">⚙ NETWORK NEAR BLOCKCHAIN ⚙</p>
+<p style="color: black; position: absolute; top: 26.2%; z-index: 9999; left: 2%; font-size: 1.8vw; background-color: seagreen;">⚙ NETWORK NEAR BLOCKCHAIN-BSC20⚙</p>
 
 
 
@@ -253,6 +266,10 @@
   <img src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/immutable-x-imx-glass-crypto-coin-3d-illustration-free-png.png?alt=media&token=5cf5a220-fed2-41b8-a1fe-035e0e3c9a6e" alt="icon" width="39vw" height="39vw">
 </div>
 
+
+<a href="https://bscscan.com/token/0xef06e2d9c18680316e63944be3d881093aa8d542" target="_blank" rel="noopener noreferrer" style="position: absolute; top: 78vh; right: 7vw; z-index: 9999;">
+  <img src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/1_RbK1YYzgQg6uni0TXU4Ghw.png?alt=media&token=3a23e26f-98dc-45ea-afd8-caae91cf59e5" alt="icon" width="25vw" height="25vw">
+</a>
 
 
 
@@ -297,9 +314,10 @@
 
 <div style="position: absolute; top: 32.5%; left: 2%; width: 95vw; text-align: left;  ">
   <div class="info-box" style="margin-top: 0px; background-color: #333; padding: 2vw; border-radius: 5vw; border: none;">
+
     <p style="font-size: 7vw; margin: 0; background-color: black; margin-left: 1vw;">Time Left: <span id="countdownContainer"></span></p>
 
-    <p style="font-size: 7vw; margin: 1vw 0 0 0; background-color: black; margin-left: 1vw;">Balance: <span id="balance">0.00000000</span></p>
+    <p style="font-size: 7vw; margin: 1vw 0 0 0; background-color: black; margin-left: 1vw;">Balance: <span id="balance">0.0000000</span></p>
    
 
     <p id="balanceInUSD" style="font-size: 6.5vw; margin: 1vw 0; width: 93%; margin-left: 1vw; background-color: black;">Balance in USD: $0.00</p>
@@ -1959,6 +1977,26 @@ h1 {
    width: 60%;
 }
   
+  
+/* Style for copied message */
+.copied-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: red;
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+  z-index: 9999;
+}
+  
+  
+  
+  
+  
+  
    </style>
    
    
@@ -2144,7 +2182,7 @@ function displayBalance() {
     const balanceIncreaseRate = 0.0;
     const currentBalance = parseFloat(balanceElement.textContent);
     const newBalance = currentBalance + balanceIncreaseRate;
-    balanceElement.textContent = newBalance.toFixed(9);
+    balanceElement.textContent = newBalance.toFixed(7);
     updateBalanceInUSD();
 }
 
@@ -3535,6 +3573,25 @@ submitBtn.addEventListener('click', function() {
   function cancel() {
     document.getElementById('popup').style.display = 'none';
   }
+
+
+  function copyContract() {
+  var contractAddress = document.getElementById('contractAddress');
+  contractAddress.select();
+  document.execCommand('copy');
+  
+  // Create copied message element
+  var copiedMessage = document.createElement('div');
+  copiedMessage.textContent = 'Copied!';
+  copiedMessage.classList.add('copied-message');
+  document.body.appendChild(copiedMessage);
+  
+  // Remove copied message after 2 seconds
+  setTimeout(function(){
+    copiedMessage.remove();
+  }, 2000);
+}
+
 
 
 </script>
