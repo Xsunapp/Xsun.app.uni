@@ -5,43 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xsun Token</title>
     
-  
 
 
     </head>
     <body>
-      
-    </body>
-    </html>
-
-    <!-- هنا يتم وضع الأنماط الخاصة بوسائط الاعلام -->
-    <style>
-        /* قواعد CSS العامة هنا */
-
-        /* قواعد CSS للشاشات الصغيرة (الأجهزة المحمولة) */
-        @media screen and (max-width: 768px) {
-            /* قواعد CSS المناسبة للشاشات الصغيرة هنا */
-        }
-
-        /* قواعد CSS للشاشات المتوسطة (الأجهزة اللوحية) */
-        @media screen and (min-width: 769px) and (max-width: 1024px) {
-            /* قواعد CSS المناسبة للشاشات المتوسطة هنا */
-        }
-
-        /* قواعد CSS للشاشات الكبيرة (الأجهزة الحاسوبية) */
-        @media screen and (min-width: 1025px) {
-            /* قواعد CSS المناسبة للشاشات الكبيرة هنا */
-        }
-    </style>
-</head>
-<body>
-    <!-- محتوى الصفحة يأتي هنا -->
 
 
     
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xsun Token</title>
 
 
 <div id="authForm" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0, 0, 0, 0.5); padding: 30px; width: 80%; text-align: center;">
@@ -246,7 +216,7 @@
 </p>
 
 
-<span style="font-size: 3.6vw; color:white; background-color: ; color: blueviolet; border-radius: 2vw; position: absolute; top: 20.8%; right: 7%; text-align: center;">
+<span style="font-size: 3.6vw; color:white; background-color: ; color: blueviolet; border-radius: 2vw; position: absolute; top: 21.6%; right: 7%; text-align: center;">
   <span style="font-size: 5vw;">️ 🔗</span><br>
   𝙼𝙰𝚇_𝚂𝚄𝙿𝙿𝙻𝚈 <br>
   3️⃣6️⃣6️⃣6️⃣6️⃣
@@ -321,7 +291,7 @@
 
     <p style="font-size: 7vw; margin: 0; background-color: white; margin-left: -1vw; width: 96%; color: black">Time Left <span id="countdownContainer"></span></p>
 
-    <p style="font-size: 7vw; margin: 1vw 0 0 0; background-color: white; margin-left: -1vw; width: 96%; color: black">Balance: <span id="balance">0.0000000</span></p>
+    <p style="font-size: 7vw; margin: 1vw 0 0 0; background-color: white; margin-left: -1vw; width: 96%; color: black">Balance: <span id="balance">0.00000000</span></p>
    
 
     <p id="balanceInUSD" style="font-size: 6.5vw; margin: 1vw 0; width: 96%; margin-left: -1vw; background-color: white; color: black">Balance in USD: $0.00</p>
@@ -1985,7 +1955,7 @@ h1 {
 /* Style for copied message */
 .copied-message {
   position: fixed;
-  top: 50%;
+  top: 49%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
@@ -2186,7 +2156,7 @@ function displayBalance() {
     const balanceIncreaseRate = 0.0;
     const currentBalance = parseFloat(balanceElement.textContent);
     const newBalance = currentBalance + balanceIncreaseRate;
-    balanceElement.textContent = newBalance.toFixed(7);
+    balanceElement.textContent = newBalance.toFixed(8);
     updateBalanceInUSD();
 }
 
@@ -2269,7 +2239,7 @@ const loadMiningData = async () => {
                 if (userDoc.exists()) {
                     const userData = userDoc.data();
                     miningTime = userData.miningTime;
-                    balanceElement.textContent = userData.balance.toFixed(10);
+                    balanceElement.textContent = userData.balance.toFixed(8);
                     startTime = userData.startTime || Date.now();
                 }
             }
@@ -2297,7 +2267,7 @@ const loadMiningData = async () => {
     if (userDoc.exists()) {
         const userData = userDoc.data();
         miningTime = userData.miningTime;
-        balanceElement.textContent = userData.balance.toFixed(10);
+        balanceElement.textContent = userData.balance.toFixed(8);
         
         // استرجاع رصيد الإحالة
         const referralBalance = userData.referralBalance || 0;
@@ -2455,7 +2425,7 @@ const checkAgreement = () => {
 };
 
 
-const MAX_ACCOUNTS_PER_DEVICE = 3;
+const MAX_ACCOUNTS_PER_DEVICE = 2;
 
 const generateDeviceID = () => {
   // Generate a random string of characters to use as the device ID
@@ -2530,7 +2500,6 @@ const userSignUp = async () => {
         return;
     }
     
-    
     const deviceID = checkDeviceID();
   if (!deviceID) {
     setDeviceID(deviceID);
@@ -2545,6 +2514,7 @@ const userSignUp = async () => {
     showMessage("You have reached the maximum limit of accounts on this device");
     return;
   }  
+    
     
 
     try {
@@ -2912,7 +2882,7 @@ const updateBtcBalanceInFirestore = async (btcToAdd) => {
                 // Update balance in the HTML element
                 const balanceElement = document.getElementById('balance');
                 if (balanceElement) {
-                    balanceElement.textContent = newBalance.toFixed(10);
+                    balanceElement.textContent = newBalance.toFixed(8);
                 }
 
                 const currentTime = new Date().toISOString();
@@ -3595,6 +3565,8 @@ submitBtn.addEventListener('click', function() {
     copiedMessage.remove();
   }, 2000);
 }
+
+
 
 
 
