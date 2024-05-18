@@ -216,7 +216,7 @@
 </p>
 
 
-<span style="font-size: 3.6vw; color:white; background-color: ; color: blueviolet; border-radius: 2vw; position: absolute; top: 21.6%; right: 7%; text-align: center;">
+<span style="font-size: 3.6vw; color:white; background-color: ; color: blueviolet; border-radius: 2vw; position: absolute; top: 22.5%; right: 7%; text-align: center;">
   <span style="font-size: 5vw;">️ 🔗</span><br>
   𝙼𝙰𝚇_𝚂𝚄𝙿𝙿𝙻𝚈 <br>
   3️⃣6️⃣6️⃣6️⃣6️⃣
@@ -1104,7 +1104,9 @@
 
    
    
-   
+   <div class="black-screen" id="blackScreen">
+   <p>Please rotate your device to portrait mode.</p>
+   </div>
    
    
     
@@ -1966,8 +1968,26 @@ h1 {
   z-index: 9999;
 }
   
-  
-  
+
+
+
+   .black-screen {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: white;
+}
+
+
+
   
   
   
@@ -1975,10 +1995,7 @@ h1 {
    
    
    
-   
-   
-   
-   
+
    
 </head>
 <body>
@@ -3566,6 +3583,19 @@ submitBtn.addEventListener('click', function() {
   }, 2000);
 }
 
+
+    
+
+
+    window.addEventListener('orientationchange', function() {
+      var screenOrientation = window.screen.orientation;
+    
+      if (screenOrientation.type === 'landscape-primary' || screenOrientation.type === 'landscape-secondary') {
+        document.getElementById('blackScreen').style.display = 'flex';
+      } else {
+        document.getElementById('blackScreen').style.display = 'none';
+      }
+    });
 
 
 
