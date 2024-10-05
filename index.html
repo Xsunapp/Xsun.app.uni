@@ -210,7 +210,8 @@
   <a href="#" onclick="showInviteFriends()">Referral</a>
   <a href="#" onclick="showRoadmap()">Roadmap</a>
   <a href="#" onclick="showKyc()">kyc</a>
-  <a id="telegramLink" href="https://xsunapp.github.io/xsun.app.univer/#">Site</a>
+<button onclick="openSite()" style="margin-left: 5px; background-color: black; font-size: 20px;">Open Site</button>
+<br>
 
   <button id="signOutButton" style="margin-left: 15px;">Sign Out</button>
 
@@ -4134,6 +4135,9 @@ function detectDevice() {
 detectDevice(); // استدعاء الدالة عند تحميل الصفحة
 
 
+        function openSite() {
+  window.open("https://xsunapp.github.io/xsun.app.univer/#", "_blank");
+}
 
 
 </script>
