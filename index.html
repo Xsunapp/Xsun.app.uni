@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xsun Token</title>
+
     
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 
     </head>
@@ -18,7 +20,13 @@
   <!-- محتوى الصفحة -->
 
 
- <img src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/immutable-x-imx-glass-crypto-coin-3d-illustration-free-png.png?alt=media&token=5cf5a220-fed2-41b8-a1fe-035e0e3c9a6e" alt="Logo" style="width: 30vw; height: 30vw; margin-right: 0vw;">
+   
+
+
+
+
+
+ <img src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/crypto-currency-coins-first-100-260nw-2273744543-removebg-preview.png?alt=media&token=aeb83f8c-ad48-40e0-ad33-bc740a4b079d" alt="Logo" style="width: 50vw; height: 50vw; margin-right: 0vw;">
 
 
 <h2 style="color: white; font-size: 7vw;">
@@ -29,16 +37,37 @@
 
 
   <input type="email" placeholder="Email" id="userEmail" style="width: 80%; margin-bottom: 10px;">
-  <input type="password" placeholder="Password" id="userPassword" style="width: 80%; margin-bottom: 10px;">
+  <input type="password" placeholder="Password" id="usePassword" style="width: 80%; margin-bottom: 10px;">
+  
+   <button id="forgetPasswordButton" style="background-color: transparent; color: red;">Forget Password ?</button>
+ 
   <br><br>
   
+  
+<button id="googleSignInButtonLogin" style="position: relative; background-color: dodgerblue; color: white; padding-left: 10px; padding-right: 10px; display: none;">
+  <span style="position: absolute; left: 0; top: 0; bottom: 0; width: 18%; background-color: white; color: black; border-radius: 2px;"></span>
+  <span style="position: relative; z-index: 1;">
+    <i class="fab fa-google" style="margin-right: 10px; background: linear-gradient(90deg, #4285F4, #EA4335, #FBBC05, #34A853); -webkit-background-clip: text; color: transparent; font-size: 0.9em;"></i>
+    <!-- رمز Google -->
+    Sign in with Google
+  </span>
+  <span style="position: absolute; left: 18%; top: 0; bottom: 0; width: 1px; background-color: #000;"></span> <!-- الخط الفاصل -->
+</button>
+
 
 <button id="signInButton" style="background-color: green; color: white; margin-left: 10px;">Sign In</button>
 
 
- <button id="forgetPasswordButton" style="background-color: red; color: white;">Forget Password</button>
- 
-  <button id="goToSignupButton" style="background-color: deepskyblue;" >Create an Account</button>
+
+
+
+
+
+<br>
+<!-- زر مصادقة Google في كل من تسجيل الدخول وتسجيل الحساب -->
+
+
+  <button id="goToSignupButton" style="background-color: red; color: white;" >Create a new account !</button>
   <div id="errorMessage" style="color: red;"></div>
   <div id="successMessage" style="color: red;"></div>
 
@@ -78,27 +107,30 @@
 
 
 
-
 <div id="signupForm" class="hidden" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0, 0, 0, 0.5); padding: 30px; width: 80%; text-align: center;">
   
   
-   <img src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/immutable-x-imx-glass-crypto-coin-3d-illustration-free-png.png?alt=media&token=5cf5a220-fed2-41b8-a1fe-035e0e3c9a6e" alt="Logo" style="width: 30vw; height: 30vw; margin-right: 0vw;">
+   <img src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/crypto-currency-coins-first-100-260nw-2273744543-removebg-preview.png?alt=media&token=aeb83f8c-ad48-40e0-ad33-bc740a4b079d" alt="Logo" style="width: 50vw" alt="Logo" style="width: 30vw; height: 30vw; margin-right: 0vw;">
   
   
 <h2 style="color: white; font-size: 7vw;">
  𝓦𝓮𝓵𝓬𝓸𝓶𝓮 𝓣𝓸 𝓧𝓼𝓾𝓷! 🌟
 </h2>
-
+        <div id="errorMessageSignup" style="color: red; font-weight: bold;">
+        </div>
 
 
 <input type="email" placeholder="Email" id="userEmail" style="width: 80%; margin-bottom: 10px;">
   <input type="password" placeholder="Password" id="userPassword" style="width: 80%; margin-bottom: 10px;">
   <br>
+   <input type="password" placeholder="Confirm Password" id="confirmPassword" style="width: 80%; margin-bottom: 10px;">
   <input type="text" placeholder="Invitation Code (Required)" id="invitationCode" style="width: 80%; margin-bottom: 10px;">
   <br>
   <div>
 
-  <button onclick="generateInvitationCode()" style="background-color: orange; color: white; font-size: 14px;">Generate invitation Code</button>
+  <button onclick="generateInvitationCode()" style="background-color: orange; color: white; font-size: 8px;">Generate invitation Code</button>
+  
+   <button id="togglePassword" onclick="togglePasswordVisibility()" style="margin-right: 5px; font-size: 9px; background-color: #333; color: white; border-radius: 5px;">Show password</button>
 </div>
 
   <input type="checkbox" id="agreeCheckbox" style="margin-right: 5px;">
@@ -106,12 +138,31 @@
   <a href="https://xsunapp.github.io/Xsun.privacy-Policy/" target="_blank" style="color: white; margin-left: 20px;">Privacy Policy</a>
   
   <br><br>
+
+
+
+<!-- زر مصادقة Google في كل من تسجيل الدخول وتسجيل الحساب -->
+<button id="googleSignInButtonSignup" style="position: relative; background-color: dodgerblue; color: white; padding-left: 10px; padding-right: 10px; display: none;">
+  <span style="position: absolute; left: 0; top: 0; bottom: 0; width: 18%; background-color: white; color: black; border-radius: 2px;"></span>
+  <span style="position: relative; z-index: 1;">
+    <i class="fab fa-google" style="margin-right: 10px; background: linear-gradient(90deg, #4285F4, #EA4335, #FBBC05, #34A853); -webkit-background-clip: text; color: transparent; font-size: 0.9em;"></i>
+    <!-- رمز Google -->
+    Sign up with Google
+  </span>
+  <span style="position: absolute; left: 18%; top: 0; bottom: 0; width: 1px; background-color: #000;"></span> <!-- الخط الفاصل -->
+</button>
+
+
   <button id="signUpButton" style="background-color: green; color: white; margin-right: 10px;">Sign Up</button>
-  <br>
-         <button id="goToSigninButton" style=" background-color: red;">Already have an account</button>
-        <div id="errorMessageSignup" style="color: red;">
-          
-              <p style="color:whitet; font-size: 12px;">🔗 𝕏𝕊𝕌ℕ ℕ𝔼𝕋𝕎𝕆ℝ𝕂 ℕ𝔼𝔸ℝ 𝔹𝕃𝕆ℂ𝕂ℍ𝔸𝕀ℕ. 🔗</p>
+
+
+<br>
+
+
+         <button id="goToSigninButton" style=" background-color: red; font-size: 12px;">Already have an account ?</button>
+
+  
+              <p style="color:whitet; font-size: 12.8px;">🔗 𝕏𝕊𝕌ℕ ℕ𝔼𝕋𝕎𝕆ℝ𝕂 ℕ𝔼𝔸ℝ 𝔹𝕃𝕆ℂ𝕂ℍ𝔸𝕀ℕ. 🔗</p>
 
         </div>
     </div>
@@ -122,34 +173,47 @@
 
 
 
-
-
 <div class="sidebar" id="sidebar">
-
   <button id="sidebar-button">☰</button>
+  
   <!-- إطار لعرض الصورة -->
   <div class="image-frame" id="imageFrame">
     <img src="default-image.jpg" alt="User Image" id="userImage">
     <input type="file" accept="image/*" id="imageInput" class="image-input">
   </div>
 
-<div class="sidebar-circle">
-  
-  
-  
-<p style="background-color: white; color: black; font-size: 18px;">UID: <span id="userUID"></span></p>
+  <div class="sidebar-circle">
+    <p style="background-color: white; color: black; font-size: 18px;">UID: <span id="userUID"></span></p>
+  </div>
 
+<!-- مربع البريد الإلكتروني -->
+<!-- مربع البريد الإلكتروني -->
+<div class="email-box" style="background-color: darkblue; color: lightgray; font-size: 18px; padding: 10px; margin-top: 10px; width: 85%; border-radius: 5px; margin-left: 7px;">
+    <span id="userEmailDisplay" style="font-weight: bold;">example@example.com</span> <!-- نص مؤقت أثناء التحميل -->
+    
+    <div style="font-size: 16px; color: red; margin-top: 5px;">
+        <span id="emailVerificationStatus" style="display: inline-block; font-weight: bold;">Not Verified</span>
+        <button id="resendVerificationButton" style="display: inline-block; background-color: white; color: darkblue; border: none; padding: 5px; border-radius: 3px; cursor: pointer; margin-left: 10px;">Resend</button> <!-- زر إعادة الإرسال بجانب حالة التحقق -->
+        <span id="countdownTimerResend" style="margin-left: 10px; display: none; color: white; font-weight: bold;"></span> <!-- عداد تنازلي -->
+    </div>
 
+    <div id="resendWarning" style="color: red; display: none; margin-top: 5px;"></div> <!-- تحذير للمستخدم -->
 </div>
 
-<a href="#" onclick="showMiningInterface()">Home</a>
-<a href="#" onclick="showEarnings()">Wallet</a>
-<a href="#" onclick="showInviteFriends()">Referral</a>
-<a href="#" onclick="showRoadmap()">Roadmap</a>
-<a href="#" onclick="showKyc()">kyc</a>
-<a id="telegramLink" href="https://bit.ly/3xu8bOt">android</a>
 
-<button id="signOutButton" style="margin-left: 15px;">Sign Out</button>
+
+
+
+
+  <a href="#" onclick="showMiningInterface()">Home</a>
+  <a href="#" onclick="showEarnings()">Wallet</a>
+  <a href="#" onclick="showInviteFriends()">Referral</a>
+  <a href="#" onclick="showRoadmap()">Roadmap</a>
+  <a href="#" onclick="showKyc()">kyc</a>
+  <a id="telegramLink" href="https://xsunapp.github.io/xsun.app.univer/#">Site</a>
+
+  <button id="signOutButton" style="margin-left: 15px;">Sign Out</button>
+
 
   
     
@@ -164,8 +228,28 @@
 
 
 
+
+
+
+
+<div id="resendMessage" style="display: none; position: fixed; top: 30%; left: 50%; transform: translate(-50%, -50%); background: black; padding: 20px; border: 1px solid #ccc; z-index: 10003;">
+
+</div>
+
+
+
+
+
+
 <div id="secretContent" style="background-color: black;">
-    <!-- محتوى الصفحة -->
+
+
+
+
+
+
+
+
 
 
 
@@ -180,7 +264,7 @@
               <img src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/new-2023-twitter-logo-x-icon-design_1017-45418.jpg?alt=media&token=08143d22-606f-464b-8a0e-0974c41fb45e" alt="X" width="30" height="30">
             </a>
     <div class="custom-button-container" onclick="window.open('whatsapp://message/OGBVOC6HW72YF1', '_blank');" style="cursor: pointer;">
-      <img src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/512px-WhatsApp.svg.png?alt=media&token=05d41c4f-dcfb-4fcf-9ae1-fdf8d4f976ec" alt="whatsapp" width="30" height="30">
+      <img src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/512px-WhatsApp.svg.png?alt=media&token=05d41c4f-dcfb-4fcf-9ae1-fdf8d4f976ec" alt="" width="30" height="30">
     </div>
   </div>
   
@@ -635,37 +719,13 @@
 
 
 
-
-
-<span style="font-size: 7vw; color: black; font-family: 'Arial', sans-serif; font-weight: bold; position: absolute; top:  0vw; left: 50%; transform: translateX(-50%); text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); letter-spacing: 2px; background-color: white; height: 37vw; width: 100vw; display: flex; justify-content: center; align-items: center;">𝒯𝑜𝓉𝒶𝓁 𝐵𝒶𝓁𝒶𝓃𝒸𝑒
+<span id="total-balance" style="font-size: 6vw; color: darkgray; font-family: 'Arial', sans-serif; font-weight: bold; position: absolute; top: 5vw; left: 50%; transform: translateX(-50%); text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); letter-spacing: 2px; background-color: black; height: 37vw; width: 100vw; display: flex; justify-content: center; align-items: center;">
+  Total Balance
 </span>
-
     
 
 
-<div style="position: absolute; text-align: center; top: 3%; right: 3%; transform: translate( -50% , 23vw); z-index: 9999; display: flex; flex-direction: row; justify-content: center;">
 
-
-    <a href="https://www.instagram.com/xsun_team_official?igsh=OGQ5ZDc2ODk2ZA==" style="margin-right: 10px;">
-      <img src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/2048px-Instagram_logo_2016.svg.png?alt=media&token=aecc3bec-9f5b-4235-aae0-d1ca6ee12de8" alt="instagram" width="30" height="30">
-    </a>
-    <a href="https://x.com/team_xsun?s=09">
-      <img src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/new-2023-twitter-logo-x-icon-design_1017-45418.jpg?alt=media&token=08143d22-606f-464b-8a0e-0974c41fb45e" alt="X" width="30" height="30">
-    </a>
-    <div class="custom-button-container" onclick="window.open('whatsapp://message/OGBVOC6HW72YF1', '_blank');" style="cursor: pointer;">
-      <img src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/512px-WhatsApp.svg.png?alt=media&token=05d41c4f-dcfb-4fcf-9ae1-fdf8d4f976ec" alt="whatsapp" width="30" height="30">
-    </div>
-  </div>
-  
-
-      <hr style="border: none; border-bottom: 1vw solid green; margin: -10vw 0; width: 100%; position: absolute; left: 0vw;">
-     
-
-
-
-      <hr style="border: none; border-bottom: 1vw solid green; margin: 27vw 0; width: 100%; position: absolute; left: 0vw;">
-  
-  
   
 
      
@@ -680,7 +740,7 @@
 
 
 
-<div style="display: flex; justify-content: center; margin-top: 10vw; transform: translateY(40vw); overflow-y: auto;  color: black; ">
+<div style="display: flex; justify-content: center; margin-top: 5vw; transform: translateY(40vw); overflow-y: auto;  color: black; ">
   <table>
     <thead>
       <tr>
@@ -707,7 +767,7 @@
 <td>
 
 
-  <div style="display: flex; align-items: center;"><img class="currency-icon" src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/immutable-x-8650913-6876145.png?alt=media&token=a8e35190-e903-4e42-be83-05fcad4e5e1b" alt="" style="width: 40px; height: 40px; margin-right: 1px;"> 𝐗𝐒𝐔𝐍</div>
+  <div style="display: flex; align-items: center;"><img class="currency-icon" src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/dydx-3d-icon-download-in-png-blend-fbx-gltf-file-formats--bitcoin-logo-currency-finance-glass-crypto-coin-vol-2-pack-science-technology-icons-6876181.png?alt=media&token=becf4105-85b1-4ef7-bb0f-634c3651e9a5" alt="" style="width: 40px; height: 40px; margin-right: 1px;"> 𝐗𝐒𝐔𝐍</div>
 </td>
 
 <td class="balance" id="totalBalance" style="font-size: 4.5vw; color: white;">00.00</td>
@@ -795,8 +855,9 @@
 
 
 
-<div id="message" class="message" style="font-weight: bold; color: white; font-size: 1.8em;">Not open yet</div>
-
+<div id="message" class="message" style="font-weight: bold; color: white; font-size: 1.8em; z-index: 10002; position: absolute; left: 50%; transform: translate(-50%, -50%); display: none; border-radius: 5px;">
+  Not open yet
+</div>
 
 <div id="popup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #fff; padding: 20px; border: 1px solid #000; border-radius: 10px; z-index: 9999; width: 320px;">
   <h2 style="margin-bottom: 10px; color: red;">Enter Address and Quantity</h2>
@@ -900,6 +961,12 @@
   
   
   
+
+
+<a href="mailto:Coin@xsun.pro" style="position: fixed; top: 0; right: 0; padding: 10px; display: flex; align-items: center; text-decoration: none; z-index: 1000;">
+  <img src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/png-transparent-mail-google-gmail-google-s-logo-icon-removebg-preview.png?alt=media&token=b97de37b-adb5-42e8-bf88-c46bbb28a139" alt="Gmail Logo" width="30" height="30" style="margin-right: 10px;">
+  <span style="color: white; font-size: 14px; background-color: darkblue; font-weight: bold; border-radius: 3px;">Coin@xsun.pro</span>
+</a>
 
 
 
@@ -1039,7 +1106,7 @@
 
 
   <div style="display: flex; align-items: center; justify-content: flex-end; border-radius:0; position: relative; top: 10vh;">
-  <div style="width: 10.5vw; height: 10.5vw; display: flex; align-items: center; justify-content: center; border-radius: 50%; background-image: url('https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/internxt.png?alt=media&token=174fec9c-6370-40ae-b094-449'); background-size: cover; background-position: center; margin-right: 1vw;"></div>
+  <div style="width: 10.5vw; height: 10.5vw; display: flex; align-items: center; justify-content: center; border-radius: 50%; background-image: url('https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/dydx-3d-icon-download-in-png-blend-fbx-gltf-file-formats--bitcoin-logo-currency-finance-glass-crypto-coin-vol-2-pack-science-technology-icons-6876181.png?alt=media&token=becf4105-85b1-4ef7-bb0f-634c3651e9a5'); background-size: cover; background-position: center; margin-right: 1vw;"></div>
   <span id="referralBalance" style="margin-right: 5vw; font-size: 10vw; color: white;">0.00000000000</span>
       
 </div>
@@ -1053,10 +1120,7 @@
 
 
 
-
-
-
- <ul id="referralList" style="background-color: white;">
+<ul id="referralList" style="background-color: white; margin-bottom: 50px; overflow-y: auto;">
     <!-- سيتم إضافة الأكواد والمكافآت هنا -->
 </ul>
 
@@ -1067,14 +1131,17 @@
 
 
 
-<p style="font-size: 4vw; margin-top: 92%; margin-left: 5%; position: absolute; top: 0; left: 0; color: greenyellow;">YOUR TEAM <span id="referralHistory">0</span></p>
+
+
+
+
+
+
 
         <!-- نموذج لإدخال رمز الدعوة -->
 
 
-
-
-
+<p style="font-size: 4vw; margin-top: 92%; margin-left: 1%; position: absolute; top: 0; left: ; color: greenyellow;">YOUR TEAM <span id="referralHistory">0</span></p>
 
 
 
@@ -1104,11 +1171,13 @@
 
    
    
-   <div class="black-screen" id="blackScreen">
+   <div class="black-screen" id="blackScreen" style="z-index: 10003;">
    <p>Please rotate your device to portrait mode.</p>
    </div>
    
-   
+   <div id="overlay">
+     <p>This application does not support tablets or larger devices. Please use a phone or a computer.</p>
+   </div>
     
       </head>
 <body>
@@ -1392,7 +1461,40 @@ body {
         
         
         
+
         
+
+        
+           @media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .form-group {
+        flex-direction: column;
+    }
+
+    .button {
+        width: 100%;
+    }
+}
+
+@media (min-width: 769px) {
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+     
+        
+    @media (max-width: 734px) {
+            .button-group {
+                flex-direction: column; /* جعل الأزرار تتراص عموديًا */
+            }
+        }    
+        
+
         
         /* تحديد لون الحدود للعناصر p، button، input، و strong إلى اللون الأبيض */
 p, button, input, strong {
@@ -1465,6 +1567,10 @@ border-radius: px;
   font-size: 18px;
   display: none;
 }    
+      
+      
+      
+
       
       
         /* إضافة هامش للعناصر */
@@ -1986,6 +2092,22 @@ h1 {
   color: white;
 }
 
+#overlay {
+            display: none; /* إخفاء الشاشة في البداية */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black; /* اللون الأسود */
+            color: white; /* لون النص */
+            font-size: 2em; /* حجم النص */
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            z-index: 10004; /* جعل الشاشة فوق كل شيء */
+        }
+
 
 
   
@@ -2022,7 +2144,7 @@ import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase
             signOut
         } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
         
-        import { sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+        import { sendPasswordResetEmail, sendEmailVerification } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
 
        
         import {
@@ -2039,8 +2161,7 @@ import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase
 
     import { collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
     
-
-
+    import { GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js';
     
         const firebaseConfig = {
   apiKey: "AIzaSyCtPB6FBM0-xr3VdpcZOypdtPNWSrdRqFo",
@@ -2094,6 +2215,98 @@ import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase
 
         
         
+        
+        
+ // إعداد موفر Google
+
+const provider = new GoogleAuthProvider();
+
+
+
+
+// دالة تسجيل الدخول باستخدام Google
+
+const googleSignIn = async () => {
+  try {
+    // تسجيل الدخول باستخدام مصادقة Google
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+    const userDocRef = doc(db, "Users", user.email);
+    const userDocSnap = await getDoc(userDocRef);
+    
+    let newUID, newInvitationCode;
+
+    // التحقق مما إذا كان المستخدم موجودًا بالفعل في قاعدة البيانات
+    if (userDocSnap.exists()) {
+      // إذا كان المستخدم موجودًا، لا نقوم بتغيير UID أو رمز الدعوة
+      newUID = userDocSnap.data().uid;
+      newInvitationCode = userDocSnap.data().invitationCode;
+    } else {
+      // إذا لم يكن موجودًا، نقوم بإنشاء UID ورمز دعوة جديدين
+      newUID = generateUID();
+      newInvitationCode = generateInvitationCode();
+
+      // إضافة بيانات المستخدم الجديدة إلى Firestore
+      await setDoc(userDocRef, {
+        email: user.email,
+        displayName: user.displayName,
+        miningTime: 43200,
+        balance: 0.05,
+        btcBalance: 0.000000001,
+        invitationCode: newInvitationCode,  // تخزين رمز الدعوة
+        referralBalance: 0,
+        referralHistory: [],
+        uid: newUID,
+      }, { merge: true });
+    }
+
+    // عرض رمز الدعوة للمستخدم (إذا كان هناك عرض)
+    const invitationCodeDisplay = document.querySelector("#invitationCodeDisplay");
+    if (invitationCodeDisplay) {
+      invitationCodeDisplay.value = "Invitation Code: " + newInvitationCode;
+    }
+
+    // تحقق من إذا كان هناك رمز دعوة مُستخدم أثناء التسجيل
+    const referralCode = sessionStorage.getItem('referralCode');  // افترض أن رمز الدعوة تم تخزينه في sessionStorage
+    if (referralCode) {
+      // جلب بيانات المستخدم المضيف بناءً على رمز الدعوة
+      const hostUserRef = doc(db, "Users", referralCode);
+      const hostUserSnap = await getDoc(hostUserRef);
+
+      if (hostUserSnap.exists()) {
+        // إضافة 0.002 إلى رصيد الدعوات للمضيف
+        const currentReferralBalance = hostUserSnap.data().referralBalance || 0;
+        await updateDoc(hostUserRef, {
+          referralBalance: currentReferralBalance + 0.002,
+          referralHistory: arrayUnion(user.email)  // إضافة البريد الإلكتروني للشخص المدعو إلى تاريخ الإحالات
+        });
+      }
+    }
+
+    showMessage("Signed in successfully!");
+    console.log("Signed in as:", user.displayName);
+  } catch (error) {
+    console.error("Error signing in with Google: ", error.message);
+    showMessage("Error: " + error.message);
+  }
+};
+
+// ربط الزر مع دالة تسجيل الدخول في كلا الصفحتين
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  // ربط الزر في صفحة تسجيل الدخول
+  const googleSignInButtonLogin = document.getElementById("googleSignInButtonLogin");
+  if (googleSignInButtonLogin) {
+    googleSignInButtonLogin.addEventListener("click", googleSignIn);
+  }
+
+  // ربط الزر في صفحة إنشاء الحساب
+  const googleSignInButtonSignup = document.getElementById("googleSignInButtonSignup");
+  if (googleSignInButtonSignup) {
+    googleSignInButtonSignup.addEventListener("click", googleSignIn);
+  }
+});
         let startTime = 0;
         const xsunToUSD = 500.00;
 
@@ -2248,6 +2461,193 @@ const updateBalanceInDatabase = async (newBalance) => {
                 });
             }
         }
+        
+        
+        
+         // تعريف مؤقت خاص بإعادة الإرسال
+ // تعريف للعد التنازلي الخاص بإعادة الإرسال
+
+
+resendVerificationButton.addEventListener('click', async () => {
+    if (resendCooldown) {
+        // إذا كان هنالك إيقاف مؤقت
+        resendMessageElement.textContent = "Please wait until the countdown ends.";
+        resendMessageElement.style.display = "block"; // إظهار الرسالة
+        setTimeout(() => {
+            resendMessageElement.style.display = "none"; // إخفاء الرسالة بعد 3 ثوانٍ
+        }, 3000);
+        return; 
+    }
+
+    try {
+        await sendEmailVerification(user); // إرسال رابط التحقق
+
+        // إظهار رسالة النجاح
+        resendMessageElement.textContent = "Verification email sent. Please check your inbox.";
+        resendMessageElement.style.display = "block"; // إظهار الرسالة
+        setTimeout(() => {
+            resendMessageElement.style.display = "none"; // إخفاء الرسالة بعد 3 ثوانٍ
+        }, 3000);
+
+        // باقي الكود...
+    } catch (error) {
+        console.error("Error resending email verification:", error);
+    }
+});
+
+
+
+let resendCountdown; // تعريف للعد التنازلي الخاص بإعادة الإرسال
+let resendAttempts = 0; // عدد مرات
+
+
+let resendCountdownTimer; // تعريف مؤقت خاص بإعادة الإرسال الإرسال
+let resendCooldown = false; // حالة الإيقاف المؤقت
+
+
+
+
+
+// دالة لتحميل البريد الإلكتروني للمستخدم والتحقق من حالة التحقق
+const loadUserEmail = async () => {
+    const user = auth.currentUser; // الحصول على المستخدم الحالي
+    if (user) {
+        const userDoc = await getDoc(doc(db, "Users", user.email)); // جلب الوثيقة بناءً على البريد الإلكتروني
+        if (userDoc.exists()) {
+            const userData = userDoc.data(); // استخراج البيانات من الوثيقة
+            const userEmail = userData.email; // استخراج البريد الإلكتروني
+
+            // تشفير البريد الإلكتروني
+            const maskedEmail = maskEmail(userEmail);
+
+            // عرض البريد الإلكتروني في واجهة المستخدم
+            const userEmailDisplayElement = document.getElementById("userEmailDisplay");
+            userEmailDisplayElement.textContent = maskedEmail; // تعيين البريد الإلكتروني
+
+            // التحقق من حالة التحقق
+            const emailVerificationStatusElement = document.getElementById("emailVerificationStatus");
+            const resendVerificationButton = document.getElementById("resendVerificationButton");
+            const countdownElement = document.getElementById("countdownTimerResend"); // مكان العد التنازلي
+            const messageElement = document.getElementById("resendMessage"); // العنصر الذي سيعرض الرسالة
+
+            if (user.emailVerified) {
+                emailVerificationStatusElement.textContent = "Verified"; // البريد الإلكتروني تم التحقق منه
+                emailVerificationStatusElement.style.color = "green"; // تغيير اللون إلى الأخضر
+                resendVerificationButton.style.display = "none"; // إخفاء زر إعادة الإرسال
+                countdownElement.style.display = "none"; // إخفاء العد التنازلي
+                clearInterval(resendCountdownTimer); // إيقاف العد التنازلي إذا كان يعمل
+            } else {
+                emailVerificationStatusElement.textContent = "Not Verified"; // البريد الإلكتروني لم يتم التحقق منه
+                emailVerificationStatusElement.style.color = "red"; // الحفاظ على اللون الأحمر
+                resendVerificationButton.style.display = "inline-block"; // إظهار زر إعادة الإرسال
+
+                // التحقق من وجود إيقاف مؤقت في قاعدة البيانات
+                const cooldownEndTime = userData.cooldownEndTime ? userData.cooldownEndTime.toMillis() : null;
+
+                // تحقق مما إذا كان العداد متوقفًا
+                if (cooldownEndTime && Date.now() < cooldownEndTime) {
+                    const remainingTime = cooldownEndTime - Date.now();
+                    startResendCountdown(remainingTime); // بدء العد التنازلي
+                    resendVerificationButton.disabled = true; // تعطيل زر إعادة الإرسال
+                    countdownElement.style.display = "inline"; // إظهار العد التنازلي
+                } else {
+                    resendCooldown = false;
+                    resendVerificationButton.disabled = false;
+                    countdownElement.style.display = "none"; // إخفاء العد التنازلي في حالة عدم وجود فترة إيقاف مؤقت
+                }
+
+                // إضافة حدث عند الضغط على زر "Resend"
+                resendVerificationButton.addEventListener('click', async () => {
+                    if (resendCooldown) {
+                        // إذا كان العد التنازلي نشطًا، اعرض رسالة انتظار
+                        showMessage("Please wait until the timer finishes.");
+                    } else {
+                        try {
+                            await sendEmailVerification(user); // إرسال رابط التحقق
+
+                            // عرض رسالة تأكيد
+                            showMessage("Verification email sent. Please check your inbox.", 3000); // إظهار الرسالة لمدة 3 ثوانٍ
+
+                            // بدء العد التنازلي بعد الإرسال
+                            const cooldownDuration = 15 * 60 * 1000; // 15 دقيقة بالمللي ثانية
+                            const newCooldownEndTime = Date.now() + cooldownDuration;
+                            await updateDoc(doc(db, "Users", user.email), {
+                                cooldownEndTime: new Date(newCooldownEndTime)
+                            });
+
+                            startResendCountdown(cooldownDuration); // بدء العد التنازلي
+                            resendVerificationButton.disabled = true; // تعطيل زر إعادة الإرسال
+                        } catch (error) {
+                            console.error("Error resending email verification:", error);
+                        }
+                    }
+                });
+            }
+        } else {
+            console.error("No such document!"); // إذا لم توجد الوثيقة
+            const userEmailDisplayElement = document.getElementById("userEmailDisplay");
+            userEmailDisplayElement.textContent = "No user data found."; // عرض رسالة للمستخدم
+        }
+    } else {
+        const userEmailDisplayElement = document.getElementById("userEmailDisplay");
+        userEmailDisplayElement.textContent = "User not logged in."; // رسالة بديلة
+    }
+};
+
+// دالة لعرض الرسائل للمستخدم
+
+// بدء العد التنازلي لإعادة الإرسال
+const startResendCountdown = (duration) => {
+    const countdownElement = document.getElementById("countdownTimerResend"); // إشارة للعداد
+    countdownElement.style.display = "inline"; // إظهار العداد
+
+    let remainingTime = duration; // الوقت المتبقي
+
+    resendCountdownTimer = setInterval(() => {
+        const minutes = Math.floor(remainingTime / 60000);
+        const seconds = Math.floor((remainingTime % 60000) / 1000);
+
+        countdownElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`; // تحديث عرض الوقت المتبقي
+
+        if (remainingTime <= 0) {
+            clearInterval(resendCountdownTimer);
+            countdownElement.style.display = "none"; // إخفاء العداد عند الانتهاء
+            resendVerificationButton.disabled = false; // إعادة تفعيل زر الإرسال
+        }
+
+        remainingTime -= 1000; // تقليل الوقت المتبقي كل ثانية
+    }, 1000); // تحديث كل ثانية
+};
+
+// استدعاء الدالة لتحميل البريد الإلكتروني
+loadUserEmail();
+
+
+// دالة لتشفير البريد الإلكتروني
+const maskEmail = (email) => {
+    const [localPart, domain] = email.split("@"); // فصل الجزء المحلي عن النطاق
+    const totalStars = 5; // عدد النجوم المطلوب
+
+    if (localPart.length === 2) {
+        // إذا كان الجزء المحلي يحتوي على حرفين فقط
+        return localPart.charAt(0) + "*".repeat(totalStars - 1) + "@" + domain; // يحتفظ بحرف واحد ويضيف النجوم
+    } else if (localPart.length === 3) {
+        // إذا كان الجزء المحلي يحتوي على 3 أحرف
+        return localPart.slice(0, 2) + "****" + "@" + domain; // يحتفظ بأول حرفين ويضيف أربع نجوم
+    } else if (localPart.length > 3) {
+        // إذا كان الجزء المحلي يحتوي على أكثر من 3 أحرف
+        const maskedLocalPart = localPart.slice(0, 3) + "*".repeat(totalStars); // يحتفظ بأول 3 أحرف ويضيف 5 نجوم
+        return maskedLocalPart + "@" + domain; // إرجاع البريد مع الجزء المحلي المشفر
+    } else {
+        // إذا كان الجزء المحلي يحتوي على حرف واحد فقط
+        return localPart + "*".repeat(totalStars) + "@" + domain; // يضيف النجوم بعد الحرف الأول
+    }
+};
+
+
+
+
+
 
 const loadMiningData = async () => {
             const user = auth.currentUser;
@@ -2264,19 +2664,23 @@ const loadMiningData = async () => {
 
 
         const checkAuthState = async () => {
-            onAuthStateChanged(auth, user => {
-                if (user) {
-                    authForm.style.display = 'none';
-                    signupForm.style.display = 'none';
-                    secretContent.style.display = 'block';
-               loadUserData(user.email);
-            } else {
-                    authForm.style.display = 'block';
-                    signupForm.style.display = 'none';
-                    secretContent.style.display = 'none';
-                }
-            })
+    onAuthStateChanged(auth, user => {
+        if (user) {
+            authForm.style.display = 'none';
+            signupForm.style.display = 'none';
+            secretContent.style.display = 'block';
+            loadUserData(user.email); // تحميل بيانات المستخدم
+            loadUserEmail(); // استدعاء دالة loadUserEmail لعرض البريد الإلكتروني
+        } else {
+            authForm.style.display = 'block';
+            signupForm.style.display = 'none';
+            secretContent.style.display = 'none';
         }
+    });
+};
+
+// استدعاء الدالة عند تحميل الصفحة
+checkAuthState();
 
         
        const loadUserData = async (email) => {
@@ -2343,7 +2747,27 @@ referralBalanceDisplay.textContent = formattedBalance;
 
 
 
+
+
+auth.onAuthStateChanged(async (user) => {
+    if (user) {
+        // التحقق من حالة التحقق بعد تسجيل الدخول
+        if (user.emailVerified) {
+            // تحديث حالة البريد الإلكتروني في Firestore
+            const userRef = doc(db, "Users", user.email);
+            await updateDoc(userRef, {
+                emailVerified: true // تحديث الحالة
+            });
+        }
+    }
+});
+
+
+
+
+
 const referralHistoryDisplay = document.querySelector("#referralHistory");
+
 if (userData.referralHistory && userData.referralHistory.length > 0) {
     const displayedEmails = new Map(); // استخدام Map لتتبع البريد الإلكتروني المعروض بالفعل
     
@@ -2353,24 +2777,51 @@ if (userData.referralHistory && userData.referralHistory.length > 0) {
         // تحقق مما إذا كان البريد الإلكتروني قد تم عرضه بالفعل أم لا باستخدام البريد نفسه كمفتاح
         if (!displayedEmails.has(email)) {
             displayedEmails.set(email, true); // إضافة البريد الإلكتروني للكائن Map للإشارة إلى أنه تم عرضه
-            // ... (بقية الشيفرة)
-            const userDoc = await getDoc(doc(db, "Users", email));
-            if (userDoc.exists()) {
-                const userData = userDoc.data();
-                const userImage = userData.userImage ? userData.userImage : null; // لا صورة متاحة
-                const hiddenEmail = email.substring(0, 3) + "***" + email.substring(email.indexOf("@"));
-                if (userImage) {
-                    htmlContent += `<div style="display: flex; align-items: center; background-color: white;"><img src="${userImage}" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; margin-right: 10px;"><span style="color: black;">${hiddenEmail}</span></div><br>`;
+
+            try {
+                const userDoc = await getDoc(doc(db, "Users", email)); // جلب وثيقة المستخدم المدعو
+                if (userDoc.exists()) {
+                    const invitedUserData = userDoc.data(); // استخراج بيانات المستخدم المدعو
+                    const userImage = invitedUserData.userImage ? invitedUserData.userImage : null;
+                    const hiddenEmail = maskEmail(email); // تشفير البريد الإلكتروني
+
+                    // التحقق من حالة التحقق من البريد الإلكتروني
+                    const verificationStatus = invitedUserData.emailVerified ? 
+                        '<span style="color: green; font-size 14px;">Verified</span>' :
+                        '<span style="color: red; font-Size: 14px;">Not Verified</span>';
+
+                    // إنشاء عنصر للمستخدم المدعو
+                    htmlContent += `<div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        ${
+                          userImage
+                            ? `<img src="${userImage}" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; margin-right: 10px;">`
+                            : `<div style="width: 50px; height: 50px; border-radius: 50%; background-color: #ccc; margin-right: 10px;"></div>`
+                        }
+                        <div style="background-color: white; padding: 5px; display: inline-block; width: 180px;">
+                            <span style="color: black; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${hiddenEmail}</span>
+                        </div>
+                        <div style="margin-left: 20px; padding: 5px; display: inline-block; background-color: white ${
+                          invitedUserData.emailVerified ? 'green' : 'red'
+                        }; border-radius: 2px; color: white;">
+                            ${verificationStatus}
+                        </div>
+                    </div>`;
                 } else {
-                    htmlContent += `<div style="display: flex; align-items: center; background-color: white;"><div style="width: 50px; height: 50px; border-radius: 50%; background-color: #ccc; margin-right: 10px;"></div><span style="color: black;">${hiddenEmail}</span></div><br>`;
+                    console.error(`No document found for email: ${email}`);
                 }
+            } catch (error) {
+                console.error(`Error fetching user document for ${email}:`, error);
             }
         }
     }
+
     referralHistoryDisplay.innerHTML = htmlContent;
 } else {
-    referralHistoryDisplay.textContent = "Referral TEAM";
+    referralHistoryDisplay.textContent = "Referral Team";
 }
+
+
+
 
 
 
@@ -2442,7 +2893,7 @@ const checkAgreement = () => {
 };
 
 
-const MAX_ACCOUNTS_PER_DEVICE = 2;
+const MAX_ACCOUNTS_PER_DEVICE = 4;
 
 const generateDeviceID = () => {
   // Generate a random string of characters to use as the device ID
@@ -2476,106 +2927,133 @@ const incrementAccountCount = () => {
 
 
 
+// افترض أن لديك عنصر أو عناصر لعرض البريد الإلكتروني في الواجهة
+// دالة لجلب البريد الإلكتروني من قاعدة البيانات
 
+
+// دالة لتسجيل المستخدم
 const userSignUp = async () => {
     const signUpEmail = document.querySelector("#signupForm #userEmail").value;
     const signUpPassword = document.querySelector("#signupForm #userPassword").value;
+    const confirmPassword = document.querySelector("#signupForm #confirmPassword").value;  
     const invitationCode = document.querySelector("#signupForm #invitationCode").value;
     const agreeCheckbox = document.querySelector("#signupForm #agreeCheckbox");
 
-    // تحقق من وجود بريد إلكتروني
+    // إعادة تعيين حدود الحقول إلى الوضع الافتراضي
+    const emailInput = document.querySelector("#signupForm #userEmail");
+    const passwordInput = document.querySelector("#signupForm #userPassword");
+    const confirmPasswordInput = document.querySelector("#signupForm #confirmPassword");
+    const invitationCodeInput = document.querySelector("#signupForm #invitationCode"); 
+
+    emailInput.style.border = "";
+    passwordInput.style.border = "";
+    confirmPasswordInput.style.border = "";
+    invitationCodeInput.style.border = "";  
+
     if (!signUpEmail) {
         showMessageSignup("Enter email");
+        emailInput.style.border = "2px solid red";  
         return;
     }
 
     if (!isValidGmail(signUpEmail)) {
         showMessageSignup("Enter a valid Gmail address");
+        emailInput.style.border = "2px solid red";  
         return;
     }
 
-    // تحقق من وجود كلمة مرور
     if (!signUpPassword) {
         showMessageSignup("Enter password");
+        passwordInput.style.border = "2px solid red";  
         return;
     }
 
     if (!/^(?=.*[A-Za-z])(?=.*\d).{6,}$/.test(signUpPassword)) {
         showMessageSignup("Password must contain both letters and numbers and be at least 6 characters long");
+        passwordInput.style.border = "2px solid red";  
         return;
     }
 
-    // تحقق من وجود رمز الدعوة
+    if (!confirmPassword) {
+        showMessageSignup("Please fill in the Confirm Password field");
+        confirmPasswordInput.style.border = "2px solid red";  
+        return;
+    }
+
+    if (signUpPassword !== confirmPassword) {
+        showMessageSignup("Passwords do not match");
+        passwordInput.style.border = "2px solid red";  
+        confirmPasswordInput.style.border = "2px solid red";  
+        return;
+    }
+
     if (!invitationCode) {
         showMessageSignup("Enter invitation code");
+        invitationCodeInput.style.border = "2px solid red";  
         return;
     }
 
-    // تحقق من الموافقة على الشروط والأحكام
     if (!agreeCheckbox.checked) {
         showMessageSignup("Please agree to the terms and conditions");
+        agreeCheckbox.style.outline = "2px solid red"; 
+        return;
+    } else {
+        agreeCheckbox.style.outline = "";  
+    }
+
+    const deviceID = checkDeviceID();
+    if (!deviceID) {
+        setDeviceID(deviceID);
+    }
+
+    let accountCount = localStorage.getItem('accountCount');
+    if (!accountCount) {
+        accountCount = 0;
+    }
+
+    if (accountCount >= MAX_ACCOUNTS_PER_DEVICE) {
+        showMessage("You have reached the maximum limit of accounts on this device");
         return;
     }
-    
-    const deviceID = checkDeviceID();
-  if (!deviceID) {
-    setDeviceID(deviceID);
-  }
-  
-  let accountCount = localStorage.getItem('accountCount');
-  if (!accountCount) {
-    accountCount = 0;
-  }
-  
-  if (accountCount >= MAX_ACCOUNTS_PER_DEVICE) {
-    showMessage("You have reached the maximum limit of accounts on this device");
-    return;
-  }  
-    
-    
 
     try {
         const newInvitationCode = generateInvitationCode();
-        // Generate a new UID for the user
         const newUID = generateUID();
 
-        // Check if the new invitation code is already in use
         const referredEmail = await getReferredEmail(invitationCode.trim());
         if (referredEmail) {
             const userCredential = await createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword);
 
-            // Save the new invitation code, UID, and user data to the database
+            // إضافة خطوة إرسال التحقق عبر البريد الإلكتروني
+            await sendEmailVerification(userCredential.user);
+            showMessage("Account created successfully! Please check your email to verify your account.");
+
             await setDoc(doc(db, "Users", signUpEmail), {
                 miningTime: 43200,
-                balance: 0.05, // Updated balance value with the addition of 0.002
-                btcBalance: 0.000000001, // Initial Bitcoin balance
+                balance: 0.05,
+                btcBalance: 0.000000001,
                 email: signUpEmail,
                 invitationCode: newInvitationCode,
-                referralBalance: 0, // Initialize referral balance to 0
-                referralHistory: [], // Initialize referral history to an empty array
-                uid: newUID, // Add the UID to the saved user data
-                password: signUpPassword // Save the password to the database
+                referralBalance: 0,
+                referralHistory: [],
+                uid: newUID,
+                password: signUpPassword
             }, { merge: true });
 
-            showMessage("Your account has been created successfully!");
             incrementAccountCount();
 
-            // Update referral balance for the referring user
             await updateReferralBalance(referredEmail);
-
-            // Update referral history for the referring user
             await updateReferralHistory(referredEmail, signUpEmail);
 
-            // Update invitation code display only for the newly created account
             const invitationCodeDisplay = document.querySelector("#invitationCodeDisplay");
             invitationCodeDisplay.value = "Invitation Code: " + newInvitationCode;
 
-            // Add 0.000000001 BTC to the user's BTC balance in the database
             const btcToAdd = 0.0000000012;
             updateBalance(btcToAdd);
             updateBtcBalanceInFirestore(btcToAdd);
         } else {
             showMessage("Invalid invitation code.");
+            invitationCodeInput.style.border = "2px solid red";  
             return;
         }
     } catch (error) {
@@ -2585,12 +3063,13 @@ const userSignUp = async () => {
     }
 };
 
+
+
 // Function to display error messages for sign up form
 const showMessageSignup = (message) => {
     const messageElement = document.querySelector("#errorMessageSignup");
     messageElement.textContent = message;
 };
-
 
 
 const updateReferralBalance = async (referringUserEmail) => {
@@ -2660,7 +3139,7 @@ const getReferralHistory = async (email) => {
 
         const userSignIn = async () => {
   const signInEmail = userEmail.value;
-  const signInPassword = userPassword.value;
+  const signInPassword = usePassword.value;
 
   // تحقق من وجود بريد إلكتروني
   if (!signInEmail) {
@@ -2738,12 +3217,12 @@ const showMessage = (message) => {
   messageElement.style.padding = "15px";
   messageElement.style.borderRadius = "10px";
   messageElement.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
-  messageElement.style.zIndex = "9999"; // ضمان ظهور الرسالة فوق الجميع
+  messageElement.style.zIndex = "10003"; // ضمان ظهور الرسالة فوق الجميع
   document.body.appendChild(messageElement);
 
   setTimeout(() => {
     document.body.removeChild(messageElement);
-  }, 3000);
+  }, 4000);
 };
 
 
@@ -3553,12 +4032,24 @@ submitBtn.addEventListener('click', function() {
 
   // Function to show a message
   function showMessage() {
-    document.getElementById('message').innerText = 'Not open yet';
-    document.getElementById('message').style.display = 'block';
-    setTimeout(function() {
-      document.getElementById('message').style.display = 'none';
-    }, 4000);
-  }
+  var messageElement = document.getElementById('message');
+  var totalBalanceElement = document.getElementById('total-balance');
+
+  // إخفاء "Total Balance"
+  totalBalanceElement.style.display = 'none';
+
+  // إظهار الرسالة "Not open yet"
+  messageElement.innerText = 'Not open yet';
+  messageElement.style.display = 'block';
+
+  // بعد 4 ثوانٍ، إخفاء الرسالة وإعادة إظهار "Total Balance"
+  setTimeout(function() {
+    messageElement.style.display = 'none';
+    totalBalanceElement.style.display = 'flex';
+  }, 4000); // 4000 ميلي ثانية = 4 ثوانٍ
+}
+
+
 
   // Function to cancel the popup
   function cancel() {
@@ -3596,6 +4087,51 @@ submitBtn.addEventListener('click', function() {
         document.getElementById('blackScreen').style.display = 'none';
       }
     });
+
+
+
+function togglePasswordVisibility() {
+  // جلب الحقول
+  var passwordField = document.getElementById("userPassword");
+  var confirmPasswordField = document.getElementById("confirmPassword");
+  var toggleButton = document.getElementById("togglePassword");
+
+  // التأكد من أن كلا الحقلين تم جلبهما بنجاح
+  if (passwordField && confirmPasswordField) {
+    // تبديل النوع بين password و text
+    if (passwordField.type === "password") {
+      passwordField.type = "text"; // عرض كلمة المرور
+      confirmPasswordField.type = "text"; // عرض تأكيد كلمة المرور
+      toggleButton.textContent = "Hide password"; // تغيير النص إلى Hide
+    } else {
+      passwordField.type = "password"; // إخفاء كلمة المرور
+      confirmPasswordField.type = "password"; // إخفاء تأكيد كلمة المرور
+      toggleButton.textContent = "Show password"; // Show
+    }
+  } else {
+    console.error("Error."); // طباعة خطأ إذا كانت الحقول غير موجودة
+  }
+}
+
+
+document.getElementById('googleLogo').innerHTML = 'G';
+
+
+
+
+
+function detectDevice() {
+  const userAgent = navigator.userAgent;
+  const isTablet = /iPad|Android(?!.*Mobile)/.test(userAgent); // تحقق من الجهاز اللوحي
+  const isMobile = /Mobile/.test(userAgent); // تحقق من الهاتف المحمول
+
+  // إذا كان الجهاز هو جهاز لوحي، اعرض الشاشة السوداء
+  if (isTablet) {
+    document.getElementById('overlay').style.display = 'flex'; // عرض الشاشة السوداء
+  }
+}
+
+detectDevice(); // استدعاء الدالة عند تحميل الصفحة
 
 
 
