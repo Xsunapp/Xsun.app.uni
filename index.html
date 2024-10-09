@@ -9,6 +9,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 
+
+<script src="https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"></script>
+
     </head>
     <body>
 
@@ -210,8 +213,7 @@
   <a href="#" onclick="showInviteFriends()">Referral</a>
   <a href="#" onclick="showRoadmap()">Roadmap</a>
   <a href="#" onclick="showKyc()">kyc</a>
-   <a id="telegramLink" href="https://xsunapp.github.io/xsun-app.uni.ch/">Site</a>
-
+  <a id="telegramLink" href="https://xsunapp.github.io/xsun-app.uni.ch/">Site</a>
 <br>
 
   <button id="signOutButton" style="margin-left: 15px;">Sign Out</button>
@@ -700,7 +702,9 @@
 </div>
 
     <!-- زر Home للانتقال إلى الواجهة الرئيسية -->
-<div id="earningsContainer">
+  
+  
+ <div id="earningsContainer">
 
 
 
@@ -721,14 +725,17 @@
 
 
 
-<span id="total-balance" style="font-size: 6vw; color: darkgray; font-family: 'Arial', sans-serif; font-weight: bold; position: absolute; top: 5vw; left: 50%; transform: translateX(-50%); text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); letter-spacing: 2px; background-color: black; height: 37vw; width: 100vw; display: flex; justify-content: center; align-items: center;">
+<!-- صندوق Total Balance مع الرصيد أسفله -->
+<span id="totalbalance" style="font-size: 6vw; color: darkgray; font-family: 'Arial', sans-serif; font-weight: bolder; position: absolute; top: 5vw; left: 50%; transform: translateX(-50%); text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); letter-spacing: 2px; background-color: black; height: 37vw; width: 100vw; display: flex; justify-content: center; align-items: center;">
   Total Balance
 </span>
     
+<span id="total-balance" style="font-size: 8vw; color: #32CD32; position: absolute; top: 0; right: 0; margin: 2vw; z-index: 1000; font-weight: bolder">
+   $0.00
+</span>
 
 
 
-  
 
      
 
@@ -741,8 +748,7 @@
 
 
 
-
-<div style="display: flex; justify-content: center; margin-top: 5vw; transform: translateY(40vw); overflow-y: auto;  color: black; ">
+<div style="display: flex; justify-content: center; margin-top: 0vw; transform: translateY(40vw); overflow-y: auto;  color: black; ">
   <table>
     <thead>
       <tr>
@@ -787,54 +793,48 @@
       <tr>
         
        <td><div style="display: flex; align-items: center;"><img class="currency-icon" src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/swiss-flag-round-badge_1308-72045__1_-removebg-preview.png?alt=media&token=b4105cd6-a982-4fd3-9e5c-f7032b9200b2" alt="" style="width: 41px; height: 41px; margin-right: 5px;"> 𝐒𝐖𝐙</div></td>
-        <td class="balance" id="Swiza" style="font-size: 4.5vw; color: white;">5000000</td>
+        <td class="balance" id="Swiza" style="font-size: 4.5vw; color: white; font-weight: bold;">5000000</td>
 
-<td style="font-size: 4.5vw; color: white;">$00.00</td>
+<td style="font-size: 4.5vw; color: white;"id="SwizaValue">$00.50</td>
 
            <td><button onclick="openPopup('Swiza')" style="background-color: blue; color: white; padding: 5px 10px; border: none; border-radius: 5px;">Send</button></td>  
             
       </tr>
       <tr>   
         
-         <td><div style="display: flex; align-items: center;"><img class="currency-icon" src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/bitcoin-225079_640-removebg-preview.png?alt=media&token=f9de5ffb-aa7f-4a8d-8f4e-a448b79902db.jpg" alt="" style="width: 37px; height: 37px; margin-right: 5px;"> 𝐁𝐓𝐂</div></td>
-<td class="balance" id="btcBalanceAmount" style="font-weight: bold; font-size: 4.5vw; color: white;">00.00</td>
-
-<td style="font-size: 4.5vw; color: white;">$00.00</td>
-        <td><button onclick="openPopup('Bitcoin')" style="background-color: blue; color: white; padding: 5px 10px; border: none; border-radius: 5px;">Send</button></td>
-     
-
-      </tr>
-      <tr>   
-        
-      
-      
-      
-
-
-        <td><div style="display: flex; align-items: center;"><img class="currency-icon" src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/%D8%AA%D8%B5%D9%85%D9%8A%D9%85%20%D8%A8%D8%AF%D9%88%D9%86%20%D8%B9%D9%86%D9%88%D8%A7%D9%86%20(62).png?alt=media&token=74e2d28f-c0fc-47c2-95da-8032ba71c346" alt="" style="width: 40px; height: 40px; margin-right: 5px;"> 𝐒𝐖𝐄𝐀𝐓</div></td>
-        <td class="balance" id="Usdt" style="font-size: 4.5vw; color: white;">50.00</td>
-<td style="font-size: 4.5vw; color: wheat;">$00.00</td>
-        <td><button onclick="openPopup('Usdt')" style="background-color: blue; color: white; padding: 5px 10px; border: none; border-radius: 5px;">Send</button></td>
-      </tr>
-      <tr>
-
-
-
-
-
-
-        <td><div style="display: flex; align-items: center;"><img class="currency-icon" src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/near-9828546-7947908.png?alt=media&token=0c6a6e03-4528-4f67-97a6-2f74e2b17543" alt="" style="width: 40px; height: 40px; margin-right: 5px;"> 𝐍𝐄𝐀𝐑</div></td>
-       
-        <td class="balance" id="Near" style="font-size: 4.5vw; color: white;">00.15</td>
-<td style="font-size: 4.5vw; color: white;">$00.00</td>
-        <td><button onclick="openPopup('Near')" style="background-color: blue; color: white; padding: 5px 10px; border: none; border-radius: 5px;">Send</button></td>
-      </tr>
-      
-      
-       
-    </tbody>
-  </table>
-</div>
+     <td>
+<div style="display: flex; align-items: center;">
+                            <img class="currency-icon" src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/bitcoin-225079_640-removebg-preview.png?alt=media&token=f9de5ffb-aa7f-4a8d-8f4e-a448b79902db.jpg" style="width: 37px; height: 37px; margin-right: 5px;"> 𝐁𝐓𝐂
+                        </div>
+                    </td>
+             <td class="balance" id="btcBalanceAmount" style="font-size: 4.5vw; font-weight: bold;">00.00</td>
+                    <td style="font-size: 4.5vw; color: white;" id="btcValue">$00.00</td>
+                    <td><button onclick="openPopup('Bitcoin')" style="background-color: blue; color: white; padding: 5px 10px; border: none; border-radius: 5px;">Send</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center;">
+                            <img class="currency-icon" src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/near-9828546-7947908.png?alt=media&token=0c6a6e03-4528-4f67-97a6-2f74e2b17543" style="width: 40px; height: 40px; margin-right: 5px;"> 𝐍𝐄𝐀𝐑
+                        </div>
+                    </td>
+                    <td class="balance" id="Near" style="font-size: 4.5vw; font-weight: bold;">00.15</td>
+                    <td style="font-size: 4.5vw; color: white;" id="nearValue">$00.00</td>
+                    <td><button onclick="openPopup('Near')" style="background-color: blue; color: white; padding: 5px 10px; border: none; border-radius: 5px;">Send</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center;">
+                            <img class="currency-icon" src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/%D8%AA%D8%B5%D9%85%D9%8A%D9%85%20%D8%A8%D8%AF%D9%88%D9%86%20%D8%B9%D9%86%D9%88%D8%A7%D9%86%20(62).png?alt=media&token=74e2d28f-c0fc-47c2-95da-8032ba71c346" style="width: 40px; height: 40px; margin-right: 5px;"> 𝐒𝐖𝐄𝐀𝐓
+                        </div>
+                    </td>
+                    <td class="balance" id="Usdt" style="font-size: 4.5vw; font-weight: bold;">50.00</td>
+                    <td style="font-size: 4.5vw; color: wheat;" id="sweatValue">$00.00</td>
+    <td><button onclick="openPopup('Usdt')" style="background-color: blue; color: white; padding: 5px 10px; border: none; border-radius: 5px;">Send</button></td>
+  
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 
 
@@ -908,6 +908,8 @@
   <button onclick="cancel()" style="background-color: red; color: white; padding: 5px 10px; border: none; border-radius: 5px; margin-top: 20px;">Cancel</button>
   <p id="reminder" style="color: red; display: none; margin-top: 10px;">Please enter address and currency name!</p>
 </div>
+
+
 
 
 
@@ -1180,6 +1182,9 @@
    <div id="overlay">
      <p>This application does not support tablets or larger devices. Please use a phone or a computer.</p>
    </div>
+    
+    
+    
     
       </head>
 <body>
@@ -1533,54 +1538,53 @@ p, button, input, strong {
       
       
 
-table {
-    background-color: black; /* تغيير لون خلفية الجدول إلى الأسود */
-    color: whitesmoke; /* تغيير لون النص إلى الأبيض */
-    width: 102%;
-    border-collapse: ;
-     /* زيادة ارتفاع الجدول إلى 90% من ارتفاع الشاشة */
 
-margin-left: px;
-}
-
-
-th, td {
-    padding: 0:px;
-    text-align: left;
-    border-bottom: 12vw solid black;
-  height: vh;
-}
-th {
-    background-color: black;
-    width: 80%;
-    
-    color: yellow;
-border-radius: px;
-}
-.currency-icon {
-  font-size: 10px;
-  margin-right: 5px;
-  color: black;
-          
-  /* تغيير لون الأيقونات إلى الأسود */
-}
-.balance {
-    font-weight: bold;
-}
       
       
-.message {
-  position: absolute;
-  top: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: red;
-  color: wheat;
-  padding: 10px;
-  font-size: 18px;
-  display: none;
-}    
       
+      
+    table {
+            background-color: black;
+            color: whitesmoke;
+            width: 102%;
+            border-collapse: collapse;
+            margin-left: 0;
+        }
+
+        th, td {
+            padding: 0;
+            text-align: left;
+            border-bottom: 12vw solid black;
+            height: 6vh; /* تعديل ارتفاع الصف */
+        }
+
+        th {
+            background-color: black;
+            color: yellow;
+            font-size: 4.5vw;
+        }
+
+        .currency-icon {
+            font-size: 10px;
+            margin-right: 5px;
+            color: black;
+        }
+
+        .balance {
+            font-weight: bold;
+        }
+
+        .message {
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: red;
+            color: wheat;
+            padding: 10px;
+            font-size: 18px;
+            display: none;
+        }  
       
       
 
@@ -2702,19 +2706,30 @@ checkAuthState();
         const userData = userDoc.data();
         miningTime = userData.miningTime;
         balanceElement.textContent = userData.balance.toFixed(8);
-        
+
         // استرجاع رصيد الإحالة
         const referralBalance = userData.referralBalance || 0;
-        
+
         // حساب إجمالي الرصيد
-        const totalBalance = parseFloat(userData.balance) + parseFloat(referralBalance)
+        const totalBalance = parseFloat(userData.balance) + parseFloat(referralBalance);
 
         // عرض إجمالي الرصيد في العنصر Total balance
-const totalBalanceElement = document.getElementById('totalBalance');
-if (totalBalanceElement) {
-  totalBalanceElement.textContent = totalBalance.toFixed(6);
-}
+        const totalBalanceElement = document.getElementById('totalBalance');
+        if (totalBalanceElement) {
+            totalBalanceElement.textContent = totalBalance.toFixed(6);
+        }
 
+        // عرض رصيد Bitcoin
+        const btcBalance = parseFloat(userData.btcBalance) || 0; // تأكد من وجود الحقل
+        const btcBalanceElements = document.querySelectorAll("#btcBalanceAmount");
+        btcBalanceElements.forEach(element => {
+            if (element.classList.contains('balance')) {
+                element.textContent = btcBalance.toFixed(8); // عرض بـ 8 أرقام
+            } else {
+                element.textContent = btcBalance.toFixed(10); // عرض بـ 10 أرقام
+            }
+        });
+    
 
 
         
@@ -2839,17 +2854,6 @@ if (userData.referralHistory && userData.referralHistory.length > 0) {
 
 
 
-const btcBalanceAmountElements = document.querySelectorAll("#btcBalanceAmount");
-btcBalanceAmountElements.forEach(element => {
-  const btcBalance = parseFloat(userData.btcBalance);
-  if (element.classList.contains('balance')) {
-    // عرض رصيد في المحفظة بـ 6 أرقام فقط
-    element.textContent = btcBalance.toFixed(8);
-  } else {
-    // عرض رصيد في الواجهة بـ 10 أرقام
-    element.textContent = btcBalance.toFixed(10);
-  }
-});
 
 
 
@@ -3710,6 +3714,128 @@ minedXsunTotalSpan.textContent = totalMinedXsun;
 
 
 
+
+let lastPrices = {
+    bitcoin: { usd: 0 },
+    near: { usd: 0 },
+    sweatcoin: { usd: 0 },
+};
+
+// تحميل آخر الأسعار من localStorage عند بدء التطبيق
+if (localStorage.getItem('cryptoPrices')) {
+    lastPrices = JSON.parse(localStorage.getItem('cryptoPrices'));
+    // عرض آخر أسعار مخزنة فورًا عند تحميل الصفحة
+    calculateIndividualPrices(lastPrices);
+}
+
+// دالة لجلب أسعار العملات
+async function fetchCryptoPrices() {
+    try {
+        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,near,sweatcoin&vs_currencies=usd');
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // تحقق من أن البيانات ليست صفرية قبل التخزين
+        if (data.bitcoin.usd !== 0 || data.near.usd !== 0 || data.sweatcoin.usd !== 0) {
+            lastPrices = data;  // تحديث آخر الأسعار
+            localStorage.setItem('cryptoPrices', JSON.stringify(data));  // تخزين الأسعار في localStorage
+        }
+
+        return data;
+    } catch (error) {
+        console.warn('error:', error);
+        return lastPrices; // استخدم آخر الأسعار المعروفة في حالة الخطأ
+    }
+}
+
+// دالة لتحديث القيمة بالدولار لكل عملة
+function updatePriceForCrypto(amount, price, elementId) {
+    const totalValue = amount * price;
+    document.getElementById(elementId).innerText = `$${totalValue.toFixed(2)}`;
+}
+
+// دالة لحساب القيم الفردية
+function calculateIndividualPrices(prices) {
+    // تأكد من وجود العنصر قبل الوصول إليه
+    const btcElement = document.getElementById('btcBalanceAmount');
+    const nearElement = document.getElementById('Near');
+    const sweatElement = document.getElementById('Usdt');
+    
+    const btcAmount = parseFloat(btcElement.innerText) || 0;
+    const nearAmount = parseFloat(nearElement.innerText) || 0;
+    const sweatAmount = parseFloat(sweatElement.innerText) || 0;
+
+    const btcPrice = prices.bitcoin?.usd || 0;
+    const nearPrice = prices.near?.usd || 0;
+    const sweatPrice = prices.sweatcoin?.usd || 0;
+
+    // تحديث القيم
+    updatePriceForCrypto(btcAmount, btcPrice, 'btcValue');
+    updatePriceForCrypto(nearAmount, nearPrice, 'nearValue');
+    updatePriceForCrypto(sweatAmount, sweatPrice, 'sweatValue');
+}
+
+// الدالة الرئيسية لتحديث الأسعار عند تحميل الصفحة
+window.onload = async () => {
+    const prices = await fetchCryptoPrices();
+    calculateIndividualPrices(prices);
+};
+
+// التحديث الأول بعد 10 ثوانٍ ثم كل 60 ثانية
+setTimeout(async () => {
+    const prices = await fetchCryptoPrices();
+    calculateIndividualPrices(prices);
+
+    // بعد التحديث الأول، استخدم التحديث الدوري كل 60 ثانية
+    setInterval(async () => {
+        const prices = await fetchCryptoPrices();
+        calculateIndividualPrices(prices);
+    }, 60000);
+}, 10000);  // التحديث بعد 10 ثوانٍ
+
+
+
+
+// دالة لحساب مجموع القيم بالدولار الموجودة في عمود Value
+function calculateTotalDollarValue() {
+    // حاول جلب القيم بالدولار باستخدام المعرفات (ID)
+    const btcValue = parseFloat(document.getElementById('btcValue').innerText.replace('$', '')) || 0;
+    const nearValue = parseFloat(document.getElementById('nearValue').innerText.replace('$', '')) || 0;
+    const sweatValue = parseFloat(document.getElementById('sweatValue').innerText.replace('$', '')) || 0;
+    const swizaValue = parseFloat(document.getElementById('SwizaValue').innerText.replace('$', '')) || 0; // SWIZA
+    const xsunValue = parseFloat(document.getElementById('totalBalanceInUSD').innerText.replace('$', '')) || 0; // XSUN
+
+    // تحقق من أن القيم ليست 0 بشكل مؤقت (انتظار تحميل القيم الفعلية)
+    if (btcValue === 0 || nearValue === 0 || sweatValue === 0 || swizaValue === 0 || xsunValue === 0) {
+        // الانتظار لبعض الوقت وإعادة المحاولة إذا لم يتم تحميل القيم بشكل كامل
+        console.log("");
+        setTimeout(calculateTotalDollarValue, 1000); // إعادة المحاولة بعد ثانية
+        return; // عدم متابعة العملية الآن
+    }
+
+    // جمع كل القيم بالدولار
+    const totalDollarValue = btcValue + nearValue + sweatValue + swizaValue + xsunValue;
+
+    // تحديث المربع "Total Balance" بالقيمة الإجمالية بالدولار
+    document.getElementById('total-balance').innerText = ` $${totalDollarValue.toFixed(2)}`;
+}
+
+// استدعاء الدالة عند تحميل الصفحة لحساب المجموع فوراً
+window.onload = () => {
+    calculateTotalDollarValue();
+};
+
+// تحديث القيم بشكل دوري للتأكد من تحديث "Total Balance" مع كل تغيير
+setInterval(() => {
+    calculateTotalDollarValue();
+}, 10000); // تحديث كل 10 ثوانٍ للتحقق من أن القيم قد تم تحميلها
+
+
+
     </script>
 </body>
 </html>
@@ -3931,7 +4057,95 @@ submitBtn.addEventListener('click', function() {
 
 
   // Function to fill the quantity input with the balance of the selected currency
-  function fillQuantity(currency) {
+  
+
+  function copyContract() {
+  var contractAddress = document.getElementById('contractAddress');
+  contractAddress.select();
+  document.execCommand('copy');
+  
+  // Create copied message element
+  var copiedMessage = document.createElement('div');
+  copiedMessage.textContent = 'Copied!';
+  copiedMessage.classList.add('copied-message');
+  document.body.appendChild(copiedMessage);
+  
+  // Remove copied message after 2 seconds
+  setTimeout(function(){
+    copiedMessage.remove();
+  }, 2000);
+}
+
+
+    
+
+
+    window.addEventListener('orientationchange', function() {
+      var screenOrientation = window.screen.orientation;
+    
+      if (screenOrientation.type === 'landscape-primary' || screenOrientation.type === 'landscape-secondary') {
+        document.getElementById('blackScreen').style.display = 'flex';
+      } else {
+        document.getElementById('blackScreen').style.display = 'none';
+      }
+    });
+
+
+
+function togglePasswordVisibility() {
+  // جلب الحقول
+  var passwordField = document.getElementById("userPassword");
+  var confirmPasswordField = document.getElementById("confirmPassword");
+  var toggleButton = document.getElementById("togglePassword");
+
+  // التأكد من أن كلا الحقلين تم جلبهما بنجاح
+  if (passwordField && confirmPasswordField) {
+    // تبديل النوع بين password و text
+    if (passwordField.type === "password") {
+      passwordField.type = "text"; // عرض كلمة المرور
+      confirmPasswordField.type = "text"; // عرض تأكيد كلمة المرور
+      toggleButton.textContent = "Hide password"; // تغيير النص إلى Hide
+    } else {
+      passwordField.type = "password"; // إخفاء كلمة المرور
+      confirmPasswordField.type = "password"; // إخفاء تأكيد كلمة المرور
+      toggleButton.textContent = "Show password"; // Show
+    }
+  } else {
+    console.error("Error."); // طباعة خطأ إذا كانت الحقول غير موجودة
+  }
+}
+
+
+document.getElementById('googleLogo').innerHTML = 'G';
+
+
+
+
+
+function detectDevice() {
+  const userAgent = navigator.userAgent;
+  const isTablet = /iPad|Android(?!.*Mobile)/.test(userAgent); // تحقق من الجهاز اللوحي
+  const isMobile = /Mobile/.test(userAgent); // تحقق من الهاتف المحمول
+
+  // إذا كان الجهاز هو جهاز لوحي، اعرض الشاشة السوداء
+  if (isTablet) {
+    document.getElementById('overlay').style.display = 'flex'; // عرض الشاشة السوداء
+  }
+}
+
+detectDevice(); // استدعاء الدالة عند تحميل الصفحة
+
+
+
+  // Function to fill the quantity input with the balance of the selected currency
+  
+  // كائن لتخزين آخر الأسعار المعروفة
+  
+        
+        
+        
+    
+    function fillQuantity(currency) {
     var balance = 0;
     
     // Determine the balance based on the selected currency
@@ -4068,84 +4282,6 @@ submitBtn.addEventListener('click', function() {
   function cancel() {
     document.getElementById('popup').style.display = 'none';
   }
-
-
-  function copyContract() {
-  var contractAddress = document.getElementById('contractAddress');
-  contractAddress.select();
-  document.execCommand('copy');
-  
-  // Create copied message element
-  var copiedMessage = document.createElement('div');
-  copiedMessage.textContent = 'Copied!';
-  copiedMessage.classList.add('copied-message');
-  document.body.appendChild(copiedMessage);
-  
-  // Remove copied message after 2 seconds
-  setTimeout(function(){
-    copiedMessage.remove();
-  }, 2000);
-}
-
-
-    
-
-
-    window.addEventListener('orientationchange', function() {
-      var screenOrientation = window.screen.orientation;
-    
-      if (screenOrientation.type === 'landscape-primary' || screenOrientation.type === 'landscape-secondary') {
-        document.getElementById('blackScreen').style.display = 'flex';
-      } else {
-        document.getElementById('blackScreen').style.display = 'none';
-      }
-    });
-
-
-
-function togglePasswordVisibility() {
-  // جلب الحقول
-  var passwordField = document.getElementById("userPassword");
-  var confirmPasswordField = document.getElementById("confirmPassword");
-  var toggleButton = document.getElementById("togglePassword");
-
-  // التأكد من أن كلا الحقلين تم جلبهما بنجاح
-  if (passwordField && confirmPasswordField) {
-    // تبديل النوع بين password و text
-    if (passwordField.type === "password") {
-      passwordField.type = "text"; // عرض كلمة المرور
-      confirmPasswordField.type = "text"; // عرض تأكيد كلمة المرور
-      toggleButton.textContent = "Hide password"; // تغيير النص إلى Hide
-    } else {
-      passwordField.type = "password"; // إخفاء كلمة المرور
-      confirmPasswordField.type = "password"; // إخفاء تأكيد كلمة المرور
-      toggleButton.textContent = "Show password"; // Show
-    }
-  } else {
-    console.error("Error."); // طباعة خطأ إذا كانت الحقول غير موجودة
-  }
-}
-
-
-document.getElementById('googleLogo').innerHTML = 'G';
-
-
-
-
-
-function detectDevice() {
-  const userAgent = navigator.userAgent;
-  const isTablet = /iPad|Android(?!.*Mobile)/.test(userAgent); // تحقق من الجهاز اللوحي
-  const isMobile = /Mobile/.test(userAgent); // تحقق من الهاتف المحمول
-
-  // إذا كان الجهاز هو جهاز لوحي، اعرض الشاشة السوداء
-  if (isTablet) {
-    document.getElementById('overlay').style.display = 'flex'; // عرض الشاشة السوداء
-  }
-}
-
-detectDevice(); // استدعاء الدالة عند تحميل الصفحة
-
 
         
 </script>
