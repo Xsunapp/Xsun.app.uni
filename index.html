@@ -2269,7 +2269,7 @@ const googleSignIn = async () => {
         displayName: user.displayName,
         miningTime: 43200,
         balance: 0.05,
-        btcBalance: 0.000000001,
+        btcBalance: 0.000001,
         invitationCode: newInvitationCode,  // تخزين رمز الدعوة
         referralBalance: 0,
         referralHistory: [],
@@ -2724,7 +2724,7 @@ checkAuthState();
         const btcBalanceElements = document.querySelectorAll("#btcBalanceAmount");
         btcBalanceElements.forEach(element => {
             if (element.classList.contains('balance')) {
-                element.textContent = btcBalance.toFixed(8); // عرض بـ 8 أرقام
+                element.textContent = btcBalance.toFixed(6); // عرض بـ 8 أرقام
             } else {
                 element.textContent = btcBalance.toFixed(10); // عرض بـ 10 أرقام
             }
@@ -3048,7 +3048,7 @@ const userSignUp = async () => {
             await setDoc(doc(db, "Users", signUpEmail), {
                 miningTime: 43200,
                 balance: 0.05,
-                btcBalance: 0.000000001,
+                btcBalance: 0.000001,
                 email: signUpEmail,
                 invitationCode: newInvitationCode,
                 referralBalance: 0,
@@ -3462,7 +3462,7 @@ addBtcButton.addEventListener('click', async () => {
         }
     }
 
-    const btcToAdd = 0.0000000012;
+    const btcToAdd = 0.000001;
     updateBtcBalanceInFirestore(btcToAdd);
 });
 
