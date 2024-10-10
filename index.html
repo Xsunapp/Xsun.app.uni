@@ -255,6 +255,10 @@
 
 
 
+<span class="total-balance" style="font-size: 8vw; color: #32CD32; position: absolute; top: 9vw; right: 0; margin: 2vw; z-index: 1000; font-weight: bolder">
+  $0.00
+</span>
+
 
 
 
@@ -340,7 +344,7 @@
   
 
 
-  <div style="display: flex; align-items: center; justify-content: flex-end; border-radius:0; position: relative; top: 9vh;">
+  <div style="display: flex; align-items: center; justify-content: flex-end; border-radius:0; position: relative; top: 13vh;">
   <div style="width: 6vw; height: 6vw; display: flex; align-items: center; justify-content: center; border-radius: 50%; background-image: url('https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/bitcoin-225079_640.png?alt=media&token=e226582c-f4a8-4ee6-819c-0588d1a1a80f'); background-size: cover; background-position: center; margin-right: 1vw;"></div>
   <span id="btcBalanceAmount" style="margin-right: 4vw; font-size: 5.5vw; color: white;">0.00000000000</span>
 </div>
@@ -718,7 +722,9 @@
 
  
  
-
+<div id="message" class="message" style="font-weight: bold; color: white; font-size: 1.8em; z-index: 10002; position: absolute; left: 50%; transform: translate(-50%, -50%); display: none; border-radius: 5px;">
+  Not open yet
+</div>
 
     
 
@@ -726,29 +732,25 @@
 
 
 <!-- صندوق Total Balance مع الرصيد أسفله -->
-<span id="totalbalance" style="font-size: 6vw; color: darkgray; font-family: 'Arial', sans-serif; font-weight: bolder; position: absolute; top: 5vw; left: 50%; transform: translateX(-50%); text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); letter-spacing: 2px; background-color: black; height: 37vw; width: 100vw; display: flex; justify-content: center; align-items: center;">
+
+
+<span id="totalbalance" style="font-size: 6vw; color: darkgray; font-family: 'Arial', sans-serif; font-weight: bolder; position: absolute; top: 10vw; left: 50%; transform: translateX(-50%); text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); letter-spacing: 2px; background-color: transparent; height: 37vw; width: 100vw; display: flex; justify-content: center; align-items: center;">
   Total Balance
 </span>
     
-<span id="total-balance" style="font-size: 8vw; color: #32CD32; position: absolute; top: 4vw; right: 0; margin: 2vw; z-index: 1000; font-weight: bolder">
-   $0.00
+
+  <!-- قيمة الرصيد -->
+<span id="total-balance" style="font-size: 8vw; color: #32CD32; position: absolute; top: 9vw; right: 0; margin: 2vw; z-index: 1000; font-weight: bolder">
+ $0.00
 </span>
 
 
 
 
-     
 
 
 
-
-
-
-
-
-
-
-<div style="display: flex; justify-content: center; margin-top: 5vw; transform: translateY(40vw); overflow-y: auto;  color: black; ">
+<div style="display: flex; justify-content: center; margin-top: 1vw; transform: translateY(40vw); overflow-y: auto;  color: black;">
   <table>
     <thead>
       <tr>
@@ -857,9 +859,7 @@
 
 
 
-<div id="message" class="message" style="font-weight: bold; color: white; font-size: 1.8em; z-index: 10002; position: absolute; left: 50%; transform: translate(-50%, -50%); display: none; border-radius: 5px;">
-  Not open yet
-</div>
+
 
 <div id="popup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #fff; padding: 20px; border: 1px solid #000; border-radius: 10px; z-index: 9999; width: 320px;">
   <h2 style="margin-bottom: 10px; color: red;">Enter Address and Quantity</h2>
@@ -3820,10 +3820,18 @@ function calculateTotalDollarValue() {
     // جمع كل القيم بالدولار
     const totalDollarValue = btcValue + nearValue + sweatValue + swizaValue + xsunValue;
 
-    // تحديث المربع "Total Balance" بالقيمة الإجمالية بالدولار
-    document.getElementById('total-balance').innerText = ` $${totalDollarValue.toFixed(2)}`;
+    // تحديث جميع العناصر التي تحمل الفئة "total-balance"
+    const totalBalanceElement = document.getElementById('total-balance');
+if (totalBalanceElement) {
+  totalBalanceElement.innerText = `$${totalDollarValue.toFixed(2)}`;
 }
 
+// تحديث كل العناصر التي تحتوي على class="total-balance"
+const balanceElements = document.querySelectorAll('.total-balance');
+balanceElements.forEach((element) => {
+  element.innerText = `$${totalDollarValue.toFixed(2)}`;
+});
+}
 // استدعاء الدالة عند تحميل الصفحة لحساب المجموع فوراً
 window.onload = () => {
     calculateTotalDollarValue();
@@ -3833,7 +3841,6 @@ window.onload = () => {
 setInterval(() => {
     calculateTotalDollarValue();
 }, 10000); // تحديث كل 10 ثوانٍ للتحقق من أن القيم قد تم تحميلها
-
 
 
     </script>
