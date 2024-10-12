@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xsun Token</title>
 
+<script src="auth.js" defer></script> <!-- سيؤجل تحميل JavaScript إلى ما بعد تحميل HTML -->
+
+    <link rel="stylesheet" href="styles.css"> <!-- تأكد من وضع رابط ملف CSS هنا -->
+
     
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -15,6 +19,11 @@
     </head>
     <body>
 
+
+
+<div id="loadingIndicator" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+  <div class="spinner" style="display: inline-block; vertical-align: middle;"></div>
+</div>
 
     
 
@@ -106,11 +115,18 @@
 </div>
   
 
-  
+  <div id="loadingIndicator" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+  <div class="spinner" style="display: inline-block; vertical-align: middle;"></div>
+</div>
+
 
 
 
 <div id="signupForm" class="hidden" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0, 0, 0, 0.5); padding: 30px; width: 80%; text-align: center;">
+  
+  
+
+  
   
   
    <img src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/crypto-currency-coins-first-100-260nw-2273744543-removebg-preview.png?alt=media&token=aeb83f8c-ad48-40e0-ad33-bc740a4b079d" alt="Logo" style="width: 50vw" alt="Logo" style="width: 30vw; height: 30vw; margin-right: 0vw;">
@@ -167,66 +183,15 @@
   
               <p style="color:whitet; font-size: 12.8px;">🔗 𝕏𝕊𝕌ℕ ℕ𝔼𝕋𝕎𝕆ℝ𝕂 ℕ𝔼𝔸ℝ 𝔹𝕃𝕆ℂ𝕂ℍ𝔸𝕀ℕ. 🔗</p>
 
-        </div>
-    </div>
 
-
-
-
-
-
-
-<div class="sidebar" id="sidebar">
-  <button id="sidebar-button">☰</button>
-  
-  <!-- إطار لعرض الصورة -->
-  <div class="image-frame" id="imageFrame">
-    <img src="default-image.jpg" alt="User Image" id="userImage">
-    <input type="file" accept="image/*" id="imageInput" class="image-input">
-  </div>
-
-  <div class="sidebar-circle">
-    <p style="background-color: white; color: black; font-size: 18px;">UID: <span id="userUID"></span></p>
-  </div>
-
-<!-- مربع البريد الإلكتروني -->
-<!-- مربع البريد الإلكتروني -->
-<div class="email-box" style="background-color: darkblue; color: lightgray; font-size: 18px; padding: 10px; margin-top: 10px; width: 85%; border-radius: 5px; margin-left: 7px;">
-    <span id="userEmailDisplay" style="font-weight: bold;">example@example.com</span> <!-- نص مؤقت أثناء التحميل -->
-    
-    <div style="font-size: 16px; color: red; margin-top: 5px;">
-        <span id="emailVerificationStatus" style="display: inline-block; font-weight: bold;">Not Verified</span>
-        <button id="resendVerificationButton" style="display: inline-block; background-color: white; color: darkblue; border: none; padding: 5px; border-radius: 3px; cursor: pointer; margin-left: 10px;">Resend</button> <!-- زر إعادة الإرسال بجانب حالة التحقق -->
-        <span id="countdownTimerResend" style="margin-left: 10px; display: none; color: white; font-weight: bold;"></span> <!-- عداد تنازلي -->
-    </div>
-
-    <div id="resendWarning" style="color: red; display: none; margin-top: 5px;"></div> <!-- تحذير للمستخدم -->
+</div>
 </div>
 
-
-
-
-
-
-  <a href="#" onclick="showMiningInterface()">Home</a>
-  <a href="#" onclick="showEarnings()">Wallet</a>
-  <a href="#" onclick="showInviteFriends()">Referral</a>
-  <a href="#" onclick="showRoadmap()">Roadmap</a>
-  <a href="#" onclick="showKyc()">kyc</a>
-  <a id="telegramLink" href="https://xsunapp.github.io/xsun-app.uni.ch/">Site</a>
-<br>
-
-  <button id="signOutButton" style="margin-left: 15px;">Sign Out</button>
-
-
-  
-    
-    
-</div>
- <div id="confirmationDialog" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: black; padding: 20px; border: 1px solid #ccc; z-index: 10002;">
+      
+ <div id="confirmationDialog" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: black; padding: 20px; border: 1px solid #ccc; z-index: 10002; border-radius: 5px;">
    <p>Are you sure you want to logout?</p>
    <button id="yesButton" style="margin-right: 5vw; background-color: red;">Yes</button>
-   <button id="noButton" style="margin-left: 4vw; background-color: red;">No</button>
+   <button id="noButton" style="margin-left: 7vw; background-color: red;">No</button>
  </div>
 
 
@@ -240,24 +205,37 @@
 
 </div>
 
+</div>
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Content -->
 
 <div id="secretContent" style="background-color: black;">
 
 
 
 
+<div id="resendMessage" style="display: none; position: fixed; top: 30%; left: 50%; transform: translate(-50%, -50%); background: black; padding: 20px; border: 1px solid #ccc; z-index: 10003;">
+
+</div>
 
 
 
 
-
-<span class="total-balance" style="font-size: 8vw; color: #32CD32; position: absolute; top: 9vw; right: 0; margin: 2vw; z-index: 1000; font-weight: bolder">
-  $0.00
-</span>
 
 
 
@@ -337,11 +315,21 @@
 </a>
 
 
-
-
+<div style="display: flex; align-items: center; position: absolute; top: 5%; right: 4%; z-index: 1000;">
+    <span id="eye-toggle" onclick="toggleBalanceVisibility()" style="font-size: 5vw; color: white; cursor: pointer; margin-right: 0.5vw;">
+        <i class="fas fa-eye" id="eye-icon" style ="font-size: 5vw;"></i> <!-- أيقونة العين -->
+       
+    </span>
+    <span class="total-balance" style="font-size: 8vw; color: white; font-weight: bolder;">
+        $0.00
+    </span>
+</div>
 
   
-  
+    <span id="totalbalance" style="font-size: 2vw; color: darkgrey; font-family: 'Arial', sans-serif; font-weight: bolder; position: absolute; top: 0.7%; right: 4.87%; text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); letter-spacing: 2px; background-color: transparent; height: 37vw; width: auto; display: flex; align-items: center; justify-content: flex-end;">
+        Total Balance
+    </span>
+
 
 
   <div style="display: flex; align-items: center; justify-content: flex-end; border-radius:0; position: relative; top: 13vh;">
@@ -420,11 +408,11 @@
 </div>
 
 <div style="position: absolute; top: 71%; left: 27.8%; transform: translate(-50%, -50%);">
-    <div class="input-container" style="margin-bottom: 5vh;">
-        <div style="display: flex; align-items: center;">
-            <input type="text" id="amount" placeholder="Enter the amount" style="width: 30vw; height: 2vh; font-size: 3vw;" readonly onfocus="this.blur()">
-            <button onclick="fillMax()" style="font-size: 2.7vw; margin-left: 2vw;">Max</button>
-        </div>
+          <div class="input-container" style="margin-bottom: 5vh;">
+            <div style="display: flex; align-items: center;">
+              <input type="text" id="amount" placeholder="Enter the amount" style="width: 30vw; height: 2vh; font-size: 3vw;" readonly onfocus="this.blur()">
+              <button onclick="fillMax()" style="font-size: 2.7vw; margin-left: 2vw;">Max</button>
+            </div>
     </div>
 </div>
 
@@ -496,34 +484,49 @@
 
 
 <div class="sidebar" id="sidebar">
-
   <button id="sidebar-button">☰</button>
+
   <!-- إطار لعرض الصورة -->
   <div class="image-frame" id="imageFrame">
     <img src="default-image.jpg" alt="User Image" id="userImage">
     <input type="file" accept="image/*" id="imageInput" class="image-input">
   </div>
 
-<div class="sidebar-circle">
-  
-  
-  
-<p style="background-color: white; color: black; font-size: 18px;">UID: <span id="userUID"></span></p>
+  <div class="sidebar-circle">
+    <p style="background-color: white; color: black; font-size: 18px;">UID: <span id="userUID"></span></p>
+  </div>
+
+  <!-- مربع البريد الإلكتروني -->
+  <!-- مربع البريد الإلكتروني -->
+  <div class="email-box" style="background-color: darkblue; color: lightgray; font-size: 18px; padding: 10px; margin-top: 10px; width: 85%; border-radius: 5px; margin-left: 7px;">
+    <span id="userEmailDisplay" style="font-weight: bold;">example@example.com</span> <!-- نص مؤقت أثناء التحميل -->
+
+    <div style="font-size: 16px; color: red; margin-top: 5px;">
+      <span id="emailVerificationStatus" style="display: inline-block; font-weight: bold;">Not Verified</span>
+      <button id="resendVerificationButton" style="display: inline-block; background-color: white; color: darkblue; border: none; padding: 5px; border-radius: 3px; cursor: pointer; margin-left: 10px;">Resend</button> <!-- زر إعادة الإرسال بجانب حالة التحقق -->
+      <span id="countdownTimerResend" style="margin-left: 10px; display: none; color: white; font-weight: bold;"></span> <!-- عداد تنازلي -->
+    </div>
+
+    <div id="resendWarning" style="color: red; display: none; margin-top: 5px;"></div> <!-- تحذير للمستخدم -->
+  </div>
 
 
-</div>
-
-<a href="#" onclick="showMiningInterface()">Home</a>
-<a href="#" onclick="showEarnings()">Wallet</a>
-<a href="#" onclick="showInviteFriends()">Referral</a>
-<a href="#" onclick="showRoadmap()">Roadmap</a>
-<a href="#" onclick="showKyc()">kyc</a>
-<a id="telegramLink" href="https://www.mediafire.com/file/48gujjtzi7989qv/Xsunapp.apk/file?fbclid=PAAaa7R2SKTE6r3agzZ3IpZRb7B5OPpkxuniHejjCgDe8r9BLxg9r5krl_iMQ">android</a>
 
 
-<button id="signOutButton" style="margin-left: 15px;">Sign Out</button>
 
-  
+
+  <a href="#" onclick="showMiningInterface()">Home</a>
+  <a href="#" onclick="showEarnings()">Wallet</a>
+  <a href="#" onclick="showInviteFriends()">Referral</a>
+  <a href="#" onclick="showRoadmap()">Roadmap</a>
+  <a href="#" onclick="showKyc()">kyc</a>
+  <a id="telegramLink" href="https://xsunapp.github.io/xsun-app.uni.ch/">Site</a>
+  <br>
+
+  <button id="signOutButton" style="margin-left: 15px;">Sign Out</button>
+
+
+
 
 
 
@@ -544,11 +547,6 @@
 
 
 
-
-
-
-
-    <!-- Content -->
 
 
 
@@ -573,24 +571,15 @@
   <div id="roadMapContainer">
 
 
+    <!-- Button to show/hide sidebar -->
+   
+    
 
 
 
- 
 
-          
-    <div class="menu-button" onclick="toggleSidebar()">&#9776;</div>
-    
-    
-    
-    
-      
-    
-    
-    
-    
-    
-    
+
+
 
  <hr style="border: none; border-bottom: 1vw solid ; margin: 0vw 0; width: 100%; position: relative; left: 0vw; color: black;">
  
@@ -710,44 +699,46 @@
   
  <div id="earningsContainer">
 
+  
+    <div id="message" class="message" style="font-weight: bold; color: white; font-size: 1.8em; z-index: 10002; position: absolute; left: 50%; transform: translate(-50%, -50%); display: none; border-radius: 5px;">
+        Not open yet
+    </div>
+
+<span id="totalbalance" style="font-size: 6vw; color: darkgray; font-family: 'Arial', sans-serif; font-weight: bolder; position: absolute; top: 14vw; left: 2vw; text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); letter-spacing: 2px; background-color: transparent; height: 37vw; width: auto; display: flex; align-items: center; justify-content: flex-end;">
+    Wallet1
+    <span id="dropdown-icon" style="font-size: 4vw; margin-left: 0.5vw; cursor: pointer;">&#9660;</span> <!-- مثلث مقلوب -->
+</span>
+
+    <span id="totalbalance" style="font-size: 1%; color: red; font-family: 'Arial', sans-serif; font-weight: bolder; position: absolute; top: 10%; left: 3.5vw; text-shadow: 0.3% 0.3% 0.3% rgba(0, 0, 0, 0.5); letter-spacing: 0.3px; background-color: transparent; height: 37vw; width: auto; display: flex; align-items: center; justify-content: flex-end;">
+        Original Web3 Wallet
+    </span>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <span id="totalbalance" style="font-size: 2vw; color: green; font-family: 'Arial', sans-serif; font-weight: bolder; position: absolute; top: 2.7%; right: 4.87%; text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); letter-spacing: 2px; background-color: transparent; height: 37vw; width: auto; display: flex; align-items: center; justify-content: flex-end;">
+        Total Balance
+    </span>
 
 
- 
 
-  <div class="menu-button" onclick="toggleSidebar()">&#9776;</div>
-    
-    
-
-
-
- 
- 
-<div id="message" class="message" style="font-weight: bold; color: white; font-size: 1.8em; z-index: 10002; position: absolute; left: 50%; transform: translate(-50%, -50%); display: none; border-radius: 5px;">
-  Not open yet
+<div style="display: flex; align-items: center; position: absolute; top: 6.5%; right: 4%; z-index: 1000;">
+  <span id="eye-toggle" onclick="toggleBalanceVisibility()" style="font-size: 5vw; color: white; cursor: pointer; margin-right: 0.5vw;">
+    <i class="fas fa-eye" id="eye-icon"></i> <!-- أيقونة العين -->
+  </span>
+  <span id="total-balance" style="font-size: 8vw; color: white; font-weight: bolder;">
+    $0.00
+  </span>
 </div>
 
-    
-
-
-
-
-<!-- صندوق Total Balance مع الرصيد أسفله -->
-
-
-<span id="totalbalance" style="font-size: 6vw; color: darkgray; font-family: 'Arial', sans-serif; font-weight: bolder; position: absolute; top: 10vw; left: 50%; transform: translateX(-50%); text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); letter-spacing: 2px; background-color: transparent; height: 37vw; width: 100vw; display: flex; justify-content: center; align-items: center;">
-  Total Balance
-</span>
-    
-
-  <!-- قيمة الرصيد -->
-<span id="total-balance" style="font-size: 8vw; color: #32CD32; position: absolute; top: 9vw; right: 0; margin: 2vw; z-index: 1000; font-weight: bolder">
- $0.00
-</span>
 
 
 
 
 
+
+
+    <!-- قيمة الرصيد مع زر العين -->
+  
 
 
 <div style="display: flex; justify-content: center; margin-top: 1vw; transform: translateY(40vw); overflow-y: auto;  color: black;">
@@ -774,24 +765,17 @@
         <tr>
 
 
-<td>
 
+    <td>
+        <div style="display: flex; align-items: center;">
+            <img class="currency-icon" src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/dydx-3d-icon-download-in-png-blend-fbx-gltf-file-formats--bitcoin-logo-currency-finance-glass-crypto-coin-vol-2-pack-science-technology-icons-6876181.png?alt=media&token=becf4105-85b1-4ef7-bb0f-634c3651e9a5" alt="" style="width: 40px; height: 40px; margin-right: 1px;"> 𝐗𝐒𝐔𝐍
+        </div>
+    </td>
+    <td class="balance" id="totalBalance" style="font-size: 4.5vw; color: white;" data-value="00.00">00.00</td> <!-- تأكد من إضافة data-value هنا -->
+    <td><span id="totalBalanceInUSD" style="font-size: 4.5vw; color: white;" data-value="$00.00">$00.00</span></td> <!-- تأكد من إضافة data-value هنا -->
+    <td><button onclick="openPopup('Xsun')" style="background-color: blue; color: white; padding: 5px 10px; border: none; border-radius: 5px;">Send</button></td>
+</tr>
 
-  <div style="display: flex; align-items: center;"><img class="currency-icon" src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/dydx-3d-icon-download-in-png-blend-fbx-gltf-file-formats--bitcoin-logo-currency-finance-glass-crypto-coin-vol-2-pack-science-technology-icons-6876181.png?alt=media&token=becf4105-85b1-4ef7-bb0f-634c3651e9a5" alt="" style="width: 40px; height: 40px; margin-right: 1px;"> 𝐗𝐒𝐔𝐍</div>
-</td>
-
-<td class="balance" id="totalBalance" style="font-size: 4.5vw; color: white;">00.00</td>
-<br>
-
-<td><span id="totalBalanceInUSD" style="font-size: 4.5vw; color: white;">$00.00</span></td>
-
-
-        <td><button onclick="openPopup('Xsun')" style="background-color: blue; color𝐔𝐍: white; padding: 5px 10px; border: none; border-radius: 5px;">Send</button></td>
-      
-
-
-
-      </tr>
       <tr>
         
        <td><div style="display: flex; align-items: center;"><img class="currency-icon" src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/swiss-flag-round-badge_1308-72045__1_-removebg-preview.png?alt=media&token=b4105cd6-a982-4fd3-9e5c-f7032b9200b2" alt="" style="width: 41px; height: 41px; margin-right: 5px;"> 𝐒𝐖𝐙</div></td>
@@ -1011,10 +995,7 @@
 
 
 
-    <div class="menu-button" onclick="toggleSidebar()">&#9776;</div>
-    
-
-
+ 
 
 
     
@@ -1169,9 +1150,22 @@
 
 
 
-<div id="loadingIndicator" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-  <div class="spinner" style="display: inline-block; vertical-align: middle;"></div>
-</div>
+
+
+
+  
+  
+
+
+
+
+
+
+     </div>
+    
+
+   
+
 
    
    
@@ -1191,24 +1185,41 @@
     
 
 
-    <style>
-        /* أسلوب الصفحة */
-        body {
-            font-family: Arial, sans-serif;
-            /* اجعل الصورة خلفية للجسم وقم بتكرارها */
-            background: url('/.png') no-repeat center center fixed;
-            /* ضبط حجم الصورة بنسبة 100% من حجمها الأصلي */
-            background-size: 100% 100%;
-            color: white;
-            /* تغيير لون النص إلى الأسود */
-            margin: 0;
+
+
+
+ 
+
+ 
+ 
+  
+
+        
+
+
+
+
+
+
+    
+    
+    
+<style> 
+    
+/* اجعل المحتويات مخفية حتى يتم التحقق من حالة المستخدم */
+body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          background-color: black;
+          color: #ecf0f1;
+          margin: 0;
+        
         }
+        
+
+/* عندما يتم تحميل الصفحة بالكامل والتحقق من المستخدم */
 
 
-    {text-align: center; background-color: lightseagreen; color: white;}
-
-        /* العناصر النصية مع تنسيق B */
-        p, button, input, strong {
+      p, button, input, strong {
             background-color: #111;
             color: white;
             border: 2px solid #4CAF50;
@@ -1218,149 +1229,8 @@
             font-weight: bold; /* تطبيق تنسيق الحروف B */
         }
         /* زر بداية التعدين */
-        #startMiningButton {
-            background-color: #4CAF50;
-            cursor: pointer;
-        }
+       
 
-
-
-
-
-
-
-.spinner {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 4px solid rgba(0, 0, 0, 0.1);
-  border-left-color: #333;
-  animation: spin 1s linear infinite;
-  border-left-color: white;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-
-
-
-
-
-        /* إضافة هامش للعناصر */
-        p, button, input, strong {
-            margin-bottom: 10px;
-        }
-
-        /* إضافة تباعد بين العناصر */
-        .input-container {
-            display: flex;
-            flex-direction: column;
-        }
-
-
-
-        #loginButton, #logoutButton {
-            display: none;
-        }
-
-        .loggedIn #logoutButton {
-            display: block;
-        }
-
-        .loggedIn #loginContainer {
-            display: none;
-        }
-
-
-
-
-        /* Button to show/hide the sidebar */
-        .menu-button {
-            position: fixed;
-            left: 0;
-            top: 20px;
-            background-color: black;
-            padding: 10px 15px;
-            font-size: 24px;
-            color: white;
-            cursor: pointer;
-            z-index: 2;
-            transition: 0.3s;
-        }
-
-
-#roadMapContainer {
-  display: none;
-  height: 175vh; /* تحديد الارتفاع لحجم الشاشة بالكامل */
-  
-}
-
-
-#earningsContainer {
-display: none;
-  height: 120vh;
-}
-
-
-}
-
-
-        /* تنسيق رسائل "Not open yet" */
-        .tooltip {
-            position: absolute;
-            background-color: #333;
-            color: white;
-            font-size: 12px;
-            padding: 5px;
-            border-radius: 3px;
-            display: none;
-            left: 100%; /* تحديد المسافة بين الرسالة والكلمة */
-            top: 0;
-        }
-
-        .sidebar a:hover .tooltip {
-            display: inline-block; /* عند تحويل المؤشر إلى الكلمة */
-        }
-
-        #withdrawButton[disabled] {
-            background-color: #777;
-            cursor: not-allowed;
-        }
-
-        #withdrawButton.disabled {
-            background-color: #777;
-            cursor: not-allowed;
-        }
-
-        /* Earnings grid layout */
-        
-
-{
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-container {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  width: 300px;
-  text-align: center;
-}
 
 
 .hidden {
@@ -1412,45 +1282,80 @@ container {
   height: 100vh;
 }
 
-#miningContainer {
-  display: none;
-}
-  
+
   
  
 
 
- .
-
- 
- 
-  
-
-        
-    </style>
-</head>
-<body>
+     
+        /* إضافة تباعد بين العناصر */
 
 
 
 
 
 
-    
-    
-    
-<style> 
-    
-body {
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          background-color: black;
-          color: #ecf0f1;
-          margin: 0;
-        
+        /* Button to show/hide the sidebar */
+        .menu-button {
+            position: fixed;
+            left: 0;
+            top: 20px;
+            background-color: black;
+            padding: 10px 15px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            z-index: 2;
+            transition: 0.3s;
         }
-        
-        
-        
+
+
+#roadMapContainer {
+  display: none;
+  height: 175vh; /* تحديد الارتفاع لحجم الشاشة بالكامل */
+  
+}
+
+
+#earningsContainer {
+display: none;
+  height: 120vh;
+}
+
+
+
+
+
+        /* تنسيق رسائل "Not open yet" */
+     
+
+        .sidebar a:hover .tooltip {
+            display: inline-block; /* عند تحويل المؤشر إلى الكلمة */
+        }
+
+
+
+        #withdrawButton.disabled {
+            background-color: #777;
+            cursor: not-allowed;
+        }
+
+
+
+{
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+
+    
         
         
   @media screen and (max-width: 767px) {
@@ -1523,16 +1428,9 @@ p, button, input, strong {
 
 
         /* زر بداية التعدين */
-#startMiningButton {
-    position: absolute;
-    top: 370px; /* قم بتعديل هذه القيمة حسب احتياجاتك */
-    left: 50%; /* لوضع الزر في منتصف العرض */
-    transform: translateX(-50%); /* لتوسيع الزر ليكون في منتصف العرض بناءً على حجمه */
-}
 
-#startMiningButton:hover {
-  background-color: #2980b9;
-}
+
+
 
       
       
@@ -1591,10 +1489,7 @@ p, button, input, strong {
       
       
         /* إضافة هامش للعناصر */
-        p, button, input, strong {
-            margin-bottom: 10px;
-        }
-
+        
         /* إضافة تباعد بين العناصر */
         .input-container {
             display: flex;
@@ -1602,19 +1497,7 @@ p, button, input, strong {
         }
 
         /* أزرار تسجيل الدخول والخروج */
-        #loginButton, #logoutButton {
-            display: none;
-        }
-
-        .loggedIn #logoutButton {
-            display: block;
-        }
-
-        .loggedIn #loginContainer {
-            display: none;
-        }
-
- 
+     
 
  
 
@@ -1644,6 +1527,7 @@ p, button, input, strong {
             transition: 0.3s;
             position: relative; 
             
+            
              
            }
 
@@ -1654,9 +1538,12 @@ p, button, input, strong {
         /* Roadmap container */
      #roadMapContainer {
        display: none;
+      
     
      }
 
+
+    
 
 
 
@@ -1682,13 +1569,6 @@ p, button, input, strong {
 
 
 
-
-        /* Earnings grid layout */
-
-/* تنسيق إطار الصورة */
-/* تنسيق إطار الصورة */
-/* تنسيق إطار الصورة */
-./* تنسيق إطار الصورة */
 .image-frame-container {
   position: relative;
 }
@@ -1697,11 +1577,15 @@ p, button, input, strong {
   position: absolute;
   top: 0;
   right: 0;
-  width: 80px; /* تقليل حجم الإطار */
-  height: 80px; /* تقليل حجم الإطار */
+  width: 80px;
+  /* تقليل حجم الإطار */
+  height: 80px;
+  /* تقليل حجم الإطار */
   overflow: hidden;
-  border-radius: 50%; /* لجعلها دائرية */
-  background-color: #ccc; /* لتوضيح المكان إذا لم تكن هناك صورة */
+  border-radius: 50%;
+  /* لجعلها دائرية */
+  background-color: #ccc;
+  /* لتوضيح المكان إذا لم تكن هناك صورة */
 }
 
 /* تنسيق مربع Uid */
@@ -1726,23 +1610,13 @@ p, button, input, strong {
 
 
 
-
-
         
 
 
 
 
 /* إضافة ستايل لمربع الرسالة */
-#notificationBox {
-  background-color: white;
-  color: black;
-  padding: 10px;
-  border: 1px solid black;
-  display: none;
-  margin-left: 10px;
-  /* تعيين المسافة بين الزر ومربع الرسالة هنا */
-}
+
 
 p {
   background-color: black; /* لون الخلفية السوداء */
@@ -1759,48 +1633,8 @@ p {
 
 
 
-#roadMapContainer .blue-text {
-  color: blue;
-}
 
 
-
-
-
-
-#roadMapContainer .blue-text {
-  color: white;
-}
-
-
-
-  
-  .center-aligned {
-    text-align: center;
-  }
-  
-  
-
-  
-  .green-text {
-    color: white;
-  }
-  
-  
-  .red-text {
-    color: white;
-  }
-
-  #notificationBox {
-    background-color: white;
-    color: black;
-    padding: 10px;
-    border: 1px solid black;
-    display: none;
-    margin-left: 10px;
-    /* تعيين المسافة بين الزر ومربع الرسالة هنا */
-  }
-  
 
 
 
@@ -1820,28 +1654,9 @@ p {
 }
 
 
-#bottomQuarter {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        height: 25%;
-        background-color: white;
-        z-index: 9999; /* تأكد من أن الزر الأسفل يظهر فوق هذا الخلفية */
-    }
 
 
 
-
-  .custom-button {
-    width: 100%;
-    height: 400%;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 20px;
-    font-family: 'Arial', sans-serif;
-  }
-  
   
   /* شريط جانبي */
   #sidebar {
@@ -1854,53 +1669,32 @@ p {
     z-index: 9999;
     /* باقي الأنماط الأخرى للنص */
   }
-  
-  
-  #messageContainer {
-    margin-top: 10px;
+
+
+
+
+
+
+
+
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #333;
+  animation: spin 1s linear infinite;
+  border-left-color: white;
 }
 
-.error {
-    color: red;
-}
-
-.success {
-    color: green;
-}
-
-
-  .image-container {
-    text-align: center; /* يضمن وسط الصورة داخل العنصر الذي يحتوي عليها */
-}
-
-.image-container img {
-    max-width: 100%; /* يجعل الصورة تأخذ حجمًا أقل أو يساوي عرض العنصر الذي يحتوي عليها */
-    height: auto; /* يضمن الحفاظ على نسب العرض إلى الارتفاع */
-}
-
-
-
-
-
-
-.red-text {
-  color: black;
-  padding: 10px; /* تعيين البادينغ بالحجم المطلوب */
-  background-color: white; /* تحديد لون البادينغ */
-}
-
-
-.white-padding {
-  padding: 10px; /* تعيين البادينغ بالحجم المطلوب */
-  background-color: white; /* تحديد لون البادينغ */
-    color: black;
-}
-
-
-.same-style {
-  padding: 10px; /* تعيين البادينغ بالحجم المطلوب */
-  background-color: white; /* تحديد لون البادينغ */
-  color: black;
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 
@@ -1911,67 +1705,23 @@ p {
 
 
 
-  
-#registrationContainer {
-    width: 80%;
 
-    margin: 0 auto;
-    max-width: 600px;
-    
-  
 
-  
-   margin-top: 80px;
-   
-}
-  
-  #loginContainer {
-    width: 70%;
 
-    margin: 0 auto;
-    max-width: 600px;
-    
-    
-    display: none;
-  
-   margin-top: 270px;
-   
 
-}
-  
+
   
 
     
   
   
   
-.bottom-center-text {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 20px; /* حجم الخط حسب الحاجة */
-}
-  
-  
-
-.bottom-center-text {
-    font-size: 29px; /* حدد حجم الخط حسب الحاجة */
-    margin-top: 30px; /* تحريك النص للأعلى بقيمة معينة */
-    color: skyblue; /* تحديد لون النص بالبرتقال */
-}
 
 
 
-/* تحديد موقع النص الأفقي */
-h1 {
-    color: white;
-    font-size: 30px;
-    margin: 0;
-    text-align: right; /* تحديد موقع النص إلى اليمين */
-    font-weight: bold; /* تحديد تنسيق B */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* إضافة ظل لزيادة التباين */
-}
+
+
+
 
 .input-container {
   position: relative;
@@ -1982,68 +1732,15 @@ h1 {
 .input-container label {
   color: white;
   font-size: 1.5em;
-  display: block; /* تجعل النص يظهر كبلوك للحصول على فصل بين النص والحقل */
-  margin-bottom: 5px; /* تضيف بعض المسافة بين النص وحقل الإدخال */
-}
-
-#enterWalletAddress {
-  width: 150px; /* تحديد عرض الحقل حسب الحاجة */
-  padding: 8px;
-  font-size: 14px; /* تحديد حجم النص في الحقل */
-  margin-top: 10px; /* تنزيل المربع دون التأثير على النصوص الأخرى */
-}
-
-
-/* تصميم مربع المبلغ */
-#withdrawAmount {
-  width: 200px; /* تحديد عرض الحقل حسب الحاجة */
-  padding: 8px;
-  font-size: 14px; /* تحديد حجم النص في الحقل */
-  margin-top: 10px; /* تنزيل المربع دون التأثير على النصوص الأخرى */
+  display: block;
+  /* تجعل النص يظهر كبلوك للحصول على فصل بين النص والحقل */
+  margin-bottom: 5px;
+  /* تضيف بعض المسافة بين النص وحقل الإدخال */
 }
 
 
 
 
-
-  
-  
-
-  
-  .balance-container {
-  display: flex; /* جعل العناصر داخل المربع تتمدد أفقيًا */
-  align-items: center; /* توسيط العناصر عموديًا */
-
-  font-size: 20px;
-}
-
-.circle-image {
-  width: 28px; /* تعديل حجم الصورة */
-  height: 32px;
-  border-radius: 50%; /* جعل العنصر دائريًا */
-  overflow: hidden; /* إخفاء أي جزء من الصورة الخارج عن الشكل الدائري */
-  margin-left: 10px; /* تباعد بين النص والصورة */
-  background: white;
-  vertical-align: middle;
-}
-
-
-* {
-    z-index: 1; /* تحديد قيمة z-index لجميع العناصر */
-}
-
-#confirmationDialog {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 20px;
-  border: 1px solid #ccc;
-  z-index: 9999;
-  /* زيادة القيمة لجعله يظهر فوق العناصر الأخرى */
-}
   
 #signOutButton {
     font-size: 20px;
@@ -2052,11 +1749,11 @@ h1 {
 }
 
 
-        #authForm {
-          display: none;
-          /* إخفاء واجهة التسجيل عند تحميل الصفحة */
-        }
-  
+       /* إخفاء جميع المحتويات افتراضيًا */
+#authForm, #signupForm, #secretContent {
+    display: none;
+}
+
 
 
 
@@ -2126,9 +1823,24 @@ h1 {
         }
 
 
+/* إخفاء جميع المحتويات افتراضيًا */
+
+/* إخفاء الصفحة بشكل افتراضي */
+
 
   
   
+
+         p, button, input, strong {
+            margin-bottom: 10px;
+        }
+
+
+
+/* إخفاء جميع المحتويات افتراضيًا */
+
+
+
   
    </style>
    
@@ -2400,22 +2112,45 @@ setInterval(() => {
 }, 5000); // 5000 مللي ثانية تعني 5 ثوانٍ
 
 function displayBalance() {
-    const balanceIncreaseRate = 0.0;
-    const currentBalance = parseFloat(balanceElement.textContent);
+  const balanceIncreaseRate = 0.0;
+  const currentBalance = parseFloat(balanceElement.textContent);
+
+  // تحقق من أن currentBalance هو عدد صالح
+  if (isNaN(currentBalance)) {
+    balanceElement.textContent = "****"; // تظهر قيمة التشفير
+  } else {
     const newBalance = currentBalance + balanceIncreaseRate;
     balanceElement.textContent = newBalance.toFixed(8);
-    updateBalanceInUSD();
+  }
+
+  updateBalanceInUSD();
 }
+
 
 function updateBalanceInUSD() {
     const currentBalance = parseFloat(balanceElement.textContent);
-    const balanceUSD = currentBalance * xsunToUSD;
-    balanceInUSD.textContent = `Balance in USD: $${balanceUSD.toFixed(2)}`;
+    
+    // تحقق من أن currentBalance هو عدد صالح
+    if (isNaN(currentBalance)) {
+        balanceInUSD.textContent = "Balance in USD: ****"; // تظهر قيمة التشفير
+    } else {
+        const balanceUSD = currentBalance * xsunToUSD;
+        balanceInUSD.textContent = `Balance in USD: $${balanceUSD.toFixed(2)}`;
+    
+}
 
-    const totalBalanceElement = document.getElementById("totalBalance");
-    const totalBalanceUSD = parseFloat(totalBalanceElement.textContent) * xsunToUSD;
+const totalBalanceElement = document.getElementById("totalBalance");
+const totalBalanceValue = parseFloat(totalBalanceElement.textContent);
 
-    totalBalanceInUSD.textContent = ` $${totalBalanceUSD.toFixed(2)}`;
+let totalBalanceUSD;
+
+if (!isNaN(totalBalanceValue)) {
+  totalBalanceUSD = totalBalanceValue * xsunToUSD;
+  totalBalanceInUSD.textContent = `$${totalBalanceUSD.toFixed(2)}`;
+} else {
+  totalBalanceInUSD.textContent = "****"; // إظهار النجوم إذا كان هناك خطأ
+}
+
 }
 
 
@@ -2448,20 +2183,20 @@ const updateBalanceInDatabase = async (newBalance) => {
 
 
         const updateMiningData = () => {
-            const currentTime = Date.now();
-            const elapsedTime = (currentTime - startTime) / 1000;
-            if (miningTime > 0) {
-                miningTime -= elapsedTime;
-                if (miningTime < 0) miningTime = 0;
-
-                displayBalance();
-                saveMiningData();
-            }
-            startTime = currentTime;
+          const currentTime = Date.now();
+          const elapsedTime = (currentTime - startTime) / 1000;
+          if (miningTime > 0) {
+            miningTime -= elapsedTime;
+            if (miningTime < 0) miningTime = 0;
+        
+            displayBalance();
+            saveMiningData();
+          }
+          startTime = currentTime;
         }
-
+        
         const pad = (num) => {
-            return num.toString().padStart(2, '0');
+          return num.toString().padStart(2, '0');
         }
 
 
@@ -2667,39 +2402,38 @@ const maskEmail = (email) => {
 
 
 const loadMiningData = async () => {
-            const user = auth.currentUser;
-            if (user) {
-                const userDoc = await getDoc(doc(db, "Users", user.email));
-                if (userDoc.exists()) {
-                    const userData = userDoc.data();
-                    miningTime = userData.miningTime;
-                    balanceElement.textContent = userData.balance.toFixed(8);
-                    startTime = userData.startTime || Date.now();
-                }
-            }
-        }
+  const user = auth.currentUser;
+  if (user) {
+    const userDoc = await getDoc(doc(db, "Users", user.email));
+    if (userDoc.exists()) {
+      const userData = userDoc.data();
+      miningTime = userData.miningTime;
+      balanceElement.textContent = userData.balance.toFixed(8);
+      startTime = userData.startTime || Date.now();
+    }
+  }
+}
 
 
         const checkAuthState = async () => {
-    onAuthStateChanged(auth, user => {
-        if (user) {
-            authForm.style.display = 'none';
-            signupForm.style.display = 'none';
-            secretContent.style.display = 'block';
-            loadUserData(user.email); // تحميل بيانات المستخدم
-            loadUserEmail(); // استدعاء دالة loadUserEmail لعرض البريد الإلكتروني
-        } else {
-            authForm.style.display = 'block';
-            signupForm.style.display = 'none';
-            secretContent.style.display = 'none';
-        }
-    });
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      authForm.style.display = 'none';
+      signupForm.style.display = 'none';
+      secretContent.style.display = 'block';
+      loadUserData(user.email); // تحميل بيانات المستخدم
+      loadUserEmail(); // استدعاء دالة loadUserEmail لعرض البريد الإلكتروني
+    } else {
+      authForm.style.display = 'block';
+      signupForm.style.display = 'none';
+      secretContent.style.display = 'none';
+    }
+  });
 };
 
 // استدعاء الدالة عند تحميل الصفحة
 checkAuthState();
 
-        
        const loadUserData = async (email) => {
     const userDoc = await getDoc(doc(db, "Users", email));
     if (userDoc.exists()) {
@@ -2711,13 +2445,18 @@ checkAuthState();
         const referralBalance = userData.referralBalance || 0;
 
         // حساب إجمالي الرصيد
-        const totalBalance = parseFloat(userData.balance) + parseFloat(referralBalance);
+        // حساب إجمالي الرصيد
 
-        // عرض إجمالي الرصيد في العنصر Total balance
-        const totalBalanceElement = document.getElementById('totalBalance');
-        if (totalBalanceElement) {
-            totalBalanceElement.textContent = totalBalance.toFixed(6);
-        }
+
+const totalBalance = parseFloat(userData.balance) + parseFloat(referralBalance);
+
+// عرض إجمالي الرصيد في العنصر Total balance
+const totalBalanceElement = document.getElementById('totalBalance');
+if (totalBalanceElement) {
+  totalBalanceElement.textContent = totalBalance.toFixed(6);
+}
+
+
 
         // عرض رصيد Bitcoin
         const btcBalance = parseFloat(userData.btcBalance) || 0; // تأكد من وجود الحقل
@@ -3363,8 +3102,6 @@ function startCountdown(remainingTime) {
 
 
 
-
-
 const updateBtcBalanceInFirestore = async (btcToAdd) => {
     const user = auth.currentUser;
     if (user) {
@@ -3395,7 +3132,7 @@ const updateBtcBalanceInFirestore = async (btcToAdd) => {
                 // Update balance in the HTML element
                 const balanceElement = document.getElementById('balance');
                 if (balanceElement) {
-                    balanceElement.textContent = newBalance.toFixed(8);
+                  balanceElement.textContent = newBalance.toFixed(8);
                 }
 
                 const currentTime = new Date().toISOString();
@@ -3507,8 +3244,6 @@ window.addEventListener('load', async () => {
 
 
 
-
-
 // تحديث الدالة updateBtcBalanceInFirestore لتحديث الرصيد
 
 
@@ -3577,14 +3312,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 const updateReferralBalanceInUSD = () => {
-    const referralBalanceValue = parseFloat(referralBalanceDisplay.textContent);
-    if (!isNaN(referralBalanceValue)) {
-        const referralBalanceUSDValue = referralBalanceValue * xsunToUSD;
-        referralBalanceDisplayUSD.textContent = `$${referralBalanceUSDValue.toFixed(2)}`;
-    } else {
-        referralBalanceDisplayUSD.textContent = ""; 
-    }
+  const referralBalanceValue = parseFloat(referralBalanceDisplay.textContent);
+  if (!isNaN(referralBalanceValue)) {
+    const referralBalanceUSDValue = referralBalanceValue * xsunToUSD;
+    referralBalanceDisplayUSD.textContent = `$${referralBalanceUSDValue.toFixed(2)}`;
+  } else {
+    referralBalanceDisplayUSD.textContent = "****"; // إظهار النجوم إذا كان هناك خطأ
+  }
 }
+
 
 
 
@@ -3795,7 +3531,7 @@ setTimeout(async () => {
         const prices = await fetchCryptoPrices();
         calculateIndividualPrices(prices);
     }, 60000);
-}, 10000);  // التحديث بعد 10 ثوانٍ
+}, 4000);  // التحديث بعد 10 ثوانٍ
 
 
 
@@ -3840,7 +3576,76 @@ window.onload = () => {
 // تحديث القيم بشكل دوري للتأكد من تحديث "Total Balance" مع كل تغيير
 setInterval(() => {
     calculateTotalDollarValue();
-}, 10000); // تحديث كل 10 ثوانٍ للتحقق من أن القيم قد تم تحميلها
+}, 5000); // تحديث كل 10 ثوانٍ للتحقق من أن القيم قد تم تحميلها
+
+
+let balanceVisible = true; // الحالة الافتراضية
+
+function toggleBalanceVisibility() {
+    balanceVisible = !balanceVisible; // تبديل الحالة
+
+    // الحصول على العناصر التي تحمل إما id أو class "total-balance"
+    const totalBalanceElementsById = document.querySelectorAll('#total-balance'); // الأرصدة باستخدام ID
+    const totalBalanceElementsByClass = document.querySelectorAll('.total-balance'); // الأرصدة باستخدام Class
+
+    // دمج كلا المجموعتين (ID و Class)
+    const allTotalBalanceElements = [...totalBalanceElementsById, ...totalBalanceElementsByClass];
+
+    const balanceElements = document.querySelectorAll('.balance'); // جميع الأرصدة الأخرى
+    const valueElements = document.querySelectorAll('td[id$="Value"], span[id$="InUSD"], #btcBalanceAmount, #balance, #balanceInUSD'); // جميع القيم بالدولار
+    const timeLeftElements = document.querySelectorAll('#countdownContainer'); // الوقت المتبقي
+    const eyeIcons = document.querySelectorAll('#eye-icon'); // أيقونات العين
+
+    // التعامل مع جميع عناصر إجمالي الرصيد (التي تحتوي على id أو class "total-balance")
+    allTotalBalanceElements.forEach(totalBalanceElement => {
+        if (balanceVisible) {
+            totalBalanceElement.innerHTML = totalBalanceElement.dataset.value || "0.00"; // استعادة الرصيد الأصلي
+        } else {
+            totalBalanceElement.dataset.value = totalBalanceElement.innerHTML; // حفظ الرصيد الأصلي
+            totalBalanceElement.innerHTML = "****"; // إخفاء الرصيد
+        }
+    });
+
+    // التعامل مع بقية الأرصدة
+    balanceElements.forEach(el => {
+        if (balanceVisible) {
+            el.innerHTML = el.dataset.value || "0.00"; // استعادة الرصيد الأصلي لكل عملة
+        } else {
+            el.dataset.value = el.innerHTML; // حفظ الرصيد الأصلي
+            el.innerHTML = "****"; // إخفاء الرصيد
+        }
+    });
+
+    // التعامل مع القيم بالدولار
+    valueElements.forEach(el => {
+        if (balanceVisible) {
+            el.innerHTML = el.dataset.value || "$0.00"; // استعادة القيمة الأصلية لكل قيمة بالدولار
+        } else {
+            el.dataset.value = el.innerHTML; // حفظ القيمة الأصلية بالدولار
+            el.innerHTML = "****"; // إخفاء القيمة بالدولار
+        }
+    });
+
+    // التعامل مع الوقت المتبقي
+    
+    // تحديث أيقونة العين
+    eyeIcons.forEach(eyeIcon => {
+        if (balanceVisible) {
+            eyeIcon.classList.remove('fa-eye-slash');
+            eyeIcon.classList.add('fa-eye');
+        } else {
+            eyeIcon.classList.remove('fa-eye');
+            eyeIcon.classList.add('fa-eye-slash');
+        }
+    });
+}
+
+// اجعل الدالة متاحة في النطاق العالمي
+window.toggleBalanceVisibility = toggleBalanceVisibility;
+
+document.addEventListener('DOMContentLoaded', () => {
+    window.toggleBalanceVisibility = toggleBalanceVisibility;
+});
 
 
     </script>
@@ -3899,6 +3704,8 @@ function showEarnings() {
   // إخفاء عناصر واجهة Invite Friends (إذا كانت معروضة)
   document.getElementById('inviteFriendsContainer').style.display = 'none';
 
+
+
   // عرض عناصر واجهة KYC
   document.getElementById('kycContainer').style.display = 'block';
 }
@@ -3943,12 +3750,22 @@ function showMiningInterface() {
 
 
 
+
+
+
+
+
+
+
         function toggleSidebar() {
             var sidebar = document.getElementById('sidebar');
             if (sidebar.style.left === '-250px') {
                 sidebar.style.left = '0';
             } else {
                 sidebar.style.left = '-250px';
+                
+          
+      
             }
 
 
@@ -4270,7 +4087,7 @@ detectDevice(); // استدعاء الدالة عند تحميل الصفحة
   var totalBalanceElement = document.getElementById('total-balance');
 
   // إخفاء "Total Balance"
-  totalBalanceElement.style.display = 'none';
+  totalBalanceElement.style.display = 'block';
 
   // إظهار الرسالة "Not open yet"
   messageElement.innerText = 'Not open yet';
