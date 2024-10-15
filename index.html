@@ -3577,32 +3577,66 @@ setInterval(() => {
 }, 5000); // تحديث كل 10 ثوانٍ للتحقق من أن القيم قد تم تحميلها
 
 
+
+
+
+
+
+
+
+
+
+
 let balanceVisible = true; // الحالة الافتراضية
 
 function toggleBalanceVisibility() {
     balanceVisible = !balanceVisible; // تبديل الحالة
 
-    // الحصول على العناصر التي تحمل إما id أو class "total-balance"
+    // الحصول على العنصر الذي يحمل id "btcBalanceAmount"
+    const btcBalanceById = document.getElementById('btcBalanceAmount');
+    // الحصول على العنصر الذي يحمل class "btc-balance"
+    const btcBalanceByClass = document.querySelector('.btc-balance');
+
+    // فك التشفير أو إخفاء الرصيد بناءً على الحالة
+    if (btcBalanceById) {
+        if (balanceVisible) {
+            btcBalanceById.innerHTML = btcBalanceById.dataset.value || "0.00"; // استعادة الرصيد الأصلي
+        } else {
+            btcBalanceById.dataset.value = btcBalanceById.innerHTML; // حفظ الرصيد الأصلي
+            btcBalanceById.innerHTML = "****"; // إخفاء الرصيد
+        }
+    }
+
+    if (btcBalanceByClass) {
+        if (balanceVisible) {
+            btcBalanceByClass.innerHTML = btcBalanceByClass.dataset.value || "0.00"; // استعادة الرصيد الأصلي
+        } else {
+            btcBalanceByClass.dataset.value = btcBalanceByClass.innerHTML; // حفظ الرصيد الأصلي
+            btcBalanceByClass.innerHTML = "****"; // إخفاء الرصيد
+        }
+    }
+
+    // التعامل مع مجموع الرصيد (Total Balance) الذي يحمل إما id أو class
     const totalBalanceElementsById = document.querySelectorAll('#total-balance'); // الأرصدة باستخدام ID
     const totalBalanceElementsByClass = document.querySelectorAll('.total-balance'); // الأرصدة باستخدام Class
 
-    // دمج كلا المجموعتين (ID و Class)
+    // دمج كلا المجموعتين (ID و Class) لمجموع الرصيد
     const allTotalBalanceElements = [...totalBalanceElementsById, ...totalBalanceElementsByClass];
-
-    const balanceElements = document.querySelectorAll('.balance'); // جميع الأرصدة الأخرى
-    const valueElements = document.querySelectorAll('td[id$="Value"], span[id$="InUSD"], #btcBalanceAmount, #balance, #balanceInUSD'); // جميع القيم بالدولار
-    const timeLeftElements = document.querySelectorAll('#countdownContainer'); // الوقت المتبقي
-    const eyeIcons = document.querySelectorAll('#eye-icon'); // أيقونات العين
 
     // التعامل مع جميع عناصر إجمالي الرصيد (التي تحتوي على id أو class "total-balance")
     allTotalBalanceElements.forEach(totalBalanceElement => {
         if (balanceVisible) {
-            totalBalanceElement.innerHTML = totalBalanceElement.dataset.value || "0.00"; // استعادة الرصيد الأصلي
+            totalBalanceElement.innerHTML = totalBalanceElement.dataset.value || "0.00"; // استعادة الرصيد الكلي الأصلي
         } else {
-            totalBalanceElement.dataset.value = totalBalanceElement.innerHTML; // حفظ الرصيد الأصلي
-            totalBalanceElement.innerHTML = "****"; // إخفاء الرصيد
+            totalBalanceElement.dataset.value = totalBalanceElement.innerHTML; // حفظ الرصيد الكلي الأصلي
+            totalBalanceElement.innerHTML = "****"; // إخفاء الرصيد الكلي
         }
     });
+
+    // التعامل مع بقية الأرصدة
+    const balanceElements = document.querySelectorAll('.balance'); // جميع الأرصدة الأخرى
+    const valueElements = document.querySelectorAll('td[id$="Value"], span[id$="InUSD"], #balance, #balanceInUSD'); // جميع القيم بالدولار
+    const eyeIcons = document.querySelectorAll('#eye-icon'); // أيقونات العين
 
     // التعامل مع بقية الأرصدة
     balanceElements.forEach(el => {
@@ -3624,8 +3658,6 @@ function toggleBalanceVisibility() {
         }
     });
 
-    // التعامل مع الوقت المتبقي
-    
     // تحديث أيقونة العين
     eyeIcons.forEach(eyeIcon => {
         if (balanceVisible) {
