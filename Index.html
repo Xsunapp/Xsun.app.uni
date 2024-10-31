@@ -1,0 +1,3788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xsun Token</title>
+
+<script src="auth.js" defer></script> <!-- سيؤجل تحميل JavaScript إلى ما بعد تحميل HTML -->
+
+    <link rel="stylesheet" href="styles.css"> <!-- تأكد من وضع رابط ملف CSS هنا -->
+
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+
+<script src="https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"></script>
+
+    </head>
+    <body>
+
+
+
+
+
+   <div id="authForm" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0, 0, 0, 0.5); padding: 30px; width: 90%; max-width: 500px; text-align: center;">
+
+
+<div class="welcome-container">
+  <h2 id="welcome-text" class="text">
+    𝓦𝓮𝓵𝓬𝓸𝓶𝓮 𝓣𝓸 𝓧𝓼𝓾𝓷! 
+    <img src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/crypto-currency-coins-first-100-260nw-2273744543-removebg-preview.png?alt=media&token=aeb83f8c-ad48-40e0-ad33-bc740a4b079d" 
+         alt="Logo" style="width: 12vw; height: auto; vertical-align: middle;">
+  </h2>
+</div>
+
+
+  <input type="email" placeholder="Email" id="userEmail" style="width: 80%; margin-bottom: 10px; padding: 10px;">
+  <input type="password" placeholder="Password" id="usePassword" style="width: 80%; margin-bottom: 10px; padding: 10px;">
+
+  <button id="forgetPasswordButton" style="background-color: transparent; color: red;">Forget Password ?</button>
+  <br><br>
+
+  <button id="googleSignInButtonLogin" style="background-color: dodgerblue; color: white; padding: 10px 20px; display: none;">
+    <i class="fab fa-google" style="margin-right: 10px;"></i> Sign in with Google
+  </button>
+
+  <button id="signInButton" style="background-color: green; color: white; margin-left: 10px; padding: 10px 20px; border-radius: 5px;">Sign In</button>
+  
+
+
+  <button id="goToSignupButton" style="background-color: red; color: white; padding: 10px 20px; border-radius: 5px;">Create a new account!</button>
+
+  <div id="errorMessage" style="color: red; margin-top: 10px;"></div>
+  <div id="successMessage" style="color: green; margin-top: 10px;"></div>
+  <p style="color:white; font-size: 12px; margin-top: 20px;">🔗 𝕏𝕊𝕌ℕ ℕ𝔼𝕋𝕎𝕆ℝ𝕂 ℕ𝔼𝔸ℝ 𝔹𝕃𝕆ℂ𝕂ℍ𝔸𝕀ℕ. 🔗</p>
+</div>
+
+<!-- Password Reset Form -->
+<div id="passwordResetForm" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 90%; max-width: 500px;">
+  <h2>Forget Password</h2>
+  <input type="email" placeholder="Email" id="resetEmail" style="width: 80%; padding: 10px;"><br><br>
+  <button id="sendResetEmailButton" style="background-color: red; padding: 10px 20px;">Send Reset Email</button>
+  <button id="cancelResetButton" style="background-color: deepskyblue; padding: 10px 20px;">Cancel</button>
+</div>
+
+  
+</div>
+
+   
+  
+  
+
+<div id="signupForm" class="hidden" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0, 0, 0, 0.5); padding: 30px; width: 80%; text-align: center;">
+  
+  
+
+  <div class="welcome-container">
+  <h2 id="welcome-text" class="text">
+    𝓦𝓮𝓵𝓬𝓸𝓶𝓮 𝓣𝓸 𝓧𝓼𝓾𝓷! 
+    <img src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/crypto-currency-coins-first-100-260nw-2273744543-removebg-preview.png?alt=media&token=aeb83f8c-ad48-40e0-ad33-bc740a4b079d" 
+         alt="Logo" style="width: 12vw; height: auto; vertical-align: middle;">
+  </h2>
+</div>
+
+  
+  
+
+  
+
+        <div id="errorMessageSignup" style="color: red; font-weight: bold;">
+        </div>
+
+
+<input type="email" placeholder="Email" id="userEmail" style="width: 80%; margin-bottom: 10px;">
+  <input type="password" placeholder="Password" id="userPassword" style="width: 80%; margin-bottom: 10px;">
+  <br>
+   <input type="password" placeholder="Confirm Password" id="confirmPassword" style="width: 80%; margin-bottom: 10px;">
+  <input type="text" placeholder="Invitation Code (Required)" id="invitationCode" style="width: 80%; margin-bottom: 10px;">
+  <br>
+  <div>
+
+  <button onclick="generateInvitationCode()" style="background-color: orange; color: white; font-size: 3vw; border-radius: 3px;">Generate invitation Code</button>
+  
+   <button id="togglePassword" onclick="togglePasswordVisibility()" style="margin-right: 5px; font-size: 3vw; background-color: #333; color: white; border-radius: 5px;">Show password</button>
+</div>
+
+  <input type="checkbox" id="agreeCheckbox" style="margin-right: 5px; font-size: 3vw;">
+  <label for="agreeCheckbox" style="color: white;">I Agree</label>
+  <a href="https://xsunapp.github.io/Xsun.privacy-Policy/" target="_blank" style="color: white; margin-left: 20px; font-size: 3w;">Privacy Policy</a>
+  
+  <br><br>
+
+
+
+<!-- زر مصادقة Google في كل من تسجيل الدخول وتسجيل الحساب -->
+<button id="googleSignInButtonSignup" style="position: relative; background-color: dodgerblue; color: white; padding-left: 10px; padding-right: 10px; display: none;">
+  <span style="position: absolute; left: 0; top: 0; bottom: 0; width: 18%; background-color: white; color: black; border-radius: 2px;"></span>
+  <span style="position: relative; z-index: 1;">
+    <i class="fab fa-google" style="margin-right: 10px; background: linear-gradient(90deg, #4285F4, #EA4335, #FBBC05, #34A853); -webkit-background-clip: text; color: transparent; font-size: 0.9em;"></i>
+    <!-- رمز Google -->
+    Sign up with Google
+  </span>
+  <span style="position: absolute; left: 18%; top: 0; bottom: 0; width: 1px; background-color: #000;"></span> <!-- الخط الفاصل -->
+</button>
+
+
+  <button id="signUpButton" style="background-color: green; color: white; margin-right: 10px; border-radius: 3px; font-size: 3vw;">Sign Up</button>
+
+
+
+
+
+         <button id="goToSigninButton" style=" background-color: red; font-size: 3vw; border-radius: 5px;">Already have an account ?</button>
+
+  
+              <p style="color:whitet; font-size: 12.8px;">🔗 𝕏𝕊𝕌ℕ ℕ𝔼𝕋𝕎𝕆ℝ𝕂 ℕ𝔼𝔸ℝ 𝔹𝕃𝕆ℂ𝕂ℍ𝔸𝕀ℕ. 🔗</p>
+
+
+</div>
+</div>
+      
+ <div id="confirmationDialog" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: black; padding: 20px; border: 1px solid #ccc; z-index: 10002; border-radius: 5px;">
+   <p>Are you sure you want to logout?</p>
+   <button id="yesButton" style="margin-right: 5vw; background-color: red;">Yes</button>
+   <button id="noButton" style="margin-left: 7vw; background-color: red;">No</button>
+ </div>
+
+
+
+
+
+
+<div id="resendMessage" style="display: none; position: fixed; top: 30%; left: 50%; transform: translate(-50%, -50%); background: black; padding: 20px; border: 1px solid #ccc; z-index: 10003;">
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<div id="secretContent" style="background-color: #121212; color: white; font-family: Arial, sans-serif; padding: 2vh; height: 100vh; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: space-between; margin-top: 15%;">
+  
+  <div style="position: absolute; top: 0; left: 0; right: 0; height: 15%; background-color: wheat; z-index: -1;"></div> <!-- خلفية بيضاء -->
+  
+  
+<div style="display: flex; align-items: center; padding: 1vw; margin-right: 10vw; z-index: 1000;">
+    <span style="font-size: 1.5vw; color: white; margin-right: 2vw;"> <!-- زيادة المسافة -->
+        Total Balance   
+    </span>
+
+
+    <span id="eye-toggle" onclick="toggleBalanceVisibility()" style="font-size: 5vw; color: white; cursor: pointer;">
+      <i class="fas fa-eye" id="eye-icon" style="font-size: 5vw;"></i>
+    </span>
+
+    <span class="total-balance" style="font-size: 7vw; color: white; font-weight: bolder; margin-right: 2vw;"> <!-- زيادة المسافة -->
+        $0.00
+    </span>
+
+
+</div>
+
+
+
+
+<div style="display: flex; align-items: center; gap: 1vw; position: absolute; top: 2vh; right: 2vw;">
+    <div style="width: 6vh; height: 6vh; border-radius: 50%; background-image: url('https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/bitcoin-225079_640.png?alt=media&token=e226582c-f4a8-4ee6-819c-0588d1a1a80f'); background-size: cover;"></div>
+    <span id="btcBalanceAmount" style="font-size: 3.5vh; color: black;">0.00000000</span>
+  </div>
+
+
+  
+
+
+
+  
+
+
+
+
+  <button id="startMiningButton" onclick="startMining()" style="position: absolute; top: 60px; z-index: 999; display: none;">Start Mining</button>
+
+
+  <!-- واجهة معلومات التعدين -->
+  <div style="text-align: center; width: 90%; font-size: 1.5vh;">
+    <p style="background-color: #333; color: white; padding: 1vh 0; border-radius: 10px; font-size: 2.5vh;">Time Left: <span id="countdownContainer"></span></p>
+    <p style="background-color: #333; color: white; padding: 1vh 0; border-radius: 10px; font-size: 2.5vh;">Balance: <span id="balance">0.00000000</span></p>
+    <p id="balanceInUSD" style="background-color: #333; color: white; padding: 1vh 0; border-radius: 10px; font-size: 2.5vh;">Balance in USD: $0.00</p>
+  </div>
+
+  <!-- زر بدء التعدين -->
+
+
+    <button id="addBtcButton" style="background-color: #28a745; color: white; font-size: 2.5vh; padding: 1vh 3vh; border-radius: 5px; cursor: pointer;">
+        Start Mining
+    </button>
+    
+    <br>
+
+        
+<div id="totalMiningCount" style="font-size: 2vw; color: white; margin: 0; padding-right: 4vw; background-color: transparent;">
+    ~ 𝚃𝚘𝚝𝚊𝚕 𝚇𝚜𝚞𝚗 𝙼𝚒𝚗𝚎𝚍 ~
+    :<span id="minedCoinsTotal">0</span>
+    <span class="gear-icon" style="display: inline-block; margin-left: 0.5vw;">⚙️</span>
+
+
+<div style="display: flex; justify-content: flex-end; align-items: center; padding: 1vw; margin-right: 7.9vh; z-index: 1000;">
+
+  
+</div>
+
+<!-- إدخال عنوان المحفظة واختيار الشبكة -->
+<div style="display: flex; align-items: center; gap: 1vw; width: 90%; justify-content: flex-start; margin-top: 2vh;">
+    <input type="text" id="enterWalletAddress" placeholder="Enter Wallet Address" style="width: 65%; font-size: 2.5vh; padding: 1vh; text-align: center; border: none; border-radius: 5px;" readonly>
+    <select id="networkSelect" style="width: 30%; font-size: 2vh; padding: 0.6vh; text-align: center; border: none; border-radius: 5px; height: 100%; margin-top: -10px;">
+   <option value="NEAR">Network</option>
+        <option value="NEAR">NEAR</option>
+        <option value="BSC20">BSC20</option>
+        <option value="ERC20">ERC20</option>
+        <option value="TRC20">TRC20</option>
+        <option value="BTC">BTC</option>
+    </select>
+</div>
+
+
+<!-- إدخال المبلغ وزر Max -->
+<div style="display: flex; gap: 1vw; width: 90%; justify-content: center;">
+    <input type="text" id="amount" placeholder="Enter Amount" style="width: 65%; font-size: 2.5vh; padding: 1vh; text-align: center; border: none; border-radius: 5px;" readonly>
+    <button onclick="fillMax()" style="width: 30%; font-size: 2.5vh; background-color: #f0ad4e; color: white; border-radius: 5px; cursor: pointer;">Max</button>
+</div>
+
+  <!-- زر السحب -->
+  <button id="withdrawButton" disabled onclick="withdrawAmount()" style="background-color: #6c757d; color: white; font-size: 2.5vh; padding: 1vh 3vh; border-radius: 5px; cursor: not-allowed;">Withdraw ⬇️</button>
+
+  <!-- عنوان العقد وصورة BscScan -->
+<div style="display: flex; justify-content: flex-end; margin-top: 2vh; position: relative;">
+    <div onclick="copyContract()" style="cursor: pointer; font-size: 2.5vw; background-color: transparent; color: white; padding: 10px; border: 1px solid black; border-radius: 5px; display: flex; align-items: center; touch-action: none;">
+        <span style="margin-right: 10px;">Contract address BSC20:</span>
+        <textarea id="contractAddress" readonly style="flex: 1; border: none; background-color: transparent; font-size: 1vw; color: white; resize: none;">0xEf06e2D9C18680316E63944be3d881093Aa8d542</textarea>
+        <a href="https://bscscan.com/address/0xEf06e2D9C18680316E63944be3d881093Aa8d542" target="_blank" style="margin-left: 10px;">
+            <img src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/1_RbK1YYzgQg6uni0TXU4Ghw.png?alt=media&token=3a23e26f-98dc-45ea-afd8-caae91cf59e5" alt="BscScan" style="width: 4.5vw; height: auto; vertical-align: middle;">
+        </a>
+    </div>
+</div>
+
+
+<div id="navButtons" style="position: fixed; bottom: -0%; left: 0vw; background-color: transparent; padding: 1px; display: flex; justify-content: space-between; width: 100%; border-radius: 2vw; z-index: 999">
+
+
+  <button onclick="showInviteFriends()" style="border-top-right-radius: 4vw; border-bottom-right-radius: 4vw; font-size: vw; background-color: #dc3545; margin-left: 3%;">👥 Referral</button>
+
+  <button onclick="showKyc()" style=" font-size: vw; background-color: blueviolet;">🔐 KYC</button>
+  <button onclick="showEarnings()" style="font-size: vw; background-color: red;"> 💳Wallet</button>
+  <button onclick="showRoadmap()" style=" font-size: vw; margin-right: 3.5%;  background-color: midnightblue;">🗺️ Roadmap</button>
+
+</div>
+
+
+
+
+
+    <!-- Button to show/hide sidebar -->
+<div class="menu-button" onclick="toggleSidebar()" style="margin-left: 3vw; margin-top: 2vw; background-color: #333; border-radius: 2vw; border: 0.2vw solid #333; position: ; top: 0; left: 0; font-size: 1.5vh;">
+    &#9776; <!-- أيقونة القائمة -->
+</div>
+
+    
+
+
+
+<div class="sidebar" id="sidebar">
+  <button id="sidebar-button">☰</button>
+
+  <!-- إطار لعرض الصورة -->
+  <div class="image-frame" id="imageFrame">
+    <img src="" alt="User Image" id="userImage">
+    <input type="file" accept="image/*" id="imageInput" class="image-input">
+  </div>
+
+  <div class="sidebar-circle">
+    <p style="background-color: white; color: black; font-size: 18px; padding: 10px; border-radius: 10px;">UID: <span id="userUID"></span></p>
+  </div>
+
+  <!-- مربع البريد الإلكتروني -->
+  <!-- مربع البريد الإلكتروني -->
+  <div class="email-box" style="background-color: darkblue; color: lightgray; font-size: 18px; padding: 10px; margin-top: 10px; width: 85%; border-radius: 5px; margin-left: 7px;">
+    <span id="userEmailDisplay" style="font-weight: bold;">example@example.com</span> <!-- نص مؤقت أثناء التحميل -->
+
+    <div style="font-size: 16px; color: red; margin-top: 5px;">
+      <span id="emailVerificationStatus" style="display: inline-block; font-weight: bold;">Not Verified</span>
+      <button id="resendVerificationButton" style="display: inline-block; background-color: white; color: darkblue; border: none; padding: 5px; border-radius: 3px; cursor: pointer; margin-left: 10px;">Resend</button> <!-- زر إعادة الإرسال بجانب حالة التحقق -->
+      <span id="countdownTimerResend" style="margin-left: 10px; display: none; color: white; font-weight: bold;"></span> <!-- عداد تنازلي -->
+    </div>
+
+    <div id="resendWarning" style="color: red; display: none; margin-top: 5px;"></div> <!-- تحذير للمستخدم -->
+  </div>
+
+
+
+
+
+
+  <a href="#" onclick="showMiningInterface()">Home</a>
+  <a href="#" onclick="showEarnings()">Wallet</a>
+  <a href="#" onclick="showInviteFriends()">Referral</a>
+  <a href="#" onclick="showRoadmap()">Roadmap</a>
+  <a href="#" onclick="showKyc()">kyc</a>
+  <a id="telegramLink" href="https://www.xsun.pro/">Site</a>
+  <br>
+
+  <button id="signOutButton" style="margin-left: 15px;">Sign Out</button>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+     </div>
+    </div>
+  </div>
+
+
+
+
+
+    
+    
+
+
+
+  
+  
+
+
+
+
+    <!-- Roadmap container -->
+  <div id="roadMapContainer">
+
+
+    <!-- Button to show/hide sidebar -->
+   
+    
+
+
+
+
+
+
+ <hr style="border: none; border-bottom: 1vw solid ; margin: 0vw 0; width: 100%; position: relative; left: 0vw; color: black;">
+ 
+ 
+ 
+ 
+
+    
+    
+    
+<div style="display: flex; justify-content: center; align-items: center; background-color: black; height: 10%;">
+  <h2 style="background-color: wheat ;color: black; font-size: 6vw; border-radius: 2vw;">
+️🆁🅾🅰🅳🅼🅰🅿</h2>
+</div>
+
+ <hr style="border: none; border-bottom: 1vw solid ; margin: 0vw 0; width: 92%; position: relative; left: 4vw; color: black; ">
+ 
+
+
+
+
+
+
+
+<div style="text-align: ;">
+
+
+
+
+    <div style="background-color: black; padding: 10px;">
+        <p style="font-size: 4.5vw; color: red ; background-color: white; width: 22%;">𝐉𝐮𝐥𝐲 𝟐𝟎𝟐𝟓</p>
+        <p style="color: #ffffff; font-size: 4vw;">𝐆𝐥𝐨𝐛𝐚𝐥 𝐀𝐜𝐭𝐢v𝐞  𝐔𝐬𝐞𝐫𝐬<br>𝐑𝐞𝐚𝐜𝐡:𝟎.𝟐𝐌
+
+
+
+
+ 🔥🔥</p>
+
+  </h2>
+      <hr style="border: none; border-bottom: 1vw solid black; margin: 1vw 0; width: 100%;">
+
+    </div>
+
+    <div style="background-color: black; padding: 10px;">
+        <p style="font-size: 4.5vw; color: red; background-color: white; width: 30%;">𝐎𝐜𝐭𝐨𝐛𝐞𝐫 𝟐𝟎𝟐𝟓</p>
+        <p style="color: #ffffff; font-size: 4vw;">𝐋𝐚𝐮𝐧𝐜𝐡𝐢𝐧𝐠 𝐚𝐧 𝐈𝐧𝐭𝐞𝐥𝐥𝐢𝐠𝐞𝐧𝐭 𝐁𝐨𝐭 𝐭𝐨 𝐭𝐫𝐚𝐧𝐬𝐟𝐨𝐫𝐦 𝐫𝐞𝐚𝐥 𝐢𝐦𝐚𝐠𝐞𝐬 𝐢𝐧𝐭𝐨 𝐜𝐚𝐫𝐭𝐨𝐨𝐧𝐬 𝐚𝐧𝐝 𝐝𝐢𝐫𝐞𝐜𝐭𝐥𝐲 𝐬𝐞𝐧𝐝 𝐭𝐡𝐞𝐦 𝐭𝐨 𝐎𝐩𝐞𝐧𝐒𝐞𝐚⚡️</p>
+        
+          </h2>
+      <hr style="border: none; border-bottom: 1vw solid black; margin: 1vw 0; width: 100%;">
+
+    </div>
+
+    <div style="background-color: black; padding: 10px;">
+        <p style="font-size: 4.5vw; color: red; background-color: white; width: 35%">𝐃𝐞𝐜𝐞𝐦𝐛𝐞r 𝟐𝟎𝟐𝟓</p>
+        <p style="color: #ffffff; font-size: 4vw;">𝐋𝐚𝐮𝐧𝐜𝐡𝐢𝐧𝐠 𝐚𝐧 𝐈𝐧𝐭𝐞𝐥𝐥𝐢𝐠𝐞𝐧𝐭 𝐓𝐞𝐥𝐞𝐠𝐫𝐚𝐦 𝐁𝐨𝐭, 𝐒𝐔𝐍 𝐆𝐏𝐓, 𝐟𝐢𝐥𝐥𝐞𝐝 𝐰𝐢𝐭𝐡 𝐢𝐧𝐟𝐨𝐫𝐦𝐚𝐭𝐢𝐨𝐧 𝐚𝐧𝐝 𝐢𝐦𝐚𝐠𝐢𝐧𝐚𝐭𝐢𝐨𝐧🤖🤖 
+        
+          </h2>
+      <hr style="border: none; border-bottom: 1vw solid black; margin: 1vw 0; width: 100%;">
+
+    </div>
+
+    <div style="background-color: black; padding: 10px;">
+        <p style="font-size: 4.5vw; color: red; background-color: white; width: 33%">𝐅𝐞𝐛𝐫𝐮𝐚𝐫𝐲 𝟐𝟎𝟐𝟔</p>
+        <p style="color: #ffffff; font-size: 4vw;">
+          𝐀𝐝𝐝 (𝟏𝟎,𝟎𝟎𝟎) 𝐍𝐞𝐚𝐫 𝐋𝐢𝐪𝐮𝐢𝐝𝐢𝐭𝐲 𝐃𝐄𝐗 𝐓𝐨𝐨𝐥𝐬 𝐚𝐧𝐝<br>𝐎𝐩𝐞𝐧 𝐔𝐬𝐞𝐫𝐬 𝐖𝐢𝐭𝐡𝐝𝐫𝐚𝐰🎉</p>
+          
+            </h2>
+      <hr style="border: none; border-bottom: 1vw solid black; margin: 1vw 0; width: 100%;">
+
+ 
+    </div>
+
+
+
+<div style="background-color: black; padding: 10px;">
+  <p style="font-size: 4.5vw; color: red; background-color: white; width: 27%">𝐌𝐚𝐫𝐜𝐡 𝟐𝟎𝟐𝟔</p>
+  <p style="color: white; font-size: 4vw;">𝐌𝐲 𝐓𝐨𝐤𝐞𝐧 𝐋𝐢𝐬𝐭𝐢𝐧𝐠 𝐨𝐧 𝟑 𝐌𝐚𝐣𝐨𝐫 𝐄𝐱𝐜𝐡𝐚𝐧𝐠𝐞𝐬<br>🔁📉📈</p>
+    </h2>
+      <hr style="border: none; border-bottom: 1vw solid black; margin: 1vw 0; width: 100%;">
+
+</div>
+
+    <div style="background-color: black; padding: 10px;">
+        <p style="font-size: 4.5vw; color: red; background-color: white; width: 24%;">𝐀𝐩𝐫𝐢𝐥 𝟐𝟎𝟐𝟔</p>
+        <p style="color: white; background-color: black font-size: 4vw;">𝐔𝐩𝐠𝐫𝐚𝐝𝐞🔄🏁</p>
+          </h2>
+      <hr style="border: none; border-bottom: 2vw solid black; margin: 1vw 0; width: 100%;">
+
+          </h2>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div id="navButtons" style="position: fixed; bottom: 0vw; left: vw; background-color: black; padding: 1px; display: flex; justify-content: space-between; width: 100%; border-radius: 2vw;">
+<button onclick="showInviteFriends()" style="border-top-right-radius: 4vw; border-bottom-right-radius: 4vw; font-size: vw; background-color: #dc3545; margin-left: 2%;">👥 Referral</button>
+
+<button onclick="showKyc()" style= " font-size: vw; background-color: blueviolet;">🔐 KYC</button>
+<button onclick="showEarnings()" style= "font-size: vw; background-color: red;"> 💳Wallet</button>
+
+    <button onclick="showMiningInterface()" style= "border-radius: vw; font-size: vw; background-color: green; margin-right: 3.7%;">🏠 Home</button>
+
+     </div>
+
+</div>
+
+    <!-- زر Home للانتقال إلى الواجهة الرئيسية -->
+  
+  
+ <div id="earningsContainer">
+
+
+
+  <div style="position: absolute; top: 0; left: 0; right: 0; height: 15%; background-color: #121212; z-index: -1;"></div> <!-- خلفية بيضاء -->
+  
+  
+    <div id="message" class="message" style="font-weight: bold; color: white; font-size: 4vh; z-index: 10002; position: absolute; left: 50%; transform: translate(-50%, -50%); display: none; border-radius: 5px;">
+        Not open yet
+    </div>
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<div style="display: flex; align-items: center; justify-content: space-between; margin: 4.7vw 4vw;">
+    <!-- أيقونات "إرسال" و"استقبال" وأيقونة "سجل" في أقصى اليسار -->
+    <div style="display: flex; gap: 1vw;">
+        <!-- أيقونة إرسال -->
+        <div style="width: 8vw; height: 8vw; border-radius: 50%; background-color: white; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+            <i class="fas fa-arrow-down" style="font-size: 4vw; color: blue;"></i> <!-- أيقونة استقبال -->
+        </div>
+
+        <!-- أيقونة استقبال -->
+        <div style="width: 8vw; height: 8vw; border-radius: 50%; background-color: white; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+            <i class="fas fa-arrow-up" style="font-size: 4vw; color: green;"></i> <!-- أيقونة إرسال -->
+        </div>
+
+        <!-- أيقونة السجل -->
+        <div style="width: 8vw; height: 8vw; border-radius: 50%; background-color: white; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+            <i class="fas fa-history" style="font-size: 4vw; color: gray;"></i> <!-- أيقونة السجل -->
+        </div>
+    </div>
+
+    <!-- الرصيد مع النص "Total Balance" وأيقونة العين في أقصى اليمين -->
+    <div style="display: flex; align-items: center; padding: 1vw; margin-right: 0vw; z-index: 1000;">
+        <span id="eye-toggle" onclick="toggleBalanceVisibility()" style="font-size: 5vw; color: white; cursor: pointer;">
+            <i class="fas fa-eye" id="eye-icon" style="font-size: 5vw;"></i>
+        </span>
+
+        <!-- مسافة بين الأيقونة والنص -->
+        <div style="width: 1vw;"></div> <!-- يمكنك تغيير العرض حسب الحاجة -->
+
+        <!-- الرصيد مع النص "Total Balance" أسفله -->
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <span id="total-balance" style="font-size: 8vw; color: wheat; font-weight: bolde;">
+                $0.00
+            </span>
+            <!-- النص "Total Balance" أسفل الرصيد -->
+        </div>
+    </div>
+</div>
+
+
+    <!-- قيمة الرصيد مع زر العين -->
+  
+
+
+<div style="display: flex; justify-content: center; margin-top: 1vw; transform: translateY(3vh); overflow-y: auto;  color: black;">
+  <table>
+    <thead>
+      <tr>
+        
+      <th style="padding-left: 1.5vw; background-color: ; font-size: 4.5vw;">𝐂𝐮𝐫𝐫𝐞𝐧𝐜𝐲</th>
+ <th style="; background-color: ; font-size: 4.5vw; padding-right: 15.5vw">
+          
+          𝐁𝐚𝐥𝐚𝐧𝐜𝐞</th>
+       
+      
+<th style="padding-left: vw; background-color: ; font-size: 4.5vw;">         𝐕𝐚𝐥𝐮𝐞</th>
+       
+        <th style="padding-left: 1vw; background-color: ; font-size: 4.5vw;">𝐀𝐜𝐭𝐢𝐨𝐧</th>
+        <br><br>
+
+ 
+      </tr>
+      
+      </thead>
+      <tbody>
+        <tr>
+
+
+
+    <td>
+        <div style="display: flex; align-items: center;">
+            <img class="currency-icon" src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/dydx-3d-icon-download-in-png-blend-fbx-gltf-file-formats--bitcoin-logo-currency-finance-glass-crypto-coin-vol-2-pack-science-technology-icons-6876181.png?alt=media&token=becf4105-85b1-4ef7-bb0f-634c3651e9a5" alt="" style="width: 40px; height: 40px; margin-right: 1px;"> 𝐗𝐒𝐔𝐍
+        </div>
+    </td>
+    <td class="balance" id="totalBalance" style="font-size: 4.5vw; color: white;" data-value="00.00">00.00</td> <!-- تأكد من إضافة data-value هنا -->
+    <td><span id="totalBalanceInUSD" style="font-size: 4.5vw; color: white;" data-value="$00.00">$00.00</span></td> <!-- تأكد من إضافة data-value هنا -->
+    <td><button onclick="openPopup('Xsun')" style="background-color: blue; color: white; padding: 5px 10px; border: none; border-radius: 5px;">Send</button></td>
+</tr>
+
+      <tr>
+        
+       <td><div style="display: flex; align-items: center;"><img class="currency-icon" src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/swiss-flag-round-badge_1308-72045__1_-removebg-preview.png?alt=media&token=b4105cd6-a982-4fd3-9e5c-f7032b9200b2" alt="" style="width: 41px; height: 41px; margin-right: 5px;"> 𝐒𝐖𝐙</div></td>
+        <td class="balance" id="Swiza" style="font-size: 4.5vw; color: white; font-weight: bold;">5000000</td>
+
+<td style="font-size: 4.5vw; color: white;"id="SwizaValue">$00.50</td>
+
+           <td><button onclick="openPopup('Swiza')" style="background-color: blue; color: white; padding: 5px 10px; border: none; border-radius: 5px;">Send</button></td>  
+            
+      </tr>
+      <tr>   
+        
+     <td>
+<div style="display: flex; align-items: center;">
+                            <img class="currency-icon" src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/bitcoin-225079_640-removebg-preview.png?alt=media&token=f9de5ffb-aa7f-4a8d-8f4e-a448b79902db.jpg" style="width: 37px; height: 37px; margin-right: 5px;"> 𝐁𝐓𝐂
+                        </div>
+                    </td>
+             <td class="balance" id="btcBalanceAmount" style="font-size: 4.5vw; font-weight: bold;">00.00</td>
+                    <td style="font-size: 4.5vw; color: white;" id="btcValue">$00.00</td>
+                    <td><button onclick="openPopup('Bitcoin')" style="background-color: blue; color: white; padding: 5px 10px; border: none; border-radius: 5px;">Send</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center;">
+                            <img class="currency-icon" src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/near-9828546-7947908.png?alt=media&token=0c6a6e03-4528-4f67-97a6-2f74e2b17543" style="width: 40px; height: 40px; margin-right: 5px;"> 𝐍𝐄𝐀𝐑
+                        </div>
+                    </td>
+                    <td class="balance" id="Near" style="font-size: 4.5vw; font-weight: bold;">00.15</td>
+                    <td style="font-size: 4.5vw; color: white;" id="nearValue">$00.00</td>
+                    <td><button onclick="openPopup('Near')" style="background-color: blue; color: white; padding: 5px 10px; border: none; border-radius: 5px;">Send</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center;">
+                            <img class="currency-icon" src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/%D8%AA%D8%B5%D9%85%D9%8A%D9%85%20%D8%A8%D8%AF%D9%88%D9%86%20%D8%B9%D9%86%D9%88%D8%A7%D9%86%20(62).png?alt=media&token=74e2d28f-c0fc-47c2-95da-8032ba71c346" style="width: 40px; height: 40px; margin-right: 5px;"> 𝐒𝐖𝐄𝐀𝐓
+                        </div>
+                    </td>
+                    <td class="balance" id="Usdt" style="font-size: 4.5vw; font-weight: bold;">50.00</td>
+                    <td style="font-size: 4.5vw; color: wheat;" id="sweatValue">$00.00</td>
+    <td><button onclick="openPopup('Usdt')" style="background-color: blue; color: white; padding: 5px 10px; border: none; border-radius: 5px;">Send</button></td>
+  
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="popup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #fff; padding: 20px; border: 1px solid black; border-radius: 10px; z-index: 9999; width: 320px;">
+  <h2 style="margin-bottom: 10px; color: red;">Enter Address and Quantity</h2>
+  <label for="address" style="color: red; margin-bottom: 5px;">Address:</label><br>
+  <input type="text" id="address" name="address" style="margin-bottom: 10px; width: 280px; background-color: black; color: white;"><br>
+  <label for="quantity" style="margin-bottom: 5px; color: red;">Quantity:</label><br>
+  <input type="text" id="quantity" name="quantity" style="margin-bottom: 10px; width: 280px; background-color: black; color: white;"><br>
+
+  <!-- Select Network -->
+  <label for="network" style="margin-bottom: 5px; color: black; font-weight: bolder;">please select network chain! </label>
+  <select id="network" style="margin-bottom: 10px; width: 15vh;  border-radius: 3px;">
+    <option value="Bsc20">Bsc20</option>
+    <option value="Erc20">Erc20</option>
+    <option value="Near">Near</option>
+  </select><br>
+
+  <!-- Swiza Button -->
+  <div id="swizaButton" style="display: none;">
+    <button onclick="sendSwiza()" style="background-color: blue; color: white; padding: 5px 10px; border: none; border-radius: 5px;">Send</button>
+  </div>
+
+  <!-- Xsun Button -->
+  <div id="xsunButton" style="display: none;">
+    <button onclick="sendXsun()" style="background-color: blue; color: white; padding: 5px 10px; border: none; border-radius: 5px; margin-top: 10px;">Send</button>
+  </div>
+
+  <!-- Bitcoin Button -->
+  <div id="bitcoinButton" style="display: none;">
+    <button onclick="sendBitcoin()" style="background-color: blue; color: white; padding: 5px 10px; border: none; border-radius: 5px; margin-top: 10px;">Send</button>
+  </div>
+
+  <!-- Near Button -->
+  <div id="nearButton" style="display: none;">
+    <button onclick="sendNear()" style="background-color: blue; color: white; padding: 5px 10px; border: none; border-radius: 5px; margin-top: 10px;">Send</button>
+  </div>
+  
+  
+
+  <!-- Usdt Button -->
+  <div id="usdtButton" style="display: none;">
+    <button onclick="sendUsdt()" style="background-color: blue; color: white; padding: 5px 10px; border: none; border-radius: 5px; margin-top: 10px;">Send</button>
+  
+</div>
+  <!-- Add buttons for other currencies here -->
+
+  <button onclick="cancel()" style="background-color: red; color: white; padding: 5px 10px; border: none; border-radius: 5px; margin-top: 20px;">Cancel</button>
+  <p id="reminder" style="color: red; display: none; margin-top: 10px;">Please enter address and currency name!</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="navButtons" style="position: fixed; bottom: -0%; left: 0vw; background-color: transparent; padding: 1px; display: flex; justify-content: space-between; width: 100%; border-radius: 2vw; z-index: 999">
+<button onclick="showInviteFriends()" style="border-top-right-radius: 4vw; border-bottom-right-radius: 4vw; font-size: vw; background-color: #dc3545; margin-left: 2%;">👥 Referral</button>
+
+  
+<button onclick="showKyc()" style= " font-size: vw; background-color: blueviolet;">🔐 KYC</button>
+
+    <button onclick="showRoadmap()" style= " font-size: vw; background-color: midnightblue;">🗺️ Roadmap</button>
+    <button onclick="showMiningInterface()" style= "border-radius: vw; font-size: vw; background-color: green; margin-right: 3.5%;">🏠 Home</button>
+
+     </div>
+
+  
+  
+        
+        
+        
+        
+        
+        <!-- تكرار هذا لإنشاء مربعات إعلانية أخرى -->
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="kycContainer" style="display: none; position: absolute; top: 14%; max-width: 80vw;">
+  
+  
+<!-- البريد الإلكتروني -->
+<div style="display: flex; justify-content: flex-end; align-items: center; position: fixed; top: 10px; right: 0; padding: 10px; z-index: 1000;">
+  
+    <!-- الأيقونات الاجتماعية -->
+    <a href="https://www.instagram.com/xsun_team_official?igsh=OGQ5ZDc2ODk2ZA==" style="margin-right: 10px;">
+      <img src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/2048px-Instagram_logo_2016.svg.png?alt=media&token=aecc3bec-9f5b-4235-aae0-d1ca6ee12de8" alt="instagram" width="30" height="30">
+    </a>
+    <a href="https://x.com/team_xsun?s=09" style="margin-right: 10px;">
+      <img src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/new-2023-twitter-logo-x-icon-design_1017-45418.jpg?alt=media&token=08143d22-606f-464b-8a0e-0974c41fb45e" alt="X" width="30" height="30">
+    </a>
+    <div onclick="window.open('whatsapp://message/OGBVOC6HW72YF1', '_blank');" style="cursor: pointer; margin-right: 10px;">
+      <img src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/512px-WhatsApp.svg.png?alt=media&token=05d41c4f-dcfb-4fcf-9ae1-fdf8d4f976ec" alt="WhatsApp" width="30" height="30">
+    </div>
+
+    <!-- البريد الإلكتروني -->
+    <a href="mailto:Coin@xsun.pro" style="display: flex; align-items: center; text-decoration: none;">
+      <img src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/png-transparent-mail-google-gmail-google-s-logo-icon-removebg-preview.png?alt=media&token=b97de37b-adb5-42e8-bf88-c46bbb28a139" alt="Gmail Logo" width="35" height="35" style="margin-right: 10px;">
+      <span style="color: black; font-size: 14px; background-color: black; font-weight: bold; border-radius: 3px; padding: 3px 5px;">Coin@xsun.pro</span>
+    </a>
+  
+</div>
+
+
+
+
+
+
+    
+  
+  
+  <p style="background-color: ; color: antiquewhite; padding: 0px; margin-left: 3.8%; width: 70vw; position: relative; top: -3vh; font-size: 2vw; height: 16vh; text-align: ; line-height: 1.5; height: 12vw;">
+
+
+
+    <span style="display: inline-block; transform: translateY(3%); font-weight: bold; letter-spacing: px; background-color: black; border-radius: 2px;color: white;">𝐈𝐝𝐞𝐧𝐭𝐢𝐭𝐲 𝐯𝐞𝐫𝐢𝐟𝐢𝐜𝐚𝐭𝐢𝐨𝐧 𝐢𝐬 𝐜𝐫𝐮𝐜𝐢𝐚𝐥 𝐟𝐨𝐫 𝐞𝐧𝐡𝐚𝐧𝐜𝐢𝐧𝐠 𝐬𝐞𝐜𝐮𝐫𝐢𝐭𝐲 𝐚𝐧𝐝 𝐦𝐢𝐭𝐢𝐠𝐚𝐭𝐢𝐧𝐠 𝐥𝐞𝐠𝐚𝐥 𝐢𝐬𝐬𝐮𝐞𝐬. 𝐖𝐡𝐞𝐧 𝐢𝐭 𝐜𝐨𝐦𝐞𝐬 𝐭𝐨 𝐝𝐚𝐭𝐚, 𝐚𝐥𝐥 𝐢𝐧𝐟𝐨𝐫𝐦𝐚𝐭𝐢𝐨𝐧 𝐢𝐬 𝐬𝐞𝐜𝐮𝐫𝐞𝐥𝐲 𝐝𝐞𝐥𝐞𝐭𝐞𝐝 𝐚𝐟𝐭𝐞𝐫 𝐯𝐞𝐫𝐢𝐟𝐢𝐜𝐚𝐭𝐢𝐨𝐧 𝐚𝐧𝐝 𝐢𝐬 𝐧𝐨𝐭 𝐬𝐡𝐚𝐫𝐞𝐝 𝐰𝐢𝐭𝐡 𝐚𝐧𝐲 𝐭𝐡𝐢𝐫𝐝 𝐩𝐚𝐫𝐭𝐲.
+</span>
+  </p>
+  
+  
+  
+  
+  
+  <h2 style="color: white; margin: 0.5%; margin-left: 3vw; z-index: 10002">KYC Verification</h2>
+  <p id="verificationStatus" style="color: red; margin: 0;"><img src="https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/%D8%AA%D8%B5%D9%85%D9%8A%D9%85%20%D8%A8%D8%AF%D9%88%D9%86%20%D8%B9%D9%86%D9%88%D8%A7%D9%86%20(51).png?alt=media&token=ab8e8367-141c-4599-835c-cd43f478561a" alt="Verification Badge" style="width: 10vw; height: 10vw; vertical-align: middle;"> <span style="position: relative; top: 4%;">You are not verified yet.</span></p>
+
+  <form id="kycForm" enctype="multipart/form-data" style="font-size: 2.5vw; margin: 0; margin-left: 4vw;">
+    <!-- باقي النصوص والنموذج هنا -->
+
+      <!-- باقي النصوص والنموذج هنا -->
+    <div class="input-container" style="margin: 0; display: flex; flex-direction: column; width: fit-content;">
+      <label for="fullName" style="color: white; margin: 0;">Full Name:</label>
+      <input type="text" id="fullName" name="fullName" required style="margin: 0;">
+    </div>
+    <div class="input-container" style="margin: 0; display: flex; flex-direction: column; width: fit-content;">
+      <label for="nationalID" style="color: white; margin: 0;">National ID:</label>
+      <input type="text" id="nationalID" name="nationalID" required style="margin: 0;">
+    </div>
+    
+
+
+ 
+
+
+
+ 
+
+
+    
+    
+    
+    <div class="input-container" style="margin: 0; display: flex; flex-direction: column; width: fit-content;">
+      <label for="idFront" style="color: white; margin: 0;">Front of ID Card:</label>
+      <input type="file" accept="image/*" id="idFront" name="idFront" required style="margin: 0;">
+    </div>
+    <div class="input-container" style="margin: 0; display: flex; flex-direction: column; width: fit-content;">
+      <label for="idBack" style="color: white; margin: 0;">Back of ID Card:</label>
+      <input type="file" accept="image/*" id="idBack" name="idBack" required style="margin: 0;">
+    </div>
+    <label for="selfieButton" style="color: white; margin: 0; display: block;">Take a Selfie:</label>
+    <input type="file" accept="image/*" id="selfieButton" name="selfieButton" capture="user" onclick="openCamera()" required style="margin: 0;">
+ <button id="submitBtn" style="margin: 13px; transform: translateY(-0px) translateX(60px); background-color: dodgerblue; color: white; border-radius: 3px;">Submit KYC</button>
+
+  
+          <div style="height: 20vh;"></div>
+  
+
+
+
+    
+     
+<div id="confirmationMessage" class="confirmationMessage" style="display: none;">  
+    𝐈𝐃𝐄𝐍𝐓𝐈𝐓𝐘 𝐕𝐄𝐑𝐈𝐅𝐈𝐂𝐀𝐓𝐈𝐎𝐍<br>𝐓𝐄𝐌𝐏𝐎𝐑𝐀𝐑𝐈𝐋𝐘 𝐔𝐍𝐀𝐕𝐀𝐈𝐋𝐀𝐁𝐋𝐄
+</div>
+
+
+
+
+<div id="navButtons" style="position: fixed; bottom: 0vw; left: 2vw; background-color: black; padding: 1px; display: flex; justify-content: space-between; width: 100%; border-radius: 2vw;">
+<button onclick="showInviteFriends()" style="border-top-right-radius: 4vw; border-bottom-right-radius: 4vw; font-size: vw; background-color: #dc3545; margin-left: 0vw;">👥 Referral</button>
+
+
+<button onclick="showEarnings()" style= "font-size: vw; background-color: red;"> 💳Wallet</button>
+    <button onclick="showRoadmap()" style= " font-size: vw; background-color: midnightblue;">🗺️ Roadmap</button>
+    <button onclick="showMiningInterface()" style= "border-radius: vw; font-size: vw; background-color: green; margin-right: 5%;">🏠 Home</button>
+
+     </div>
+
+
+</div>
+
+      
+             
+        
+        
+        
+        
+        
+        
+    </form>
+</div>
+
+<div id="inviteFriendsContainer" style="display: none; height: 130vh;">
+
+
+
+   
+<span style="color: white; font-weight: bolder;">Invite friends and earn 0.002 XSun, equivalent to approximately $1 to $2. Copy the referral code and start collecting the rare currency.</span>
+
+
+<div style="display: flex; align-items: center; gap: 1vw; margin-top: 9%;">
+
+    <p style="font-size: 3.2vw; color: yellowgreen; max-width: 50vw; margin: 0;">
+        YOUR INVITATION CODE :
+    </p>
+
+    <span id="invitationCodeDisplay" style="font-size: 2.8vw; color: red; background-color: white; padding: 0.5vw 1vw; border-radius: 2vw; font-size: 4vh">
+    </span>
+
+  <button onclick="copyInvitationCode()" style="margin-top: 10px; padding: 5px 10px; font-size: 2vw; cursor: pointer; border-radius: 3px;">Copy</button>
+
+  <span id="copyMessage" style="font-size: 2.5vw; color: white; display: none; margin-top: 5px;">Copied</span>
+</div>
+
+
+
+
+
+
+
+  <div style="display: flex; align-items: center; justify-content: flex-end; border-radius:0; position: relative; top: 5vh;">
+  <div style="width: 10.5vw; height: 10.5vw; display: flex; align-items: center; justify-content: center; border-radius: 50%; background-image: url('https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/%D8%AA%D8%B5%D9%85%D9%8A%D9%85%20%D8%A8%D8%AF%D9%88%D9%86%20%D8%B9%D9%86%D9%88%D8%A7%D9%86%20(52).png?alt=media&token=a585acb8-b02e-40d2-8bf4-965275599e98'); background-size: cover; background-position: center; margin-right: 1vw;"></div>
+  <span id="referralBalanceUSD" style="margin-right: 5vw; font-size: 10vw; color: white;">0.00000000000</span>
+</div>
+
+
+
+
+
+
+  <div style="display: flex; align-items: center; justify-content: flex-end; border-radius:0; position: relative; top: 10vh;">
+  <div style="width: 10.5vw; height: 10.5vw; display: flex; align-items: center; justify-content: center; border-radius: 50%; background-image: url('https://firebasestorage.googleapis.com/v0/b/xsun-b171d.appspot.com/o/dydx-3d-icon-download-in-png-blend-fbx-gltf-file-formats--bitcoin-logo-currency-finance-glass-crypto-coin-vol-2-pack-science-technology-icons-6876181.png?alt=media&token=becf4105-85b1-4ef7-bb0f-634c3651e9a5'); background-size: cover; background-position: center; margin-right: 1vw;"></div>
+  <span id="referralBalance" style="margin-right: 5vw; font-size: 10vw; color: white;">0.00000000000</span>
+      
+</div>
+
+
+
+
+
+
+
+
+
+
+<ul id="referralList" style="background-color: white; margin-bottom: 50px; overflow-y: auto;">
+    <!-- سيتم إضافة الأكواد والمكافآت هنا -->
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- نموذج لإدخال رمز الدعوة -->
+
+
+<p style="font-size: 4vw; margin-top: 92%; margin-left: 1%; position: absolute; top: 0; left: ; color: greenyellow;">YOUR TEAM <span id="referralHistory">0</span></p>
+
+
+
+
+
+
+
+<div id="navButtons" style="position: fixed; bottom: 0vw; left: 0vw; background-color: transparent; padding: 1px; display: flex; justify-content: space-between; width: 100%; border-radius: 2vw;">
+
+  
+ <button onclick="showRoadmap()" style= " font-size: vw; background: midnightblue; border-top-right-radius: 4vw; border-bottom-right-radius: 4vw; margin-left: 2%;">🗺️ Roadmap</button>
+  
+<button onclick="showKyc()" style= " font-size: vw;  background-color: blueviolet; ">🔐 KYC</button>
+<button onclick="showEarnings()" style= "font-size: vw; background: red"> 💳Wallet</button>
+
+    <button onclick="showMiningInterface()" style= "border-radius: vw; font-size: vw; background-color: green; margin-right: 4.5%; ">🏠 Home</button>
+
+     </div>
+
+</div>
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+     </div>
+    
+
+   
+   
+   <div class="black-screen" id="blackScreen" style="z-index: 10003;">
+   <p>Please rotate your device to portrait mode.</p>
+   </div>
+   
+   <div id="overlay">
+     <p>This application does not support tablets or larger devices. Please use a phone or a computer.</p>
+   </div>
+    
+    
+      <div id="loadingIndicator" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+  <div class="spinner" style="display: inline-block; vertical-align: middle;"></div>
+</div>
+
+    
+      </head>
+<body>
+    
+
+
+
+
+
+ 
+
+ 
+ 
+  
+
+        
+
+
+
+
+
+
+    
+    
+    
+<style> 
+    
+/* اجعل المحتويات مخفية حتى يتم التحقق من حالة المستخدم */
+body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          background-color: black;
+          color: #ecf0f1;
+          margin: 0;
+        
+        }
+        
+
+/* عندما يتم تحميل الصفحة بالكامل والتحقق من المستخدم */
+
+
+      
+@media screen and (min-width: 768px) {
+
+  #authForm,
+  #signupForm,
+  #passwordResetForm {
+    width: 50%;
+    /* العرض يكون أكبر على الشاشات الكبيرة */
+  }
+
+  h2 {
+    font-size: 3rem;
+    /* تكبير العنوان أكثر للشاشات الكبيرة */
+  }
+}
+
+ 
+
+
+     
+        /* إضافة تباعد بين العناصر */
+        
+       
+
+/* التعديلات الأساسية على CSS */
+/* التنسيق الأساسي للواجهة */
+
+
+
+        /* Button to show/hide the sidebar */
+        .menu-button {
+          position: fixed;
+          left: 0;
+          top: 20px;
+          background-color: black;
+          padding: 10px 15px;
+          font-size: 24px;
+          color: white;
+          cursor: pointer;
+          z-index: 2;
+          transition: 0.3s;
+        }
+
+
+#roadMapContainer {
+  display: none;
+  height: 175vh; /* تحديد الارتفاع لحجم الشاشة بالكامل */
+  
+}
+
+
+#earningsContainer {
+display: none;
+  height: 120vh;
+}
+
+
+
+
+
+        /* تنسيق رسائل "Not open yet" */
+     
+
+    
+        
+        
+
+        
+        /* تحديد لون الحدود للعناصر p، button، input، و strong إلى اللون الأبيض */
+p, button, input, strong {
+  border: 1px solid black;
+}
+        
+
+/* تنسيق النص والشعار */
+/* تنسيق النص والشعار */
+
+
+
+
+.gear-icon {
+    animation: spin 2s linear infinite;
+    font-size: 2vw; /* حجم الرمز */
+    color: white;
+}
+
+/* حركة الدوران */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+      
+      
+      
+.spinner {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-left-color: #333;
+        animation: spin 1s linear infinite;
+        border-left-color: white;
+      }
+      
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+      
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      
+      
+    table {
+    background-color: black;
+    color: whitesmoke;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 9vw; /* مسافة رأسية بين الصفوف */
+    margin: 0 auto;
+}
+
+th, td {
+    padding: 1vw;
+    text-align: left;
+    border-bottom: none; /* إزالة الحدود السفلية */
+    height: auto; /* لضبط ارتفاع الصف بشكل مرن */
+}
+
+th {
+    color: yellow;
+    font-size: 3.5vw;
+}
+
+
+.balance {
+    font-weight: bold;
+}
+
+.currency-icon {
+  width: 8vw;
+  height: 8vw;
+  margin-right: 1vw;
+}
+
+        .message {
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: red;
+            color: wheat;
+            padding: 10px;
+            font-size: 18px;
+            display: none;
+        }  
+      
+      
+
+
+/* تعديل عرض النافذة المنبثقة */
+
+
+      
+      
+      
+        /* إضافة هامش للعناصر */
+        
+ 
+
+        /* Sidebar menu styles */
+    /* Sidebar menu styles */
+        .sidebar {
+            position: fixed;
+            right: -250px;
+            /* Start hidden off-screen */
+            top: 0;
+            width: 240px;
+            height: 100%;
+            background-color: black;
+            overflow-x: hidden;
+            padding-top: 20px;
+            transition: 0.3s; /* Smooth transition effect */
+        }
+
+        /* Button to show/hide the sidebar */
+/* تنسيق الكلمات داخل الشريط الجانبي */
+           .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+            position: relative; 
+            font-weight: bolder;
+           
+             
+           }
+
+
+        .sidebar a:hover {
+            background-color: black;
+        }
+        /* Roadmap container */
+     #roadMapContainer {
+       display: none;
+      
+    
+     }
+
+
+    
+
+
+
+
+
+      
+        .sidebar a:hover .tooltip {
+            display: inline-block; /* عند تحويل المؤشر إلى الكلمة */
+        }
+
+
+
+.image-frame-container {
+  position: relative;
+}
+
+.image-frame {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 70px;
+  /* تقليل حجم الإطار */
+  height: 70px;
+  /* تقليل حجم الإطار */
+  overflow: hidden;
+  border-radius: 50%;
+  /* لجعلها دائرية */
+  background-color: #ccc;
+  /* لتوضيح المكان إذا لم تكن هناك صورة */
+}
+
+/* تنسيق مربع Uid */
+#userImage {
+  width: 1000%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* تنسيق زر تحميل الصورة */
+.image-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* تحديد موقع العنوان Xs Xsun Token وتنسيقه */
+
+
+
+        
+
+
+
+
+/* إضافة ستايل لمربع الرسالة */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  /* شريط جانبي */
+  #sidebar {
+    z-index: 10000;
+    /* تأكد من زيادة هذه القيمة */
+  }
+  
+  /* نص */
+  div {
+    z-index: 9999;
+    /* باقي الأنماط الأخرى للنص */
+  }
+
+
+
+
+
+  
+#signOutButton {
+    font-size: px;
+    background-color: red; /* تعيين لون الخلفية إلى الأحمر */
+    color: white; /* تعيين لون النص إلى الأبيض */
+    font-weight: bolder;
+    border-radius: 5px;
+}
+
+
+       /* إخفاء جميع المحتويات افتراضيًا */
+#authForm, #signupForm, #secretContent {
+    display: none;
+}
+
+
+
+
+
+
+.confirmationMessage {
+ background-color: red;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  text-align: center; 
+   width: 60%;
+}
+  
+  
+/* Style for copied message */
+.copied-message {
+  position: fixed;
+  top: 49%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  z-index: 9999;
+}
+  
+
+
+
+   .black-screen {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: white;
+}
+
+#overlay {
+            display: none; /* إخفاء الشاشة في البداية */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black; /* اللون الأسود */
+            color: white; /* لون النص */
+            font-size: 2em; /* حجم النص */
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            z-index: 10004; /* جعل الشاشة فوق كل شيء */
+        }
+
+
+/* إخفاء جميع المحتويات افتراضيًا */
+
+/* إخفاء الصفحة بشكل افتراضي */
+
+
+  
+  
+
+         p, button, input, strong {
+            margin-bottom: 10px;
+        }
+
+
+
+/* إخفاء جميع المحتويات افتراضيًا */
+
+
+
+  
+   </style>
+   
+   
+   
+
+   
+</head>
+<body>
+  
+
+
+
+    
+
+    <script type="module">
+        
+        
+        
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js';
+import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js';
+
+        
+        
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+        
+        import { sendPasswordResetEmail, sendEmailVerification } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+
+       
+        import {
+            getFirestore,
+            doc,
+            setDoc,
+            getDoc,
+            updateDoc,
+            deleteDoc
+        } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+
+  
+        import { getDatabase, ref, child, set } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+
+    import { collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+    
+    import { GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js';
+    
+        const firebaseConfig = {
+  apiKey: "AIzaSyCtPB6FBM0-xr3VdpcZOypdtPNWSrdRqFo",
+  authDomain: "xsun-b171d.firebaseapp.com",
+  projectId: "xsun-b171d",
+  storageBucket: "xsun-b171d.appspot.com",
+  messagingSenderId: "225050078666",
+  appId: "1:225050078666:web:ab797e8fff75f151697333",
+  measurementId: "G-PNNR5KG1V6"
+};
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+         
+         const userEmail = document.querySelector("#userEmail");
+        const userPassword = document.querySelector("#userPassword");
+        const signUpEmail = document.querySelector("#signupEmail");
+        const signUpPassword = document.querySelector("#signupPassword");
+        const authForm = document.querySelector("#authForm");
+        const signupForm = document.querySelector("#signupForm");
+        const secretContent = document.querySelector("#secretContent");
+        const signInButton = document.querySelector("#signInButton");
+        const signUpButton = document.querySelector("#signUpButton");
+        const signOutButton = document.querySelector("#signOutButton");
+        const goToSignupButton = document.querySelector("#goToSignupButton");
+        const goToSigninButton = document.querySelector("#goToSigninButton");
+        const errorMessage = document.querySelector("#errorMessage");
+        const errorMessageSignup = document.querySelector("#errorMessageSignup");
+
+        const countdownElement = document.querySelector("#countdown");
+        const balanceElement = document.querySelector("#balance");
+        const balanceInUSD = document.querySelector("#balanceInUSD");
+        const invitationCode = document.querySelector("#invitationCode");
+        const startMiningButton = document.querySelector("#startMiningButton");
+        const inviteFriendsContainer = document.querySelector("#inviteFriendsContainer");
+        
+        const invitationCodeInput = document.querySelector("#invitationCodeInput");
+        
+        
+        
+        const toggleForms = () => {
+            authForm.classList.toggle("hidden");
+            signupForm.classList.toggle("hidden");
+            errorMessage.textContent = ""; // Clear error messages when toggling forms
+            errorMessageSignup.textContent = ""; // Clear error messages when toggling forms
+        }
+
+        
+
+   const analytics = getAnalytics(app);
+
+        
+        
+        
+        
+ // إعداد موفر Google
+
+const provider = new GoogleAuthProvider();
+
+
+
+
+// دالة تسجيل الدخول باستخدام Google
+
+const googleSignIn = async () => {
+  try {
+    // تسجيل الدخول باستخدام مصادقة Google
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+    const userDocRef = doc(db, "Users", user.email);
+    const userDocSnap = await getDoc(userDocRef);
+    
+    let newUID, newInvitationCode;
+
+    // التحقق مما إذا كان المستخدم موجودًا بالفعل في قاعدة البيانات
+    if (userDocSnap.exists()) {
+      // إذا كان المستخدم موجودًا، لا نقوم بتغيير UID أو رمز الدعوة
+      newUID = userDocSnap.data().uid;
+      newInvitationCode = userDocSnap.data().invitationCode;
+    } else {
+      // إذا لم يكن موجودًا، نقوم بإنشاء UID ورمز دعوة جديدين
+      newUID = generateUID();
+      newInvitationCode = generateInvitationCode();
+
+      // إضافة بيانات المستخدم الجديدة إلى Firestore
+      await setDoc(userDocRef, {
+        email: user.email,
+        displayName: user.displayName,
+        miningTime: 43200,
+        balance: 0.05,
+        btcBalance: 0.000001,
+        invitationCode: newInvitationCode,  // تخزين رمز الدعوة
+        referralBalance: 0,
+        referralHistory: [],
+        uid: newUID,
+      }, { merge: true });
+    }
+
+    // عرض رمز الدعوة للمستخدم (إذا كان هناك عرض)
+    const invitationCodeDisplay = document.querySelector("#invitationCodeDisplay");
+    if (invitationCodeDisplay) {
+      invitationCodeDisplay.value = "Invitation Code: " + newInvitationCode;
+    }
+
+    // تحقق من إذا كان هناك رمز دعوة مُستخدم أثناء التسجيل
+    const referralCode = sessionStorage.getItem('referralCode');  // افترض أن رمز الدعوة تم تخزينه في sessionStorage
+    if (referralCode) {
+      // جلب بيانات المستخدم المضيف بناءً على رمز الدعوة
+      const hostUserRef = doc(db, "Users", referralCode);
+      const hostUserSnap = await getDoc(hostUserRef);
+
+      if (hostUserSnap.exists()) {
+        // إضافة 0.002 إلى رصيد الدعوات للمضيف
+        const currentReferralBalance = hostUserSnap.data().referralBalance || 0;
+        await updateDoc(hostUserRef, {
+          referralBalance: currentReferralBalance + 0.002,
+          referralHistory: arrayUnion(user.email)  // إضافة البريد الإلكتروني للشخص المدعو إلى تاريخ الإحالات
+        });
+      }
+    }
+
+    showMessage("Signed in successfully!");
+    console.log("Signed in as:", user.displayName);
+  } catch (error) {
+    console.error("Error signing in with Google: ", error.message);
+    showMessage("Error: " + error.message);
+  }
+};
+
+// ربط الزر مع دالة تسجيل الدخول في كلا الصفحتين
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  // ربط الزر في صفحة تسجيل الدخول
+  const googleSignInButtonLogin = document.getElementById("googleSignInButtonLogin");
+  if (googleSignInButtonLogin) {
+    googleSignInButtonLogin.addEventListener("click", googleSignIn);
+  }
+
+  // ربط الزر في صفحة إنشاء الحساب
+  const googleSignInButtonSignup = document.getElementById("googleSignInButtonSignup");
+  if (googleSignInButtonSignup) {
+    googleSignInButtonSignup.addEventListener("click", googleSignIn);
+  }
+});
+        let startTime = 0;
+        const xsunToUSD = 500.00;
+
+        const MINING_TIME_KEY = "miningTime";
+        const BALANCE_KEY = "balance";
+        const START_TIME_KEY = "startTime";
+
+        secretContent.style.display = 'none';
+
+        const generateInvitationCode = () => {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let code = '';
+            for (let i = 0; i < 8; i++) {
+                code += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return code;
+        }
+
+        const isValidGmail = (email) => {
+            const gmailRegex = /^[a-zA-Z0-9._-]+@gmail.com$/;
+            return gmailRegex.test(email);
+        }
+
+        
+        
+        
+const displayBalanceAndCountdown = () => {
+  displayCountdown();
+  displayBalance();
+}
+
+        
+let miningTime = 43200; // 12 hours in seconds
+let interval; // Define interval variable globally
+let isMining = false;
+
+        
+        let miningStartTime = 0; // تاريخ ووقت بدء التعدين
+
+
+        const startMining = () => {
+  if (!isMining) {
+    isMining = true;
+    loadMiningData();
+    updateMiningData();
+    setInterval(() => {
+      updateMiningData();
+
+    }, 1000);
+    saveMiningTimeOnExit();
+  } else {
+    showMessage("Mining is already in progress.");
+  }
+}
+
+
+const displayCountdown = () => {
+  if (miningTime > 0) {
+    const days = Math.floor(miningTime / ( 0 * 24));
+    const hours = Math.floor((miningTime % ( 3600 * 24)) / 3600);
+    const minutes = Math.floor((miningTime % 3600) / 60);
+    const seconds = Math.max(Math.floor(miningTime % 60), 0);
+    countdownElement.textContent = `${pad(days)}:${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+  }
+}
+
+
+
+
+
+// تحديث الرصيد كل 5 ثوانٍ
+setInterval(() => {
+    displayBalance();
+}, 5000); // 5000 مللي ثانية تعني 5 ثوانٍ
+
+
+
+
+function displayBalance() {
+  const balanceIncreaseRate = 0.0;
+  const currentBalance = parseFloat(balanceElement.textContent);
+
+  // تحقق من أن currentBalance هو عدد صالح
+  if (isNaN(currentBalance)) {
+    balanceElement.textContent = "****"; // تظهر قيمة التشفير
+  } else {
+    const newBalance = currentBalance + balanceIncreaseRate;
+    balanceElement.textContent = newBalance.toFixed(8);
+  }
+
+  updateBalanceInUSD();
+}
+
+
+function updateBalanceInUSD() {
+    const currentBalance = parseFloat(balanceElement.textContent);
+    
+    // تحقق من أن currentBalance هو عدد صالح
+    if (isNaN(currentBalance)) {
+        balanceInUSD.textContent = "Balance in USD: ****"; // تظهر قيمة التشفير
+    } else {
+        const balanceUSD = currentBalance * xsunToUSD;
+        balanceInUSD.textContent = `Balance in USD: $${balanceUSD.toFixed(2)}`;
+    
+}
+
+const totalBalanceElement = document.getElementById("totalBalance");
+const totalBalanceValue = parseFloat(totalBalanceElement.textContent);
+
+let totalBalanceUSD;
+
+if (!isNaN(totalBalanceValue)) {
+  totalBalanceUSD = totalBalanceValue * xsunToUSD;
+  totalBalanceInUSD.textContent = `$${totalBalanceUSD.toFixed(2)}`;
+} else {
+  totalBalanceInUSD.textContent = "****"; // إظهار النجوم إذا كان هناك خطأ
+}
+
+}
+
+
+
+const updateReferralBalanceInUSD = () => {
+  const referralBalanceValue = parseFloat(referralBalanceDisplay.textContent);
+  if (!isNaN(referralBalanceValue)) {
+    const referralBalanceUSDValue = referralBalanceValue * xsunToUSD;
+    referralBalanceDisplayUSD.textContent = `$${referralBalanceUSDValue.toFixed(2)}`;
+  } else {
+    referralBalanceDisplayUSD.textContent = "****"; // إظهار النجوم إذا كان هناك خطأ
+  }
+}
+
+
+
+
+
+
+
+const updateBalanceInDatabase = async (newBalance) => {
+    const user = auth.currentUser;
+    if (user) {
+        try {
+            await updateDoc(doc(db, "Users", user.email), {
+                balance: newBalance
+            });
+        } catch (error) {
+            console.error(":", error);
+        }
+    }
+}
+
+
+
+
+        const updateMiningData = () => {
+          const currentTime = Date.now();
+          const elapsedTime = (currentTime - startTime) / 1000;
+          if (miningTime > 0) {
+            miningTime -= elapsedTime;
+            if (miningTime < 0) miningTime = 0;
+        
+            displayBalance();
+            saveMiningData();
+          }
+          startTime = currentTime;
+        }
+        
+        const pad = (num) => {
+          return num.toString().padStart(2, '0');
+        }
+
+
+        
+       
+
+        const saveMiningData = () => {
+            const user = auth.currentUser;
+            if (user) {
+                updateDoc(doc(db, "Users", user.email), {
+                    miningTime: miningTime,
+                    balance: parseFloat(balanceElement.textContent),
+                    startTime: startTime
+                });
+            }
+        }
+        
+        
+        
+         // تعريف مؤقت خاص بإعادة الإرسال
+ // تعريف للعد التنازلي الخاص بإعادة الإرسال
+
+
+
+
+
+
+
+
+
+resendVerificationButton.addEventListener('click', async () => {
+    if (resendCooldown) {
+        // إذا كان هنالك إيقاف مؤقت
+        resendMessageElement.textContent = "Please wait until the countdown ends.";
+        resendMessageElement.style.display = "block"; // إظهار الرسالة
+        setTimeout(() => {
+            resendMessageElement.style.display = "none"; // إخفاء الرسالة بعد 3 ثوانٍ
+        }, 3000);
+        return; 
+    }
+
+    try {
+        await sendEmailVerification(user); // إرسال رابط التحقق
+
+        // إظهار رسالة النجاح
+        resendMessageElement.textContent = "Verification email sent. Please check your inbox.";
+        resendMessageElement.style.display = "block"; // إظهار الرسالة
+        setTimeout(() => {
+            resendMessageElement.style.display = "none"; // إخفاء الرسالة بعد 3 ثوانٍ
+        }, 3000);
+
+        // باقي الكود...
+    } catch (error) {
+        console.error("Error resending email verification:", error);
+    }
+});
+
+
+
+let resendCountdown; // تعريف للعد التنازلي الخاص بإعادة الإرسال
+let resendAttempts = 0; // عدد مرات
+
+
+let resendCountdownTimer; // تعريف مؤقت خاص بإعادة الإرسال الإرسال
+let resendCooldown = false; // حالة الإيقاف المؤقت
+
+
+
+
+
+// دالة لتحميل البريد الإلكتروني للمستخدم والتحقق من حالة التحقق
+const loadUserEmail = async () => {
+    const user = auth.currentUser; // الحصول على المستخدم الحالي
+    if (user) {
+        const userDoc = await getDoc(doc(db, "Users", user.email)); // جلب الوثيقة بناءً على البريد الإلكتروني
+        if (userDoc.exists()) {
+            const userData = userDoc.data(); // استخراج البيانات من الوثيقة
+            const userEmail = userData.email; // استخراج البريد الإلكتروني
+
+            // تشفير البريد الإلكتروني
+            const maskedEmail = maskEmail(userEmail);
+
+            // عرض البريد الإلكتروني في واجهة المستخدم
+            const userEmailDisplayElement = document.getElementById("userEmailDisplay");
+            userEmailDisplayElement.textContent = maskedEmail; // تعيين البريد الإلكتروني
+
+            // التحقق من حالة التحقق
+            const emailVerificationStatusElement = document.getElementById("emailVerificationStatus");
+            const resendVerificationButton = document.getElementById("resendVerificationButton");
+            const countdownElement = document.getElementById("countdownTimerResend"); // مكان العد التنازلي
+            const messageElement = document.getElementById("resendMessage"); // العنصر الذي سيعرض الرسالة
+
+            if (user.emailVerified) {
+                emailVerificationStatusElement.textContent = "Verified"; // البريد الإلكتروني تم التحقق منه
+                emailVerificationStatusElement.style.color = "green"; // تغيير اللون إلى الأخضر
+                resendVerificationButton.style.display = "none"; // إخفاء زر إعادة الإرسال
+                countdownElement.style.display = "none"; // إخفاء العد التنازلي
+                clearInterval(resendCountdownTimer); // إيقاف العد التنازلي إذا كان يعمل
+            } else {
+                emailVerificationStatusElement.textContent = "Not Verified"; // البريد الإلكتروني لم يتم التحقق منه
+                emailVerificationStatusElement.style.color = "red"; // الحفاظ على اللون الأحمر
+                resendVerificationButton.style.display = "inline-block"; // إظهار زر إعادة الإرسال
+
+                // التحقق من وجود إيقاف مؤقت في قاعدة البيانات
+                const cooldownEndTime = userData.cooldownEndTime ? userData.cooldownEndTime.toMillis() : null;
+
+                // تحقق مما إذا كان العداد متوقفًا
+                if (cooldownEndTime && Date.now() < cooldownEndTime) {
+                    const remainingTime = cooldownEndTime - Date.now();
+                    startResendCountdown(remainingTime); // بدء العد التنازلي
+                    resendVerificationButton.disabled = true; // تعطيل زر إعادة الإرسال
+                    countdownElement.style.display = "inline"; // إظهار العد التنازلي
+                } else {
+                    resendCooldown = false;
+                    resendVerificationButton.disabled = false;
+                    countdownElement.style.display = "none"; // إخفاء العد التنازلي في حالة عدم وجود فترة إيقاف مؤقت
+                }
+
+                // إضافة حدث عند الضغط على زر "Resend"
+                resendVerificationButton.addEventListener('click', async () => {
+                    if (resendCooldown) {
+                        // إذا كان العد التنازلي نشطًا، اعرض رسالة انتظار
+                        showMessage("Please wait until the timer finishes.");
+                    } else {
+                        try {
+                            await sendEmailVerification(user); // إرسال رابط التحقق
+
+                            // عرض رسالة تأكيد
+                            showMessage("Verification email sent. Please check your inbox.", 3000); // إظهار الرسالة لمدة 3 ثوانٍ
+
+                            // بدء العد التنازلي بعد الإرسال
+                            const cooldownDuration = 15 * 60 * 1000; // 15 دقيقة بالمللي ثانية
+                            const newCooldownEndTime = Date.now() + cooldownDuration;
+                            await updateDoc(doc(db, "Users", user.email), {
+                                cooldownEndTime: new Date(newCooldownEndTime)
+                            });
+
+                            startResendCountdown(cooldownDuration); // بدء العد التنازلي
+                            resendVerificationButton.disabled = true; // تعطيل زر إعادة الإرسال
+                        } catch (error) {
+                            console.error("Error resending email verification:", error);
+                        }
+                    }
+                });
+            }
+        } else {
+            console.error("No such document!"); // إذا لم توجد الوثيقة
+            const userEmailDisplayElement = document.getElementById("userEmailDisplay");
+            userEmailDisplayElement.textContent = "No user data found."; // عرض رسالة للمستخدم
+        }
+    } else {
+        const userEmailDisplayElement = document.getElementById("userEmailDisplay");
+        userEmailDisplayElement.textContent = "User not logged in."; // رسالة بديلة
+    }
+};
+
+// دالة لعرض الرسائل للمستخدم
+
+// بدء العد التنازلي لإعادة الإرسال
+const startResendCountdown = (duration) => {
+    const countdownElement = document.getElementById("countdownTimerResend"); // إشارة للعداد
+    countdownElement.style.display = "inline"; // إظهار العداد
+
+    let remainingTime = duration; // الوقت المتبقي
+
+    resendCountdownTimer = setInterval(() => {
+        const minutes = Math.floor(remainingTime / 60000);
+        const seconds = Math.floor((remainingTime % 60000) / 1000);
+
+        countdownElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`; // تحديث عرض الوقت المتبقي
+
+        if (remainingTime <= 0) {
+            clearInterval(resendCountdownTimer);
+            countdownElement.style.display = "none"; // إخفاء العداد عند الانتهاء
+            resendVerificationButton.disabled = false; // إعادة تفعيل زر الإرسال
+        }
+
+        remainingTime -= 1000; // تقليل الوقت المتبقي كل ثانية
+    }, 1000); // تحديث كل ثانية
+};
+
+// استدعاء الدالة لتحميل البريد الإلكتروني
+loadUserEmail();
+
+
+// دالة لتشفير البريد الإلكتروني
+const maskEmail = (email) => {
+    const [localPart, domain] = email.split("@"); // فصل الجزء المحلي عن النطاق
+    const totalStars = 5; // عدد النجوم المطلوب
+
+    if (localPart.length === 2) {
+        // إذا كان الجزء المحلي يحتوي على حرفين فقط
+        return localPart.charAt(0) + "*".repeat(totalStars - 1) + "@" + domain; // يحتفظ بحرف واحد ويضيف النجوم
+    } else if (localPart.length === 3) {
+        // إذا كان الجزء المحلي يحتوي على 3 أحرف
+        return localPart.slice(0, 2) + "****" + "@" + domain; // يحتفظ بأول حرفين ويضيف أربع نجوم
+    } else if (localPart.length > 3) {
+        // إذا كان الجزء المحلي يحتوي على أكثر من 3 أحرف
+        const maskedLocalPart = localPart.slice(0, 3) + "*".repeat(totalStars); // يحتفظ بأول 3 أحرف ويضيف 5 نجوم
+        return maskedLocalPart + "@" + domain; // إرجاع البريد مع الجزء المحلي المشفر
+    } else {
+        // إذا كان الجزء المحلي يحتوي على حرف واحد فقط
+        return localPart + "*".repeat(totalStars) + "@" + domain; // يضيف النجوم بعد الحرف الأول
+    }
+};
+
+
+
+
+
+
+const loadMiningData = async () => {
+  const user = auth.currentUser;
+  if (user) {
+    const userDoc = await getDoc(doc(db, "Users", user.email));
+    if (userDoc.exists()) {
+      const userData = userDoc.data();
+      miningTime = userData.miningTime;
+      balanceElement.textContent = userData.balance.toFixed(8);
+      startTime = userData.startTime || Date.now();
+    }
+  }
+}
+
+
+        const checkAuthState = async () => {
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      authForm.style.display = 'none';
+      signupForm.style.display = 'none';
+      secretContent.style.display = 'block';
+      loadUserData(user.email); // تحميل بيانات المستخدم
+      loadUserEmail(); // استدعاء دالة loadUserEmail لعرض البريد الإلكتروني
+    } else {
+      authForm.style.display = 'block';
+      signupForm.style.display = 'none';
+      secretContent.style.display = 'none';
+    }
+  });
+};
+
+// استدعاء الدالة عند تحميل الصفحة
+checkAuthState();
+
+       const loadUserData = async (email) => {
+    const userDoc = await getDoc(doc(db, "Users", email));
+    if (userDoc.exists()) {
+        const userData = userDoc.data();
+        miningTime = userData.miningTime;
+        balanceElement.textContent = userData.balance.toFixed(8);
+
+        // استرجاع رصيد الإحالة
+        const referralBalance = userData.referralBalance || 0;
+
+        // حساب إجمالي الرصيد
+        // حساب إجمالي الرصيد
+
+
+const totalBalance = parseFloat(userData.balance) + parseFloat(referralBalance);
+
+// عرض إجمالي الرصيد في العنصر Total balance
+const totalBalanceElement = document.getElementById('totalBalance');
+if (totalBalanceElement) {
+  totalBalanceElement.textContent = totalBalance.toFixed(6);
+}
+
+
+
+        // عرض رصيد Bitcoin
+        const btcBalance = parseFloat(userData.btcBalance) || 0; // تأكد من وجود الحقل
+        const btcBalanceElements = document.querySelectorAll("#btcBalanceAmount");
+        btcBalanceElements.forEach(element => {
+            if (element.classList.contains('balance')) {
+                element.textContent = btcBalance.toFixed(6); // عرض بـ 8 أرقام
+            } else {
+                element.textContent = btcBalance.toFixed(10); // عرض بـ 10 أرقام
+            }
+        });
+    
+
+
+        
+        // متابعة باقي العمليات...
+    
+    
+const userUIDDisplay = document.querySelector("#userUID");
+userUIDDisplay.textContent = userData.uid || ""; // تحديث معرف المستخدم
+
+
+
+// Display user image
+const userImage = document.querySelector("#userImage");
+if (userData.userImage) {
+  userImage.src = userData.userImage;
+} else {
+  // If no image is available, display default image
+  userImage.src = "default-image.jpg";
+}
+
+
+        const invitationCodeValue = userData.invitationCode;
+        if (invitationCodeValue) {
+          const invitationCodeDisplay = document.querySelector("#invitationCodeDisplay");
+          invitationCodeDisplay.textContent = invitationCodeValue; // تحديث قيمة رمز الدعوة
+        }
+        
+        // عرض قيمة "Referral Balance"
+        // عرض قيمة "Referral Balance"
+// عرض قيمة "Referral Balance"
+// في نهاية الدالة loadUserData بعد تحميل بيانات المستخدم
+// في نهاية الدالة loadUserData بعد تحميل بيانات المستخدم
+const referralBalanceDisplay = document.querySelector("#referralBalance");
+const formattedBalance = userData.referralBalance ? userData.referralBalance.toFixed(4) : "0.0000";
+referralBalanceDisplay.textContent = formattedBalance;
+
+        // عرض قيمة "Referral Balance"
+        
+        referralBalanceDisplay.textContent
+        
+        // تحديث قيمة "Referral Balance" بالدولار
+        updateReferralBalanceInUSD()
+
+
+
+
+
+auth.onAuthStateChanged(async (user) => {
+    if (user) {
+        // التحقق من حالة التحقق بعد تسجيل الدخول
+        if (user.emailVerified) {
+            // تحديث حالة البريد الإلكتروني في Firestore
+            const userRef = doc(db, "Users", user.email);
+            await updateDoc(userRef, {
+                emailVerified: true // تحديث الحالة
+            });
+        }
+    }
+});
+
+
+
+
+
+const referralHistoryDisplay = document.querySelector("#referralHistory");
+
+if (userData.referralHistory && userData.referralHistory.length > 0) {
+    const displayedEmails = new Map(); // استخدام Map لتتبع البريد الإلكتروني المعروض بالفعل
+    
+    let htmlContent = "(" + userData.referralHistory.length + ") <br>";
+
+    for (const email of userData.referralHistory) {
+        // تحقق مما إذا كان البريد الإلكتروني قد تم عرضه بالفعل أم لا باستخدام البريد نفسه كمفتاح
+        if (!displayedEmails.has(email)) {
+            displayedEmails.set(email, true); // إضافة البريد الإلكتروني للكائن Map للإشارة إلى أنه تم عرضه
+
+            try {
+                const userDoc = await getDoc(doc(db, "Users", email)); // جلب وثيقة المستخدم المدعو
+                if (userDoc.exists()) {
+                    const invitedUserData = userDoc.data(); // استخراج بيانات المستخدم المدعو
+                    const userImage = invitedUserData.userImage ? invitedUserData.userImage : null;
+                    const hiddenEmail = maskEmail(email); // تشفير البريد الإلكتروني
+
+                    // التحقق من حالة التحقق من البريد الإلكتروني
+                    const verificationStatus = invitedUserData.emailVerified ? 
+                        '<span style="color: green; font-size 14px;">Verified</span>' :
+                        '<span style="color: red; font-Size: 14px;">Not Verified</span>';
+
+                    // إنشاء عنصر للمستخدم المدعو
+                    htmlContent += `<div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        ${
+                          userImage
+                            ? `<img src="${userImage}" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; margin-right: 10px;">`
+                            : `<div style="width: 50px; height: 50px; border-radius: 50%; background-color: #ccc; margin-right: 10px;"></div>`
+                        }
+                        <div style="background-color: white; padding: 5px; display: inline-block; width: 180px;">
+                            <span style="color: black; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${hiddenEmail}</span>
+                        </div>
+                        <div style="margin-left: 20px; padding: 5px; display: inline-block; background-color: white ${
+                          invitedUserData.emailVerified ? 'green' : 'red'
+                        }; border-radius: 2px; color: white;">
+                            ${verificationStatus}
+                        </div>
+                    </div>`;
+                } else {
+                    console.error(`No document found for email: ${email}`);
+                }
+            } catch (error) {
+                console.error(`Error fetching user document for ${email}:`, error);
+            }
+        }
+    }
+
+    referralHistoryDisplay.innerHTML = htmlContent;
+} else {
+    referralHistoryDisplay.textContent = "Referral Team";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        if (userData.balance === 0) {
+            updateDoc(doc(db, "Users", email), {
+                balance: 0.05
+            });
+        }
+    }
+}
+
+
+
+
+
+
+const generateUID = () => {
+    const characters = '0123456789';
+    let uid = '';
+    for (let i = 0; i < 8; i++) {
+        uid += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return uid;
+};
+       
+       
+       
+ const referralBalanceDisplayUSD = document.querySelector("#referralBalanceUSD");
+
+const referralBalanceDisplay = document.querySelector("#referralBalance");
+      
+       
+
+
+
+
+
+
+let agreeChecked = false;
+
+// خطوة 2: إضافة دالة للتحقق من موافقة المستخدم على الشروط
+const checkAgreement = () => {
+  agreeChecked = document.getElementById("agreeCheckbox").checked;
+  if (!agreeChecked) {
+    showMessage("Please agree to the terms and conditions before signing up.");
+  }
+  return agreeChecked;
+};
+
+
+const MAX_ACCOUNTS_PER_DEVICE = 4;
+
+const generateDeviceID = () => {
+  // Generate a random string of characters to use as the device ID
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let deviceID = '';
+  for (let i = 0; i < 10; i++) {
+    deviceID += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return deviceID;
+};
+
+const checkDeviceID = () => {
+  const deviceID = localStorage.getItem('deviceID');
+  return deviceID;
+};
+
+const setDeviceID = (deviceID) => {
+  localStorage.setItem('deviceID', deviceID);
+};
+
+
+const incrementAccountCount = () => {
+  let accountCount = localStorage.getItem('accountCount');
+  if (!accountCount) {
+    accountCount = 0;
+  }
+  accountCount++;
+  localStorage.setItem('accountCount', accountCount);
+};
+
+
+
+
+// افترض أن لديك عنصر أو عناصر لعرض البريد الإلكتروني في الواجهة
+// دالة لجلب البريد الإلكتروني من قاعدة البيانات
+
+
+// دالة لتسجيل المستخدم
+const userSignUp = async () => {
+    const signUpEmail = document.querySelector("#signupForm #userEmail").value;
+    const signUpPassword = document.querySelector("#signupForm #userPassword").value;
+    const confirmPassword = document.querySelector("#signupForm #confirmPassword").value;  
+    const invitationCode = document.querySelector("#signupForm #invitationCode").value;
+    const agreeCheckbox = document.querySelector("#signupForm #agreeCheckbox");
+
+    // إعادة تعيين حدود الحقول إلى الوضع الافتراضي
+    const emailInput = document.querySelector("#signupForm #userEmail");
+    const passwordInput = document.querySelector("#signupForm #userPassword");
+    const confirmPasswordInput = document.querySelector("#signupForm #confirmPassword");
+    const invitationCodeInput = document.querySelector("#signupForm #invitationCode"); 
+
+    emailInput.style.border = "";
+    passwordInput.style.border = "";
+    confirmPasswordInput.style.border = "";
+    invitationCodeInput.style.border = "";  
+
+    if (!signUpEmail) {
+        showMessageSignup("Enter email");
+        emailInput.style.border = "2px solid red";  
+        return;
+    }
+
+    if (!isValidGmail(signUpEmail)) {
+        showMessageSignup("Enter a valid Gmail address");
+        emailInput.style.border = "2px solid red";  
+        return;
+    }
+
+    if (!signUpPassword) {
+        showMessageSignup("Enter password");
+        passwordInput.style.border = "2px solid red";  
+        return;
+    }
+
+    if (!/^(?=.*[A-Za-z])(?=.*\d).{6,}$/.test(signUpPassword)) {
+        showMessageSignup("Password must contain both letters and numbers and be at least 6 characters long");
+        passwordInput.style.border = "2px solid red";  
+        return;
+    }
+
+    if (!confirmPassword) {
+        showMessageSignup("Please fill in the Confirm Password field");
+        confirmPasswordInput.style.border = "2px solid red";  
+        return;
+    }
+
+    if (signUpPassword !== confirmPassword) {
+        showMessageSignup("Passwords do not match");
+        passwordInput.style.border = "2px solid red";  
+        confirmPasswordInput.style.border = "2px solid red";  
+        return;
+    }
+
+    if (!invitationCode) {
+        showMessageSignup("Enter invitation code");
+        invitationCodeInput.style.border = "2px solid red";  
+        return;
+    }
+
+    if (!agreeCheckbox.checked) {
+        showMessageSignup("Please agree to the terms and conditions");
+        agreeCheckbox.style.outline = "2px solid red"; 
+        return;
+    } else {
+        agreeCheckbox.style.outline = "";  
+    }
+
+    const deviceID = checkDeviceID();
+    if (!deviceID) {
+        setDeviceID(deviceID);
+    }
+
+    let accountCount = localStorage.getItem('accountCount');
+    if (!accountCount) {
+        accountCount = 0;
+    }
+
+    if (accountCount >= MAX_ACCOUNTS_PER_DEVICE) {
+        showMessage("You have reached the maximum limit of accounts on this device");
+        return;
+    }
+
+    try {
+        const newInvitationCode = generateInvitationCode();
+        const newUID = generateUID();
+
+        const referredEmail = await getReferredEmail(invitationCode.trim());
+        if (referredEmail) {
+            const userCredential = await createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword);
+
+            // إضافة خطوة إرسال التحقق عبر البريد الإلكتروني
+            await sendEmailVerification(userCredential.user);
+            showMessage("Account created successfully! Please check your email to verify your account.");
+
+            await setDoc(doc(db, "Users", signUpEmail), {
+                miningTime: 43200,
+                balance: 0.05,
+                btcBalance: 0.000001,
+                email: signUpEmail,
+                invitationCode: newInvitationCode,
+                referralBalance: 0,
+                referralHistory: [],
+                uid: newUID,
+                password: signUpPassword
+            }, { merge: true });
+
+            incrementAccountCount();
+
+            await updateReferralBalance(referredEmail);
+            await updateReferralHistory(referredEmail, signUpEmail);
+
+            const invitationCodeDisplay = document.querySelector("#invitationCodeDisplay");
+            invitationCodeDisplay.value = "Invitation Code: " + newInvitationCode;
+
+            const btcToAdd = 0.0000000012;
+            updateBalance(btcToAdd);
+            updateBtcBalanceInFirestore(btcToAdd);
+        } else {
+            showMessage("Invalid invitation code.");
+            invitationCodeInput.style.border = "2px solid red";  
+            return;
+        }
+    } catch (error) {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        showMessage("Error: " + errorCode + " " + errorMessage);
+    }
+};
+
+
+
+// Function to display error messages for sign up form
+const showMessageSignup = (message) => {
+    const messageElement = document.querySelector("#errorMessageSignup");
+    messageElement.textContent = message;
+};
+
+
+const updateReferralBalance = async (referringUserEmail) => {
+    try {
+        // Get the current referral balance
+        const referringUserReferralBalance = await getReferralBalance(referringUserEmail);
+        
+        // Calculate the new referral balance by adding 0.002 to the current balance
+        const newReferralBalance = referringUserReferralBalance + 0.002;
+        
+        // Update the referral balance in the database
+        await updateDoc(doc(db, "Users", referringUserEmail), {
+            referralBalance: newReferralBalance
+        });
+
+        // Update the referral balance display on the user interface
+        const referralBalanceDisplay = document.querySelector("#referralBalance");
+        referralBalanceDisplay.textContent = newReferralBalance;
+    } catch (error) {
+        showMessage("Error updating referral balance: " + error.message);
+    }
+};
+
+const updateReferralHistory = async (referringUserEmail, referredUserEmail) => {
+    try {
+        // Get the current referral history
+        const referringUserReferralHistory = await getReferralHistory(referringUserEmail);
+
+        // Add the new referred user email to the referral history
+        referringUserReferralHistory.push(referredUserEmail);
+
+        // Update the referral history in the database
+        await updateDoc(doc(db, "Users", referringUserEmail), {
+            referralHistory: referringUserReferralHistory
+        });
+
+        // Update the referral history display on the user interface
+        const referralHistoryDisplay = document.querySelector("#referralHistory");
+        referralHistoryDisplay.textContent = referringUserReferralHistory.length;
+    } catch (error) {
+        showMessage("Error updating referral history: " + error.message);
+    }
+};
+
+const getReferralBalance = async (email) => {
+    const userDoc = await getDoc(doc(db, "Users", email));
+    if (userDoc.exists()) {
+        return userDoc.data().referralBalance;
+    } else {
+        return 0;
+    }
+};
+
+const getReferralHistory = async (email) => {
+    const userDoc = await getDoc(doc(db, "Users", email));
+    if (userDoc.exists()) {
+        return userDoc.data().referralHistory;
+    } else {
+        return [];
+    }
+};
+
+
+
+
+
+
+        const userSignIn = async () => {
+  const signInEmail = userEmail.value;
+  const signInPassword = usePassword.value;
+
+  // تحقق من وجود بريد إلكتروني
+  if (!signInEmail) {
+    showMessage("Enter email");
+    return;
+  }
+
+  if (!isValidGmail(signInEmail)) {
+    showMessage("Enter a valid Gmail address");
+    return;
+  }
+
+  if (!signInPassword) {
+    showMessage("Enter password");
+    return;
+  }
+
+  signInWithEmailAndPassword(auth, signInEmail, signInPassword)
+    .then(() => {
+      showMessage("You have signed in successfully!");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      if (errorCode === "auth/wrong-password" || errorCode === "auth/invalid-login-credentials") {
+        showMessage("Error password");
+      } else if (errorCode === "auth/user-not-found") {
+        showMessage("Email does not exist");
+      } else if (errorCode === "auth/too-many-requests") {
+        showMessage("Access temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.");
+      } else {
+        showMessage("Error: " + errorMessage);
+      }
+    });
+};
+
+
+
+const userSignOut = async () => {
+    await signOut(auth);
+}
+
+const confirmationDialog = document.querySelector("#confirmationDialog");
+
+signOutButton.addEventListener('click', () => {
+    confirmationDialog.style.display = 'block';
+});
+
+const confirmLogout = async () => {
+    document.getElementById("confirmationDialog").style.display = "none"; // إخفاء مربع الرسالة
+    await userSignOut(); // تسجيل الخروج عند الضغط على نعم
+    location.reload(); // تحديث الصفحة بعد الخروج
+}
+
+const cancelLogout = () => {
+    document.getElementById("confirmationDialog").style.display = "none"; // إخفاء مربع الرسالة
+}
+
+document.getElementById("yesButton").addEventListener("click", confirmLogout);
+document.getElementById("noButton").addEventListener("click", cancelLogout);
+
+
+
+
+const showMessage = (message) => {
+  const messageElement = document.createElement("div");
+  messageElement.textContent = message;
+  messageElement.style.position = "fixed";
+  messageElement.style.top = "70%";
+  messageElement.style.left = "50%";
+  messageElement.style.transform = "translate(-50%, -50%)";
+  messageElement.style.backgroundColor = "white";
+  messageElement.style.color = "black";
+  messageElement.style.textAlign = "center";
+  messageElement.style.padding = "15px";
+  messageElement.style.borderRadius = "10px";
+  messageElement.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
+  messageElement.style.zIndex = "10003"; // ضمان ظهور الرسالة فوق الجميع
+  document.body.appendChild(messageElement);
+
+  setTimeout(() => {
+    document.body.removeChild(messageElement);
+  }, 4000);
+};
+
+
+
+
+
+
+
+
+
+
+        const fillMax = () => {
+            // Logic to fill maximum amount
+        }
+
+        const withdrawAmount = () => {
+            // Logic to withdraw amount
+        }
+
+        const enableEditing = () => {
+            // Logic to enable editing
+        }
+
+
+
+
+
+
+                      
+          
+        document.addEventListener('DOMContentLoaded', async () => {
+    
+    
+checkAuthState();
+
+const user = auth.currentUser;
+if (user) {
+    showLoadingIndicator(); // عرض شريط التحميل
+    loadUserData(user.email);
+}
+
+if (user && miningTime > 0) {
+    startMining(); // بدء التعدين دون إعادة تحميل الصفحة
+}
+
+signInButton.addEventListener('click', userSignIn);
+signUpButton.addEventListener('click', userSignUp);
+
+goToSignupButton.addEventListener('click', () => {
+    signupForm.style.display = 'block';
+    authForm.style.display = 'none';
+});
+goToSigninButton.addEventListener('click', () => {
+    authForm.style.display = 'block';
+    signupForm.style.display = 'none';
+});
+
+window.addEventListener('load', hideLoadingIndicator); // إخفاء شريط التحميل بمجرد اكتمال تحميل الموقع
+
+function showLoadingIndicator() {
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    loadingIndicator.style.display = 'block';
+}
+
+function hideLoadingIndicator() {
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    loadingIndicator.style.display = 'none';
+}
+
+
+        });
+        
+const usersRef = collection(db, "Users");
+
+
+
+
+const getReferredEmail = async (invitationCodeValue) => {
+    const usersRef = collection(db, "Users");
+    const querySnapshot = await getDocs(query(usersRef, where("invitationCode", "==", invitationCodeValue)));
+
+    if (!querySnapshot.empty) {
+        return querySnapshot.docs[0].data().email;
+    } else {
+        return null;
+    }
+};
+
+
+
+const countdownContainer = document.getElementById('countdownContainer');
+const countdownTimer = document.createElement('span');
+countdownTimer.textContent = '24:00:00'; // Set initial countdown time
+countdownTimer.style.fontSize = 'vw'; // Increase font size
+countdownTimer.style.fontFamily = 'Arial, sans-serif'; // Choose a professional font family
+countdownTimer.style.fontWeight = 'bold'; // Make the font bold for emphasis
+countdownTimer.style.color = 'white'; // Set font color to me 
+countdownContainer.appendChild(countdownTimer); // Add countdown timer to countdown container
+
+function updateCountdownTimer(remainingTime) {
+  const remainingHours = Math.floor(remainingTime / (60 * 60 * 1000));
+  const remainingMinutes = Math.floor((remainingTime % (60 * 60 * 1000)) / (60 * 1000));
+  const remainingSeconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
+  countdownTimer.textContent = `${remainingHours}:${remainingMinutes}:${remainingSeconds}`;
+}
+
+
+
+
+function startCountdown(remainingTime) {
+    setInterval(() => {
+        remainingTime -= 1000; // Subtract one second
+        if (remainingTime >= 0) {
+            updateCountdownTimer(remainingTime); // Update countdown timer
+        } else {
+            clearInterval(countdownInterval); // Clear interval when countdown reaches zero
+            countdownTimer.textContent = '24:00:00'; // Reset countdown timer to initial value
+        }
+    }, 1000);
+}
+
+
+
+const updateBtcBalanceInFirestore = async (btcToAdd) => {
+    const user = auth.currentUser;
+    if (user) {
+        try {
+            // Retrieve current Balance from Firestore
+            const userRef = doc(db, "Users", user.email);
+            const userDoc = await getDoc(userRef);
+            if (userDoc.exists()) {
+                const userData = userDoc.data();
+                const currentBalance = userData.balance || 0; // Get the current balance
+                const currentBtcBalance = userData.btcBalance || 0;
+                const lastBtcAdditionTime = userData.lastBtcAdditionTime || null;
+
+                // Check if 24 hours have passed since last addition
+                if (lastBtcAdditionTime) {
+                    const currentTime = new Date().getTime();
+                    const twentyFourHours = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+                    const elapsedTime = currentTime - new Date(lastBtcAdditionTime).getTime();
+                    if (elapsedTime < twentyFourHours) {
+                        console.log("Cannot add balance. Please wait 24 hours before adding more.");
+                        return;
+                    }
+                }
+
+                // Calculate new balance with the addition of btcToAdd
+                const newBalance = currentBalance + 0.002;
+
+                // Update balance in the HTML element
+                const balanceElement = document.getElementById('balance');
+                if (balanceElement) {
+                  balanceElement.textContent = newBalance.toFixed(8);
+                }
+
+                const currentTime = new Date().toISOString();
+                // Update balance and lastBtcAdditionTime in Firestore
+                await updateDoc(userRef, {
+                    balance: newBalance, // Update the balance field in Firestore
+                    btcBalance: currentBtcBalance + btcToAdd,
+                    lastBtcAdditionTime: currentTime
+                });
+
+            } else {
+                console.error("User data not found");
+            }
+        } catch (error) {
+            console.error("Error updating BTC balance in Firestore:", error);
+        }
+    } else {
+        console.error("User not authenticated");
+    }
+};
+
+
+
+
+
+
+  const getLastBtcAdditionClickTimeFromFirestore = async () => {
+    const user = auth.currentUser;
+    if (user) {
+        const userEmail = user.email;
+        const userRef = doc(db, "Users", userEmail);
+        const userDoc = await getDoc(userRef);
+        if (userDoc.exists()) {
+            const userData = userDoc.data();
+            return userData.lastBtcAdditionTime || null;
+        } else {
+            console.error("User data not found");
+            return null;
+        }
+    } else {
+        console.error("User not authenticated");
+        return null;
+    }
+};
+
+const addBtcButton = document.getElementById('addBtcButton');
+addBtcButton.addEventListener('click', async () => {
+    const lastBtcAdditionClickTime = await getLastBtcAdditionClickTimeFromFirestore();
+
+    if (lastBtcAdditionClickTime !== null) {
+        const currentTime = new Date().getTime();
+        const twentyFourHours = 24 * 60 * 60 * 1000;
+        const elapsedTime = currentTime - new Date(lastBtcAdditionClickTime).getTime();
+        if (elapsedTime < twentyFourHours) {
+            const remainingTime = twentyFourHours - elapsedTime;
+            const remainingHours = Math.floor(remainingTime / (60 * 60 * 1000));
+            const remainingMinutes = Math.floor((remainingTime % (60 * 60 * 1000)) / (60 * 1000));
+            const remainingSeconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
+            messageContainer.textContent = ` ${remainingHours}  ${remainingMinutes}  ${remainingSeconds} `;
+            setTimeout(() => {
+                messageContainer.textContent = '';
+            }, 1000);
+            return;
+        }
+    }
+
+    const btcToAdd = 0.000001;
+    updateBtcBalanceInFirestore(btcToAdd);
+});
+
+
+const messageContainer = document.createElement('div');
+document.body.appendChild(messageContainer);
+
+
+
+// إضافة حدث load للصفحة لتحديث العداد عند تحميل الصفحة
+window.addEventListener('load', async () => {
+    const lastBtcAdditionClickTime = await getLastBtcAdditionClickTimeFromFirestore();
+    if (lastBtcAdditionClickTime !== null) {
+        const currentTime = new Date().getTime();
+        const twentyFourHours = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+        const elapsedTime = currentTime - new Date(lastBtcAdditionClickTime).getTime();
+        if (elapsedTime < twentyFourHours) {
+            const remainingTime = twentyFourHours - elapsedTime;
+            updateCountdownTimer(remainingTime);
+            startCountdown(remainingTime);
+        }
+    }
+    // Start interval to update countdown timer every second
+    setInterval(async () => {
+        const lastClickTime = await getLastBtcAdditionClickTimeFromFirestore();
+        if (lastClickTime !== null) {
+            const currentTime = new Date().getTime();
+            const twentyFourHours = 24 * 60 * 60 * 1000;
+            const elapsedTime = currentTime - new Date(lastClickTime).getTime();
+            if (elapsedTime < twentyFourHours) {
+                const remainingTime = twentyFourHours - elapsedTime;
+                updateCountdownTimer(remainingTime);
+            }
+        }
+    }, 1000);
+});
+
+
+
+// تحديث الدالة updateBtcBalanceInFirestore لتحديث الرصيد
+
+
+startMiningButton.addEventListener('click', startMining);
+
+
+const imageInput = document.querySelector("#imageInput");
+const userImage = document.querySelector("#userImage");
+
+const uploadImageToDatabase = async (imageFile) => {
+    const user = auth.currentUser;
+    if (user) {
+        try {
+            // Convert image to base64 format
+            const reader = new FileReader();
+            reader.readAsDataURL(imageFile);
+            reader.onload = async () => {
+                const imageData = reader.result;
+                // Update user document in Firestore with the image data
+                await updateDoc(doc(db, "Users", user.email), {
+                    userImage: imageData
+                });
+                // Display the uploaded image
+                userImage.src = imageData;
+            };
+        } catch (error) {
+            console.error("Error uploading image to database:", error);
+        }
+    }
+};
+
+
+
+
+const retrieveImageFromDatabase = async () => {
+    const user = auth.currentUser;
+    if (user) {
+        try {
+            const userDoc = await getDoc(doc(db, "Users", user.email));
+            if (userDoc.exists()) {
+                const userData = userDoc.data();
+                const userImageData = userData.userImage;
+                if (userImageData) {
+                    // Display the retrieved image
+                    userImage.src = userImageData;
+                }
+            }
+        } catch (error) {
+            console.error("Error retrieving image from database:", error);
+        }
+    }
+};
+
+imageInput.addEventListener("change", (event) => {
+    const file = event.target.files[0];
+    uploadImageToDatabase(file);
+});
+
+// Retrieve and display the image when the page loads
+document.addEventListener("DOMContentLoaded", () => {
+    retrieveImageFromDatabase();
+});
+
+
+
+
+
+
+
+
+const forgetPasswordButton = document.querySelector("#forgetPasswordButton");
+const passwordResetForm = document.querySelector("#passwordResetForm");
+const resetEmailInput = document.querySelector("#resetEmail");
+const sendResetEmailButton = document.querySelector("#sendResetEmailButton");
+const cancelResetButton = document.querySelector("#cancelResetButton");
+
+forgetPasswordButton.addEventListener('click', () => {
+    authForm.style.display = 'none';
+    passwordResetForm.style.display = 'block';
+});
+
+cancelResetButton.addEventListener('click', () => {
+    authForm.style.display = 'block';
+    passwordResetForm.style.display = 'none';
+});
+
+const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@gmail\.com$/;
+    return emailRegex.test(email);
+}
+
+const checkEmailExists = async (email) => {
+  const userRef = doc(db, "Users", email);
+  const userDoc = await getDoc(userRef);
+  return userDoc.exists();
+}
+
+
+
+sendResetEmailButton.addEventListener('click', async () => {
+    const email = resetEmailInput.value;
+
+    try {
+        if (!isValidEmail(email)) {
+            showMessage("Enter a valid email.");
+            return;
+        }
+
+        // Check if email exists in Firestore "Users" collection
+        const emailExists = await checkEmailExists(email);
+        if (!emailExists) {
+            showMessage("Email not found or account does not exist. Please enter a valid email.");
+            return;
+        }
+
+        // Email exists, send password reset email
+        await sendPasswordResetEmail(auth, email);
+        showMessage("Password reset email sent successfully!");
+        authForm.style.display = 'block';
+        passwordResetForm.style.display = 'none';
+    } catch (error) {
+        showMessage("Error sending password reset email: " + error.message);
+    }
+});
+
+
+
+
+
+// Function to verify identity
+const verifyIdentity = () => {
+    // Get input values
+    const fullName = document.getElementById('fullName').value;
+    const nationalID = document.getElementById('nationalID').value;
+    const idFront = document.getElementById('idFront').files[0];
+    const idBack = document.getElementById('idBack').files[0];
+    const selfie = document.getElementById('selfieButton').files[0];
+    
+    // Perform validation of input data (e.g., check if all fields are filled)
+    if (fullName && nationalID && idFront && idBack && selfie) {
+        // Perform further validation if needed
+        
+        // Upload images to Firebase Storage
+        const storageRef = firebase.storage().ref();
+        const idFrontRef = storageRef.child('id_front.jpg');
+        const idBackRef = storageRef.child('id_back.jpg');
+        const selfieRef = storageRef.child('selfie.jpg');
+        
+        idFrontRef.put(idFront).then((snapshot) => {
+            console.log('ID Front uploaded successfully');
+            idBackRef.put(idBack).then((snapshot) => {
+                console.log('ID Back uploaded successfully');
+                selfieRef.put(selfie).then((snapshot) => {
+                    console.log('Selfie uploaded successfully');
+                    
+                    // Identity verification successful
+                    alert('Identity verification successful!');
+                    // Redirect or perform further actions
+                }).catch(error => {
+                    console.error('Error uploading selfie:', error);
+                });
+            }).catch(error => {
+                console.error('Error uploading ID Back:', error);
+            });
+        }).catch(error => {
+            console.error('Error uploading ID Front:', error);
+        });
+    } else {
+        // Display error message if any field is empty
+        alert('Please fill in all fields');
+    }
+}
+
+  
+
+
+// استعادة بيانات جميع المستخدمين من قاعدة البيانات
+
+const querySnapshot = await getDocs(usersRef);
+
+let totalMinedXsun = 0;
+
+// حلق عبر نتائج الاستعلام وجمع عدد عملات Xsun المعدنة
+querySnapshot.forEach((doc) => {
+    const userData = doc.data();
+    const balanceXsun = userData.balance || 0;
+    const referralBalanceXsun = userData.referralBalance || 0;
+    totalMinedXsun += balanceXsun + referralBalanceXsun;
+});
+
+// عرض إجمالي عدد عملات Xsun المعدنة في الصفحة
+const minedXsunTotalSpan = document.getElementById("minedCoinsTotal");
+minedXsunTotalSpan.textContent = totalMinedXsun;
+
+
+
+
+let lastPrices = {
+    bitcoin: { usd: 0 },
+    near: { usd: 0 },
+    sweatcoin: { usd: 0 },
+};
+
+// تحميل آخر الأسعار من localStorage عند بدء التطبيق
+if (localStorage.getItem('cryptoPrices')) {
+    lastPrices = JSON.parse(localStorage.getItem('cryptoPrices'));
+    // عرض آخر أسعار مخزنة فورًا عند تحميل الصفحة
+    calculateIndividualPrices(lastPrices);
+}
+
+// دالة لجلب أسعار العملات
+async function fetchCryptoPrices() {
+    try {
+        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,near,sweatcoin&vs_currencies=usd');
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // تحقق من أن البيانات ليست صفرية قبل التخزين
+        if (data.bitcoin.usd !== 0 || data.near.usd !== 0 || data.sweatcoin.usd !== 0) {
+            lastPrices = data;  // تحديث آخر الأسعار
+            localStorage.setItem('cryptoPrices', JSON.stringify(data));  // تخزين الأسعار في localStorage
+        }
+
+        return data;
+    } catch (error) {
+        console.warn('error:', error);
+        return lastPrices; // استخدم آخر الأسعار المعروفة في حالة الخطأ
+    }
+}
+
+// دالة لتحديث القيمة بالدولار لكل عملة
+function updatePriceForCrypto(amount, price, elementId) {
+    const totalValue = amount * price;
+    document.getElementById(elementId).innerText = `$${totalValue.toFixed(2)}`;
+}
+
+// دالة لحساب القيم الفردية
+function calculateIndividualPrices(prices) {
+    // تأكد من وجود العنصر قبل الوصول إليه
+    const btcElement = document.getElementById('btcBalanceAmount');
+    const nearElement = document.getElementById('Near');
+    const sweatElement = document.getElementById('Usdt');
+    
+    const btcAmount = parseFloat(btcElement.innerText) || 0;
+    const nearAmount = parseFloat(nearElement.innerText) || 0;
+    const sweatAmount = parseFloat(sweatElement.innerText) || 0;
+
+    const btcPrice = prices.bitcoin?.usd || 0;
+    const nearPrice = prices.near?.usd || 0;
+    const sweatPrice = prices.sweatcoin?.usd || 0;
+
+    // تحديث القيم
+    updatePriceForCrypto(btcAmount, btcPrice, 'btcValue');
+    updatePriceForCrypto(nearAmount, nearPrice, 'nearValue');
+    updatePriceForCrypto(sweatAmount, sweatPrice, 'sweatValue');
+}
+
+// الدالة الرئيسية لتحديث الأسعار عند تحميل الصفحة
+window.onload = async () => {
+    const prices = await fetchCryptoPrices();
+    calculateIndividualPrices(prices);
+};
+
+// التحديث الأول بعد 10 ثوانٍ ثم كل 60 ثانية
+setTimeout(async () => {
+    const prices = await fetchCryptoPrices();
+    calculateIndividualPrices(prices);
+
+    // بعد التحديث الأول، استخدم التحديث الدوري كل 60 ثانية
+    setInterval(async () => {
+        const prices = await fetchCryptoPrices();
+        calculateIndividualPrices(prices);
+    }, 60000);
+}, 4000);  // التحديث بعد 10 ثوانٍ
+
+
+
+
+// دالة لحساب مجموع القيم بالدولار الموجودة في عمود Value
+function calculateTotalDollarValue() {
+    // حاول جلب القيم بالدولار باستخدام المعرفات (ID)
+    const btcValue = parseFloat(document.getElementById('btcValue').innerText.replace('$', '')) || 0;
+    const nearValue = parseFloat(document.getElementById('nearValue').innerText.replace('$', '')) || 0;
+    const sweatValue = parseFloat(document.getElementById('sweatValue').innerText.replace('$', '')) || 0;
+    const swizaValue = parseFloat(document.getElementById('SwizaValue').innerText.replace('$', '')) || 0; // SWIZA
+    const xsunValue = parseFloat(document.getElementById('totalBalanceInUSD').innerText.replace('$', '')) || 0; // XSUN
+
+    // تحقق من أن القيم ليست 0 بشكل مؤقت (انتظار تحميل القيم الفعلية)
+    if (btcValue === 0 || nearValue === 0 || sweatValue === 0 || swizaValue === 0 || xsunValue === 0) {
+        // الانتظار لبعض الوقت وإعادة المحاولة إذا لم يتم تحميل القيم بشكل كامل
+        console.log("");
+        setTimeout(calculateTotalDollarValue, 1000); // إعادة المحاولة بعد ثانية
+        return; // عدم متابعة العملية الآن
+    }
+
+    // جمع كل القيم بالدولار
+    const totalDollarValue = btcValue + nearValue + sweatValue + swizaValue + xsunValue;
+
+    // تحديث جميع العناصر التي تحمل الفئة "total-balance"
+    const totalBalanceElement = document.getElementById('total-balance');
+if (totalBalanceElement) {
+  totalBalanceElement.innerText = `$${totalDollarValue.toFixed(2)}`;
+}
+
+// تحديث كل العناصر التي تحتوي على class="total-balance"
+const balanceElements = document.querySelectorAll('.total-balance');
+balanceElements.forEach((element) => {
+  element.innerText = `$${totalDollarValue.toFixed(2)}`;
+});
+}
+// استدعاء الدالة عند تحميل الصفحة لحساب المجموع فوراً
+window.onload = () => {
+    calculateTotalDollarValue();
+};
+
+// تحديث القيم بشكل دوري للتأكد من تحديث "Total Balance" مع كل تغيير
+setInterval(() => {
+    calculateTotalDollarValue();
+}, 5000); // تحديث كل 10 ثوانٍ للتحقق من أن القيم قد تم تحميلها
+
+
+
+
+
+
+
+
+
+
+
+
+let balanceVisible = true; // الحالة الافتراضية
+
+function toggleBalanceVisibility() {
+    balanceVisible = !balanceVisible; // تبديل الحالة
+
+    // الحصول على العنصر الذي يحمل id "btcBalanceAmount"
+    const btcBalanceById = document.getElementById('btcBalanceAmount');
+    // الحصول على العنصر الذي يحمل class "btc-balance"
+    const btcBalanceByClass = document.querySelector('.btc-balance');
+
+    // فك التشفير أو إخفاء الرصيد بناءً على الحالة
+    if (btcBalanceById) {
+        if (balanceVisible) {
+            btcBalanceById.innerHTML = btcBalanceById.dataset.value || "0.00"; // استعادة الرصيد الأصلي
+        } else {
+            btcBalanceById.dataset.value = btcBalanceById.innerHTML; // حفظ الرصيد الأصلي
+            btcBalanceById.innerHTML = "****"; // إخفاء الرصيد
+        }
+    }
+
+    if (btcBalanceByClass) {
+        if (balanceVisible) {
+            btcBalanceByClass.innerHTML = btcBalanceByClass.dataset.value || "0.00"; // استعادة الرصيد الأصلي
+        } else {
+            btcBalanceByClass.dataset.value = btcBalanceByClass.innerHTML; // حفظ الرصيد الأصلي
+            btcBalanceByClass.innerHTML = "****"; // إخفاء الرصيد
+        }
+    }
+
+    // التعامل مع مجموع الرصيد (Total Balance) الذي يحمل إما id أو class
+    const totalBalanceElementsById = document.querySelectorAll('#total-balance'); // الأرصدة باستخدام ID
+    const totalBalanceElementsByClass = document.querySelectorAll('.total-balance'); // الأرصدة باستخدام Class
+
+    // دمج كلا المجموعتين (ID و Class) لمجموع الرصيد
+    const allTotalBalanceElements = [...totalBalanceElementsById, ...totalBalanceElementsByClass];
+
+    // التعامل مع جميع عناصر إجمالي الرصيد (التي تحتوي على id أو class "total-balance")
+    allTotalBalanceElements.forEach(totalBalanceElement => {
+        if (balanceVisible) {
+            totalBalanceElement.innerHTML = totalBalanceElement.dataset.value || "0.00"; // استعادة الرصيد الكلي الأصلي
+        } else {
+            totalBalanceElement.dataset.value = totalBalanceElement.innerHTML; // حفظ الرصيد الكلي الأصلي
+            totalBalanceElement.innerHTML = "****"; // إخفاء الرصيد الكلي
+        }
+    });
+
+    // التعامل مع بقية الأرصدة
+    const balanceElements = document.querySelectorAll('.balance'); // جميع الأرصدة الأخرى
+    const valueElements = document.querySelectorAll('td[id$="Value"], span[id$="InUSD"], #balance, #balanceInUSD'); // جميع القيم بالدولار
+    const eyeIcons = document.querySelectorAll('#eye-icon'); // أيقونات العين
+
+    // التعامل مع بقية الأرصدة
+    balanceElements.forEach(el => {
+        if (balanceVisible) {
+            el.innerHTML = el.dataset.value || "0.00"; // استعادة الرصيد الأصلي لكل عملة
+        } else {
+            el.dataset.value = el.innerHTML; // حفظ الرصيد الأصلي
+            el.innerHTML = "****"; // إخفاء الرصيد
+        }
+    });
+
+    // التعامل مع القيم بالدولار
+    valueElements.forEach(el => {
+        if (balanceVisible) {
+            el.innerHTML = el.dataset.value || "$0.00"; // استعادة القيمة الأصلية لكل قيمة بالدولار
+        } else {
+            el.dataset.value = el.innerHTML; // حفظ القيمة الأصلية بالدولار
+            el.innerHTML = "****"; // إخفاء القيمة بالدولار
+        }
+    });
+
+    // تحديث أيقونة العين
+    eyeIcons.forEach(eyeIcon => {
+        if (balanceVisible) {
+            eyeIcon.classList.remove('fa-eye-slash');
+            eyeIcon.classList.add('fa-eye');
+        } else {
+            eyeIcon.classList.remove('fa-eye');
+            eyeIcon.classList.add('fa-eye-slash');
+        }
+    });
+}
+
+// اجعل الدالة متاحة في النطاق العالمي
+window.toggleBalanceVisibility = toggleBalanceVisibility;
+
+document.addEventListener('DOMContentLoaded', () => {
+    window.toggleBalanceVisibility = toggleBalanceVisibility;
+});
+
+
+
+// رابط صوت الكيبورد
+
+
+    </script>
+</body>
+</html>
+
+   
+    <script>
+    
+
+   function copyInvitationCode() {
+  const invitationCode = document.getElementById('invitationCodeDisplay').textContent;
+  navigator.clipboard.writeText(invitationCode)
+    .then(() => {
+      document.getElementById('copyMessage').style.display = 'inline'; // Display "Copied" message
+      setTimeout(function() { document.getElementById('copyMessage').style.display = 'none'; }, 2000); // Hide message after 2 seconds
+    })
+    .catch((error) => {
+      console.error("Error copying invitation code:", error);
+    });
+}
+  
+
+function showEarnings() {
+  // إخفاء عناصر واجهة KYC (إذا كانت معروضة)
+  document.getElementById('kycContainer').style.display = 'none';
+
+  // إخفاء عناصر واجهة Roadmap (إذا كانت معروضة)
+  document.getElementById('roadMapContainer').style.display = 'none';
+
+  // إخفاء عناصر واجهة Secret Content (إذا كانت معروضة)
+  document.getElementById('secretContent').style.display = 'none';
+
+  // إخفاء عناصر واجهة Invite Friends (إذا كانت معروضة)
+  document.getElementById('inviteFriendsContainer').style.display = 'none';
+
+  // عرض عناصر واجهة Earnings
+  document.getElementById('earningsContainer').style.display = 'block';
+}
+
+
+
+
+
+
+        function showKyc() {
+  // إخفاء عناصر واجهة Roadmap (إذا كانت معروضة)
+  document.getElementById('roadMapContainer').style.display = 'none';
+
+  // إخفاء عناصر واجهة Earnings (إذا كانت معروضة)
+  document.getElementById('earningsContainer').style.display = 'none';
+
+  // إخفاء عناصر واجهة Secret Content (إذا كانت معروضة)
+  document.getElementById('secretContent').style.display = 'none';
+
+  // إخفاء عناصر واجهة Invite Friends (إذا كانت معروضة)
+  document.getElementById('inviteFriendsContainer').style.display = 'none';
+
+
+
+  // عرض عناصر واجهة KYC
+  document.getElementById('kycContainer').style.display = 'block';
+}
+
+
+
+function showRoadmap() {
+  document.getElementById('earningsContainer').style.display = 'none';
+  document.getElementById('kycContainer').style.display = 'none';
+
+  document.getElementById('roadMapContainer').style.display = 'block';  // عدلت هنا لعرض roadMapContainer
+
+  document.getElementById('inviteFriendsContainer').style.display = 'none'; // عدلت هنا لإخفاء inviteFriendsContainer
+  document.getElementById('secretContent').style.display = 'none'; // عدلت هنا لإخفاء secretContent
+  
+}
+
+
+
+
+
+
+
+function showMiningInterface() {
+  // إخفاء عناصر واجهة Roadmap (إذا كانت معروضة)
+  document.getElementById('roadMapContainer').style.display = 'none';
+
+  // إخفاء عناصر واجهة KYC (إذا كانت معروضة)
+  document.getElementById('kycContainer').style.display = 'none';
+
+  // إخفاء عناصر واجهة Earnings (إذا كانت معروضة)
+  document.getElementById('earningsContainer').style.display = 'none';
+
+  // عرض عناصر واجهة Secret Content
+  document.getElementById('secretContent').style.display = 'block';
+  
+  document.getElementById('inviteFriendsContainer').style.display = 'none';
+  
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+        function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            if (sidebar.style.left === '-250px') {
+                sidebar.style.left = '0';
+            } else {
+                sidebar.style.left = '-250px';
+                
+          
+      
+            }
+
+
+
+
+
+             // Function to close the sidebar...
+        function closeSidebar() {
+            var sidebar = document.getElementById("sidebar");
+            sidebar.style.left = "-250px";
+        }
+
+        // Add event listeners to close the sidebar when links are clicked...
+        var sidebarLinks = document.querySelectorAll(".sidebar a");
+        for (var i = 0; i < sidebarLinks.length; i++) {
+            sidebarLinks[i].addEventListener("click", closeSidebar);
+        }
+
+        // Add event listener to close the sidebar on mobile screen tap...
+        document.addEventListener("click", function(event) {
+            var screenWidth = window.innerWidth;
+            if (screenWidth <= 768) { // Adjust this value based on your design's breakpoint
+                if (!event.target.matches('.menu-button')) {
+                    closeSidebar();
+                }
+            }
+        });
+  
+            
+            
+            
+            
+            
+            // تحقق مما إذا كان لديك UID محفوظ في Local Storage
+// مصفوفة تحتوي على الأرقام من 0 إلى 9
+
+    
+
+}
+
+
+    
+       
+   function fillMax() {
+     var balance = document.getElementById("balance").innerText;
+     document.getElementById("amount").value = balance;
+   }
+       
+        
+  function enableEditing() {
+    var inputField = document.getElementById("enterWalletAddress");
+    inputField.removeAttribute("readonly");
+    inputField.focus();
+  }
+        
+// داخل دالة showInviteFriends()
+function showInviteFriends() {
+  // إخفاء جميع الصفحات ما عدا واجهة Invite Friends
+  document.getElementById('kycContainer').style.display = 'none';
+  document.getElementById('roadMapContainer').style.display = 'none';
+  document.getElementById('secretContent').style.display = 'none';
+  document.getElementById('earningsContainer').style.display = 'none';
+
+  // عرض عناصر واجهة Invite Friends
+  document.getElementById('inviteFriendsContainer').style.display = 'block';
+}  
+  
+  
+
+function validateInput(input) {
+}
+function generateInvitationCode() {
+  // قم بتوليد رمز الدعوة هنا وقم بتعيينه لقيمة الحقل النصي
+  var newInvitationCode = generateCode(); // تخمين الدالة
+
+  // قم بتعيين القيمة المولدة لحقل النص
+  document.getElementById("invitationCode").value = newInvitationCode;
+}
+
+// وظيفة تخمينية لتوليد رمز الدعوة
+function generateCode() {
+  // يمكنك استبدال هذا بطريقة توليد رمز دعوة فعلية
+  return "7M4LYdxg";
+}
+
+
+
+
+
+
+var submitBtn = document.getElementById('submitBtn');
+var confirmationMessage = document.getElementById('confirmationMessage');
+
+// إضافة حدث النقر
+submitBtn.addEventListener('click', function() {
+  // تعطيل الزر
+  submitBtn.disabled = true;
+
+  // عرض رسالة التأكيد
+  confirmationMessage.style.display = 'block';
+
+  // إعادة تفعيل الزر بعد ثواني معينة
+  setTimeout(function() {
+    submitBtn.disabled = false;
+    confirmationMessage.style.display = 'none';
+  }, 3000); // 3 ثواني
+});
+
+
+
+
+
+
+
+  // Function to fill the quantity input with the balance of the selected currency
+  
+
+  function copyContract() {
+  var contractAddress = document.getElementById('contractAddress');
+  contractAddress.select();
+  document.execCommand('copy');
+  
+  // Create copied message element
+  var copiedMessage = document.createElement('div');
+  copiedMessage.textContent = 'Copied!';
+  copiedMessage.classList.add('copied-message');
+  document.body.appendChild(copiedMessage);
+  
+  // Remove copied message after 2 seconds
+  setTimeout(function(){
+    copiedMessage.remove();
+  }, 2000);
+}
+
+
+    
+
+
+    window.addEventListener('orientationchange', function() {
+      var screenOrientation = window.screen.orientation;
+    
+      if (screenOrientation.type === 'landscape-primary' || screenOrientation.type === 'landscape-secondary') {
+        document.getElementById('blackScreen').style.display = 'flex';
+      } else {
+        document.getElementById('blackScreen').style.display = 'none';
+      }
+    });
+
+
+
+function togglePasswordVisibility() {
+  // جلب الحقول
+  var passwordField = document.getElementById("userPassword");
+  var confirmPasswordField = document.getElementById("confirmPassword");
+  var toggleButton = document.getElementById("togglePassword");
+
+  // التأكد من أن كلا الحقلين تم جلبهما بنجاح
+  if (passwordField && confirmPasswordField) {
+    // تبديل النوع بين password و text
+    if (passwordField.type === "password") {
+      passwordField.type = "text"; // عرض كلمة المرور
+      confirmPasswordField.type = "text"; // عرض تأكيد كلمة المرور
+      toggleButton.textContent = "Hide password"; // تغيير النص إلى Hide
+    } else {
+      passwordField.type = "password"; // إخفاء كلمة المرور
+      confirmPasswordField.type = "password"; // إخفاء تأكيد كلمة المرور
+      toggleButton.textContent = "Show password"; // Show
+    }
+  } else {
+    console.error("Error."); // طباعة خطأ إذا كانت الحقول غير موجودة
+  }
+}
+
+
+document.getElementById('googleLogo').innerHTML = 'G';
+
+
+
+
+
+function detectDevice() {
+  const userAgent = navigator.userAgent;
+  const isTablet = /iPad|Android(?!.*Mobile)/.test(userAgent); // تحقق من الجهاز اللوحي
+  const isMobile = /Mobile/.test(userAgent); // تحقق من الهاتف المحمول
+
+  // إذا كان الجهاز هو جهاز لوحي، اعرض الشاشة السوداء
+  if (isTablet) {
+    document.getElementById('overlay').style.display = 'flex'; // عرض الشاشة السوداء
+  }
+}
+
+detectDevice(); // استدعاء الدالة عند تحميل الصفحة
+
+
+
+  // Function to fill the quantity input with the balance of the selected currency
+  
+  // كائن لتخزين آخر الأسعار المعروفة
+  
+        
+        
+        
+    
+    function fillQuantity(currency) {
+    var balance = 0;
+    
+    // Determine the balance based on the selected currency
+    switch(currency) {
+      case "Xsun":
+        balance = parseFloat(document.getElementById("totalBalance").innerText);
+        break;
+      case "Bitcoin":
+        balance = parseFloat(document.getElementById("btcBalanceAmount").innerText);
+        break;
+      case "Swiza":
+        balance = parseFloat(document.getElementById("Swiza").innerText);
+        break;
+      case "Near":
+        balance = parseFloat(document.getElementById("Near").innerText);
+        break;
+      case "Usdt":
+        balance = parseFloat(document.getElementById("Usdt").innerText);
+        break;
+      // Add cases for other currencies if needed
+    }
+    
+    // Fill the quantity input with the balance
+    document.getElementById("quantity").value = balance;
+  }
+
+  // Function to open the popup with the selected currency
+  function openPopup(currency) {
+    var popup = document.getElementById('popup');
+    var reminder = document.getElementById('reminder');
+    var addressInput = document.getElementById('address');
+    var quantityInput = document.getElementById('quantity');
+    var swizaButton = document.getElementById('swizaButton');
+    var xsunButton = document.getElementById('xsunButton');
+    var bitcoinButton = document.getElementById('bitcoinButton');
+    var nearButton = document.getElementById('nearButton');
+    var usdtButton = document.getElementById('usdtButton');
+    var networkDropdown = document.getElementById("network");
+
+    popup.style.display = 'block';
+    reminder.style.display = 'none';
+    addressInput.value = '';
+    quantityInput.value = '';
+
+    // Store the current network value
+    var currentNetwork = networkDropdown.value;
+
+    // Hide all buttons first
+    swizaButton.style.display = 'none';
+    xsunButton.style.display = 'none';
+    bitcoinButton.style.display = 'none';
+    nearButton.style.display = 'none';
+    usdtButton.style.display = 'none';
+
+    // Show the button corresponding to the selected currency
+    if (currency === 'Swiza') {
+      swizaButton.style.display = 'block';
+      fillNetworkOptions(['Bsc20', 'Near']);
+    } else if (currency === 'Xsun') {
+      xsunButton.style.display = 'block';
+      fillNetworkOptions(['Erc20', 'Bsc20', 'Near' , 'Trc20']);
+    } else if (currency === 'Bitcoin') {
+      bitcoinButton.style.display = 'block';
+      fillNetworkOptions(['Btc']);
+    } else if (currency === 'Near') {
+      nearButton.style.display = 'block';
+      fillNetworkOptions(['Near']);
+    } else if (currency === 'Usdt') {
+      usdtButton.style.display = 'block';
+      fillNetworkOptions(['Near',, 'Erc20']);
+    }
+
+    // Restore the current network value
+    var currentNetworkIndex = Array.from(networkDropdown.options).findIndex(option => option.value === currentNetwork);
+    networkDropdown.selectedIndex = currentNetworkIndex !== -1 ? currentNetworkIndex : 0;
+
+    // Fill the quantity input with the balance of the selected currency
+    fillQuantity(currency);
+  }
+
+  // Function to fill the network dropdown with options
+  function fillNetworkOptions(options) {
+    var networkDropdown = document.getElementById("network");
+    networkDropdown.innerHTML = options.map(option => `<option value="${option}">${option}</option>`).join('');
+  }
+
+  // Function to send Swiza
+  function sendSwiza() {
+    showMessage();
+  }
+
+  // Function to send Xsun
+  function sendXsun() {
+    showMessage();
+  }
+
+  // Function to send Bitcoin
+  function sendBitcoin() {
+    showMessage();
+  }
+
+  // Function to send Near
+  function sendNear() {
+    showMessage();
+  }
+
+  // Function to send Usdt
+  function sendUsdt() {
+    showMessage();
+  }
+
+  // Function to show a message
+  function showMessage() {
+  var messageElement = document.getElementById('message');
+  var totalBalanceElement = document.getElementById('total-balance');
+
+  // إخفاء "Total Balance"
+  totalBalanceElement.style.display = 'block';
+
+  // إظهار الرسالة "Not open yet"
+  messageElement.innerText = 'Not open yet';
+  messageElement.style.display = 'block';
+
+  // بعد 4 ثوانٍ، إخفاء الرسالة وإعادة إظهار "Total Balance"
+  setTimeout(function() {
+    messageElement.style.display = 'none';
+    totalBalanceElement.style.display = 'flex';
+  }, 4000); // 4000 ميلي ثانية = 4 ثوانٍ
+}
+
+
+
+  // Function to cancel the popup
+  function cancel() {
+    document.getElementById('popup').style.display = 'none';
+  }
+
+        
+  // رابط صوت الكيبورد
+// رابط صوت الكيبورد
+
+
+
+
+        
+</script>
+</body>
+</html>
